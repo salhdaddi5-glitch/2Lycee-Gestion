@@ -542,6 +542,9 @@ button,input,select,textarea{max-width:100%}
 <div id="modal-root"></div>
 <div id="confetti"></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>
 'use strict';
 const CFG = {
@@ -723,9 +726,40 @@ function defaults(){
 
 const KEY=CFG.storageKey;
 let S=null,firstRun=false;
-try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
-if(!S||!S.subjects){S=defaults();firstRun=true;save()}
-else migrate();
+
+// ════════════ Firebase Realtime Database ════════════
+const firebaseConfig={
+  apiKey:"AIzaSyACGMGETrqeyCD3bdZ_05Zzbi5E8gf2z80",
+  authDomain:"chikha-9a2eb.firebaseapp.com",
+  databaseURL:"https://chikha-9a2eb-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:"chikha-9a2eb",
+  storageBucket:"chikha-9a2eb.firebasestorage.app",
+  messagingSenderId:"861691651940",
+  appId:"1:861691651940:web:943aa0dbf3a349020abc71",
+  measurementId:"G-TD50B59FG9"
+};
+firebase.initializeApp(firebaseConfig);
+const DB=firebase.database();
+let DB_REF=null,_saveTimer=null;
+function loadLocal(){
+  try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+  if(!S||!S.subjects){S=defaults();firstRun=true;save()}
+  else migrate();
+}
+async function bootData(){
+  try{
+    const cred=await firebase.auth().signInAnonymously();
+    DB_REF=DB.ref('users/'+cred.user.uid+'/data');
+    const snap=await DB_REF.get();
+    let cloud=null;
+    if(snap.exists()){try{cloud=snap.val()}catch(e){cloud=null}}
+    if(cloud&&cloud.subjects){S=cloud;migrate()}
+    else loadLocal();
+  }catch(err){
+    console.error('⚠️ Firebase غير متاح، سيتم استخدام التخزين المحلي',err);
+    loadLocal();
+  }
+}
 
 function migrate(){
   let dirty=false;
@@ -749,7 +783,10 @@ function migrate(){
   }
   if(dirty)save();
 }
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+  if(DB_REF){clearTimeout(_saveTimer);_saveTimer=setTimeout(()=>{DB_REF.set(S).catch(err=>console.error('⚠️ Firebase save:',err))},400)}
+}
 
 const XP = {
   total(){return S.ledger.reduce((a,e)=>a+e.amount,0)},
@@ -1496,7 +1533,7 @@ const A={
   'ask-reset-progress'(){askConfirm('حذف كل التقدم (XP، الأوسمة، السجل)؟ المواد والدروس تبقى.','reset-progress','x')},
   'reset-progress'(){S.ledger=[];S.xp=0;S.streak={count:0,last:null,best:0,activeDays:[]};S.badges=[];S.studyHistory=[];S.focusSessions=[];S.activity={};S.subjects.forEach(s=>{s.lessons.forEach(l=>{l.done=false;l.doneAt=null;l.xpDone=false;l.prog=0;l.lesEx.forEach(x=>{x.done=false;x.xpDone=false})});s.exercises.forEach(x=>{x.done=false;x.xpDone=false})});S.tasks.forEach(t=>{t.done=false;t.xpDone=false});S.notes.forEach(n=>n.xpDone=false);S.homeSchedule.forEach(h=>{h.done=false;h.xpDone=false});S.exams.forEach(e=>{e.status='planned';e.score=null;e.xpDone=false});save();closeModal();toast('♻️ تم','info');refresh()},
   'ask-reset-all'(){askConfirm('⚠️ حذف كل البيانات نهائيًا والعودة للبداية. لا يمكن التراجع!','reset-all','x')},
-  'reset-all'(){localStorage.removeItem(CFG.storageKey);location.reload()},
+  'reset-all'(){try{localStorage.removeItem(CFG.storageKey)}catch(e){}if(DB_REF)DB_REF.remove();location.reload()},
   'resume'(){if(S.last)location.hash='#subject/'+S.last},
 };
 
@@ -1561,10 +1598,10 @@ function runGlobalSearch(q){
 }
 
 const routes={dashboard:renderDashboard,subjects:renderSubjects,subject:renderSubject,lesson:renderLesson,lessons:renderLessons,exercises:renderExercises,exams:renderExams,school:renderSchool,home:renderHome,focus:renderFocus,planner:renderPlanner,notes:renderNotes,progress:renderProgress,history:renderHistory,notifs:renderNotifs,ai:renderAI,settings:renderSettings};
-buildNav();syncHUD();route();
+(async()=>{await bootData();buildNav();syncHUD();route();if(firstRun)setTimeout(onboard,1200);})();
 
 function onboard(){modal({title:'🎓 أهلًا بك في STUDY HUB',body:`<p class="vs" style="margin-bottom:14px">نظام الدراسة الشخصي الكامل لطلاب <b>2 ثانوي — تسيير واقتصاد</b>.<br><br>📚 دروس + فيديوهات + ملخصات<br>✏️ تمارين + فروض + اختبارات<br>🏫 جدول المدرسة + 🏠 جدول المنزل<br>⏱️ Focus Mode + 🔔 تنبيهات<br>🤖 مساعد ذكي عام (دراسة + برمجة + كتابة)<br>⭐ نظام XP عادل وموثوق</p><form data-form="onboard" class="fcol"><label>اسمك<input name="name" placeholder="مثال: أمين" maxlength="20" autofocus></label><label>هدفك اليومي<select name="goal"><option value="2">2 مهام</option><option value="3" selected>3 مهام ✅</option><option value="5">5 مهام 🔥</option></select></label><button class="btn" type="submit">🚀 ابدأ</button></form>`})}
-if(firstRun)setTimeout(onboard,1200);
+
 
 setTimeout(()=>{const sp=$('#splash');if(sp){sp.classList.add('off');setTimeout(()=>sp.remove(),600)}},1400);
 
@@ -1572,7 +1609,7 @@ setInterval(()=>{checkReminders();
   if(S.streak.last){const gap=daysLeft(S.streak.last);if(gap<-1){S.streak.count=0;save();syncHUD()}}
 },30000);
 setInterval(()=>{checkDailyGoal();checkWeeklyGoal();syncHUD()},60000);
-setTimeout(()=>{
+setTimeout(()=>{if(!S)return;
   S.exams.filter(e=>e.status==='planned').forEach(e=>{
     const dl=daysLeft(e.date);const s=subj(e.subjectId);
     if(dl===1)pushNotif('📝 فرض غدًا!',(s?s.name+' — ':'')+(e.title||e.type),'gold');
@@ -1584,4 +1621,4 @@ console.log('%c📚 STUDY HUB — 2AS Gestion & Économie','background:#0B8A63;c
 console.log('%c🎯 XP Ledger: '+S.ledger.length+' عمليات | ✅ Total XP: '+S.xp,'color:#0B8A63');
 </script>
 </body>
-</html>     
+</html>
