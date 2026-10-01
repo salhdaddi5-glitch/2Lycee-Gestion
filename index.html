@@ -10,12 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Changa:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-<!-- Firebase SDK (compat) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script>try{var _s=JSON.parse(localStorage.getItem('studyhub2as'));if(_s&&_s.theme)document.documentElement.dataset.theme=_s.theme;else if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.dataset.theme='dark';}catch(e){}</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -31,21 +27,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0
 textarea{resize:vertical;min-height:70px}
 [hidden]{display:none!important}
 .ic{width:20px;height:20px;flex:none}
-.flip{display:inline-flex;transform:scaleX(-1)}
 ::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-
-/* Firebase Status Bar */
-.fb-status{position:fixed;top:8px;inset-inline-end:8px;z-index:60;display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);padding:5px 11px;border-radius:99px;font-size:11.5px;font-weight:800;box-shadow:var(--shadow);transition:.3s;cursor:pointer}
-.fb-status .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none;transition:.3s}
-.fb-status.connected .dot{background:#2FBE8F;box-shadow:0 0 0 3px rgba(47,190,143,.25);animation:pulseDot 2s infinite}
-.fb-status.offline .dot{background:var(--red)}
-.fb-status.syncing .dot{background:var(--gold);animation:spin 1s linear infinite}
-.fb-status.error .dot{background:var(--red)}
-@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.5}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:1020px){.fb-status{top:auto;bottom:calc(70px + env(safe-area-inset-bottom));inset-inline-end:8px;font-size:10.5px;padding:4px 9px}}
-
 .side{position:fixed;inset-block:0;inset-inline-start:0;width:266px;padding:18px 14px 16px;display:flex;flex-direction:column;gap:12px;background:color-mix(in srgb,var(--surface) 86%,transparent);backdrop-filter:blur(14px);border-inline-end:1px solid var(--line);z-index:40;overflow-y:auto}
 .brand{display:flex;gap:11px;align-items:center;padding:2px 6px}
 .b-mark{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#0E9A6E,#0A4A38);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px -6px rgba(11,138,99,.55);flex:none}
@@ -337,6 +320,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
 .summary-card{background:var(--green-soft);border:1px solid var(--green);border-radius:14px;padding:16px;margin-bottom:12px}
 .summary-card h5{color:var(--green);font-family:'Changa';font-size:14px;margin-bottom:8px}
 .lesson-summary-badge{display:inline-flex;align-items:center;gap:4px;background:var(--green-soft);color:var(--green);padding:3px 10px;border-radius:99px;font-size:11px;font-weight:800}
+.fb-status{position:fixed;top:8px;inset-inline-end:8px;z-index:60;display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);padding:5px 11px;border-radius:99px;font-size:11.5px;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
+.fb-status .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}
+.fb-status.connected .dot{background:#2FBE8F;box-shadow:0 0 0 3px rgba(47,190,143,.25)}
+.fb-status.offline .dot{background:var(--red)}
+.fb-status.syncing .dot{background:var(--gold)}
 html,body{max-width:100%;overflow-x:hidden}
 img,svg,video,canvas{max-width:100%}
 button,input,select,textarea{max-width:100%}
@@ -357,6 +345,7 @@ button,input,select,textarea{max-width:100%}
 .vact>.btn{min-width:0}
 .row{max-width:100%}
 .sch-scroll{width:100%;max-width:100%}
+.fb-status{top:auto;bottom:calc(70px + env(safe-area-inset-bottom));inset-inline-end:8px;font-size:10.5px;padding:4px 9px}
 }
 @media(max-width:620px){
 .main{padding:12px 10px calc(110px + env(safe-area-inset-bottom))}
@@ -456,10 +445,9 @@ button,input,select,textarea{max-width:100%}
 <body>
 <div id="splash"><div class="sp-in"><div class="sp-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 9-10-5L2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 9v5"/></svg></div><div class="sp-name">STUDY HUB</div><div class="sp-sub">2 ثانوي • تسيير واقتصاد</div><div class="sp-bar"><i></i></div></div></div>
 
-<!-- Firebase Status Indicator -->
-<div class="fb-status offline" id="fb-status" title="حالة الاتصال بـ Firebase">
+<div class="fb-status offline" id="fb-status" title="حالة Firebase">
   <span class="dot"></span>
-  <span id="fb-status-text">جاري الاتصال...</span>
+  <span id="fb-status-text">⚠️ محلي</span>
 </div>
 
 <aside class="side">
@@ -503,136 +491,57 @@ button,input,select,textarea{max-width:100%}
 'use strict';
 
 /* ═══════════════════════════════════════════════════════════
-   🔥 FIREBASE CONFIGURATION
+   🔥 FIREBASE (اختياري - لا يعطل التطبيق)
    ═══════════════════════════════════════════════════════════ */
-const firebaseConfig = {
-  apiKey: "AIzaSyACGMGETrqeyCD3bdZ_05Zzbi5E8gf2z80",
-  authDomain: "chikha-9a2eb.firebaseapp.com",
-  databaseURL: "https://chikha-9a2eb-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "chikha-9a2eb",
-  storageBucket: "chikha-9a2eb.firebasestorage.app",
-  messagingSenderId: "861691651940",
-  appId: "1:861691651940:web:943aa0dbf3a349020abc71",
-  measurementId: "G-TD50B59FG9"
-};
-
-// Initialize Firebase
-let fbApp = null, fbDb = null, fbAuth = null;
-let fbUserId = null;
-let fbConnected = false;
-let fbListenerActive = false;
-let fbSyncQueue = [];
-let fbLastRemoteUpdate = 0;
-
+let fbDb = null, fbUserId = null, fbConnected = false, fbSaveTimer = null;
 try {
-  fbApp = firebase.initializeApp(firebaseConfig);
-  fbDb = firebase.database();
-  fbAuth = firebase.auth();
-  console.log('%c🔥 Firebase initialized','background:#DD9A26;color:#fff;padding:4px 10px;border-radius:6px');
-} catch (e) {
-  console.error('❌ Firebase init error:', e);
-}
-
-// Generate/get persistent user ID
-function getFbUserId() {
-  let uid = localStorage.getItem('studyhub_uid');
-  if (!uid) {
-    uid = 'user_' + Math.random().toString(36).slice(2, 12) + Date.now().toString(36);
-    localStorage.setItem('studyhub_uid', uid);
-  }
-  return uid;
-}
-fbUserId = getFbUserId();
-
-// Firebase connection status
-function updateFbStatus(state, msg) {
-  const el = document.getElementById('fb-status');
-  const txt = document.getElementById('fb-status-text');
-  if (!el) return;
-  el.classList.remove('connected','offline','syncing','error');
-  el.classList.add(state);
-  if (txt) txt.textContent = msg || {connected:'متصل ☁️',offline:'غير متصل',syncing:'مزامنة...',error:'خطأ'}[state];
-}
-
-// Listen to Firebase connection state
-if (fbDb) {
-  const connRef = fbDb.ref('.info/connected');
-  connRef.on('value', (snap) => {
-    fbConnected = snap.val() === true;
-    if (fbConnected) {
-      updateFbStatus('connected','متصل ☁️');
-      // Flush queue
-      while (fbSyncQueue.length) {
-        const fn = fbSyncQueue.shift();
-        try { fn(); } catch(e) { console.error(e); }
-      }
-    } else {
-      updateFbStatus('offline','غير متصل');
+  if (typeof firebase !== 'undefined' && firebase.initializeApp) {
+    const fbApp = firebase.initializeApp({
+      apiKey: "AIzaSyACGMGETrqeyCD3bdZ_05Zzbi5E8gf2z80",
+      authDomain: "chikha-9a2eb.firebaseapp.com",
+      databaseURL: "https://chikha-9a2eb-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "chikha-9a2eb",
+      storageBucket: "chikha-9a2eb.firebasestorage.app",
+      messagingSenderId: "861691651940",
+      appId: "1:861691651940:web:943aa0dbf3a349020abc71"
+    });
+    fbDb = firebase.database();
+    fbUserId = localStorage.getItem('studyhub_uid');
+    if (!fbUserId) {
+      fbUserId = 'user_' + Math.random().toString(36).slice(2, 12) + Date.now().toString(36);
+      localStorage.setItem('studyhub_uid', fbUserId);
     }
-  });
-}
+    fbDb.ref('.info/connected').on('value', snap => {
+      fbConnected = snap.val() === true;
+      const el = document.getElementById('fb-status');
+      const txt = document.getElementById('fb-status-text');
+      if (el) {
+        el.classList.remove('connected','offline','syncing');
+        el.classList.add(fbConnected ? 'connected' : 'offline');
+        if (txt) txt.textContent = fbConnected ? '☁️ سحابي' : '⚠️ محلي';
+      }
+    });
+  }
+} catch (e) { console.warn('Firebase غير متاح:', e.message); }
 
-// Save to Firebase (debounced)
-let fbSaveTimer = null;
 function fbSave(data) {
   if (!fbDb || !fbUserId) return;
-  const doSave = () => {
-    if (!fbConnected) {
-      fbSyncQueue.push(() => fbSave(data));
-      return;
-    }
-    try {
-      const ref = fbDb.ref('users/' + fbUserId + '/data');
-      ref.set(data).then(() => {
-        updateFbStatus('connected','متصل ☁️');
-      }).catch(err => {
-        console.error('Firebase save error:', err);
-        updateFbStatus('error','خطأ في الحفظ');
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
   clearTimeout(fbSaveTimer);
-  fbSaveTimer = setTimeout(doSave, 600);
+  fbSaveTimer = setTimeout(() => {
+    try {
+      fbDb.ref('users/' + fbUserId + '/data').set(data).catch(()=>{});
+    } catch(e) {}
+  }, 800);
 }
 
-// Load from Firebase
 function fbLoad() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     if (!fbDb || !fbUserId) { resolve(null); return; }
-    const ref = fbDb.ref('users/' + fbUserId + '/data');
-    ref.once('value').then(snap => {
-      resolve(snap.val());
-    }).catch(err => {
-      console.error('Firebase load error:', err);
-      resolve(null);
-    });
-  });
-}
-
-// Listen for remote changes (real-time sync)
-function fbStartListener() {
-  if (!fbDb || !fbUserId || fbListenerActive) return;
-  fbListenerActive = true;
-  const ref = fbDb.ref('users/' + fbUserId + '/data');
-  ref.on('value', (snap) => {
-    const remote = snap.val();
-    if (!remote) return;
-    // Avoid overwriting local changes we just made
-    if (Date.now() - fbLastRemoteUpdate < 1500) return;
-    // Merge remote data into local state
-    if (remote.v && remote.v >= (S?.v || 0)) {
-      S = remote;
-      try { localStorage.setItem(CFG.storageKey, JSON.stringify(S)); } catch(e){}
-      fbLastRemoteUpdate = Date.now();
-      // Refresh UI if mounted
-      if (typeof refresh === 'function' && document.getElementById('view')) {
-        try { refresh(); syncHUD(); } catch(e){}
-      }
-    }
-  }, (err) => {
-    console.error('Firebase listener error:', err);
+    try {
+      fbDb.ref('users/' + fbUserId + '/data').once('value')
+        .then(snap => resolve(snap.val()))
+        .catch(() => resolve(null));
+    } catch(e) { resolve(null); }
   });
 }
 
@@ -675,7 +584,7 @@ const ARABIC_DAYS=['الأحد','الاثنين','الثلاثاء','الأرب�
 const cleanUrl=u=>{u=(u||'').trim();if(!u)return'';if(!/^https?:\/\//i.test(u))u='https://'+u;try{const x=new URL(u);if(x.protocol!=='http:'&&x.protocol!=='https:')return'';return x.href}catch(e){return''}};
 const ytId=u=>{const m=(u||'').match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{6,})/);return m?m[1]:null};
 const openSafe=u=>{const c=cleanUrl(u);if(!c){toast('❌ رابط غير صالح','err');return}window.open(c,'_blank','noopener')};
-const linesOf=v=>v.split('\n').map(x=>x.trim()).filter(Boolean);
+const linesOf=v=>String(v||'').split('\n').map(x=>x.trim()).filter(Boolean);
 const P={home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>',book:'<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>',list:'<path d="M11 6h10M11 12h10M11 18h10"/><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"/>',pen:'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',clip:'<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h6"/>',cal:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 9.5h18"/>',note:'<path d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11l5-5V5a2 2 0 0 0-2-2z"/><path d="M15 21v-4a2 2 0 0 1 2-2h4"/>',chart:'<path d="M6 20v-8M12 20V5M18 20v-11"/><path d="M3 20h18"/>',spark:'<path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>',gear:'<path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h12M20 18h0"/><circle cx="15" cy="6" r="2.2"/><circle cx="9" cy="12" r="2.2"/><circle cx="18" cy="18" r="2.2"/>',moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',plus:'<path d="M12 5v14M5 12h14"/>',x:'<path d="M18 6 6 18M6 6l12 12"/>',check:'<path d="M20 6 9 17l-5-5"/>',trash:'<path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/>',pin:'<path d="M9 4h6l-.8 5.2 2.8 2.8v2H7v-2l2.8-2.8z"/><path d="M12 14v7"/>',play:'<path d="M6 4l14 8-14 8z"/>',fire:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',star:'<path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>',zap:'<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',dl:'<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',ul:'<path d="M12 21V9"/><path d="m7 14 5-5 5 5"/><path d="M5 3h14"/>',send:'<path d="m22 2-11 11"/><path d="M22 2 15 22l-4-9-9-4z"/>',back:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',dots:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>',chev:'<path d="m14 6-6 6 6 6"/>',bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',copy:'<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>',refresh:'<path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>',school:'<path d="m22 10-10-5-10 5 10 5z"/><path d="M6 12v5c0 2 2.7 3 6 3s6-1 6-3v-5"/><path d="M22 10v6"/>',home2:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21V12h6v9"/>',hist:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'};
 const IC=n=>`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${P[n]||''}</svg>`;
 const dOff=n=>dstr(new Date(Date.now()+n*864e5));
@@ -810,67 +719,9 @@ weeklyGoal:{min:CFG.WEEKLY_GOAL_MIN,xpGiven:null}
 }
 const KEY=CFG.storageKey;
 let S=null,firstRun=false;
-
-// Load from localStorage first (fast), then Firebase (async)
 try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
-
-async function initApp() {
-  // Try Firebase first
-  const remoteData = await fbLoad();
-  if (remoteData && remoteData.subjects) {
-    // Remote has data — use it if newer
-    if (!S || !S.v || (remoteData.v && remoteData.v >= S.v)) {
-      S = remoteData;
-      try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){}
-      console.log('%c☁️ Loaded from Firebase','color:#0B8A63;font-weight:bold');
-    }
-  } else if (!S || !S.subjects) {
-    // No local, no remote → seed
-    S = defaults();
-    firstRun = true;
-  }
-  
-  if (S && !S.subjects) {
-    S = defaults();
-    firstRun = true;
-  }
-  
-  migrate();
-  save();
-  
-  // Start real-time listener
-  fbStartListener();
-  
-  buildNav();
-  syncHUD();
-  route();
-  
-  if (firstRun) setTimeout(onboard, 1200);
-  
-  setTimeout(() => {
-    const sp = $('#splash');
-    if (sp) { sp.classList.add('off'); setTimeout(() => sp.remove(), 600); }
-  }, 1400);
-  
-  setInterval(() => {
-    checkReminders();
-    if (S.streak.last) {
-      const gap = daysLeft(S.streak.last);
-      if (gap < -1) { S.streak.count = 0; save(); syncHUD(); }
-    }
-  }, 30000);
-  
-  setInterval(() => { checkDailyGoal(); checkWeeklyGoal(); syncHUD(); }, 60000);
-  
-  setTimeout(() => {
-    S.exams.filter(e => e.status === 'planned').forEach(e => {
-      const dl = daysLeft(e.date); const s = subj(e.subjectId);
-      if (dl === 1) pushNotif('📝 فرض غدًا!', (s ? s.name + ' — ' : '') + (e.title || e.type), 'gold');
-      else if (dl === 0) pushNotif('🚨 فرض اليوم!', (s ? s.name + ' — ' : '') + (e.title || e.type), 'gold');
-    });
-  }, 2500);
-}
-
+if(!S||!S.subjects){S=defaults();firstRun=true;save()}
+else migrate();
 function migrate(){
 let dirty=false;
 if(!S.v||S.v<4){
@@ -893,12 +744,22 @@ S.v=CFG.version;dirty=true;
 }
 if(dirty)save();
 }
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} fbSave(S)}
 
-function save(){
-  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
-  // Sync to Firebase
-  fbSave(S);
-}
+// تحميل من Firebase بعد بدء التطبيق
+setTimeout(async () => {
+  try {
+    const remote = await fbLoad();
+    if (remote && remote.subjects && remote.v >= (S.v||0)) {
+      if (confirm('وجدنا بياناتك في السحابة ☁️\nهل تريد تحميلها؟')) {
+        S = remote;
+        migrate();
+        save();
+        location.reload();
+      }
+    }
+  } catch(e) {}
+}, 2000);
 
 const XP = {
 total(){return S.ledger.reduce((a,e)=>a+e.amount,0)},
@@ -1382,7 +1243,7 @@ const todayName=new Date().toLocaleDateString('ar-DZ',{weekday:'long'});
 const tabs=[['today','اليوم'],['up','القادمة'],['all','الكل'],['done','المنجزة']];
 let list=S.tasks.filter(t=>{if(TF==='today')return t.day===todayName&&!t.done;if(TF==='up')return t.day!==todayName&&!t.done;if(TF==='done')return t.done;return true});
 return`<div class="chip-row">${tabs.map(([v,l])=>`<button class="chip-btn ${TF===v?'on2':''}" data-act="tf" data-id="${v}">${l}</button>`).join('')}</div>${list.length?list.map(taskRow).join(''):`<div class="empty"><div class="e-ic">🌤️</div><b>لا مهام</b></div>`}`}
-function renderPlanner(){const todayName=new Date().toLocaleDateString('ar-DZ',{weekday:'long'});return`<div class="vhead"><div><h1 class="vt">المخطط الأسبوعي 🗓️</h1></div><div class="vact"><button class="btn" data-act="m-task">${IC('plus')} مهمة</button><button class="btn btn-soft" data-act="m-reminder">⏰ منبه</button></div></div><div class="card"><div class="ct">✅ المهام</div><div id="tasks-wrap">${tasksWrap()}</div></div>`}
+function renderPlanner(){return`<div class="vhead"><div><h1 class="vt">المخطط الأسبوعي 🗓️</h1></div><div class="vact"><button class="btn" data-act="m-task">${IC('plus')} مهمة</button><button class="btn btn-soft" data-act="m-reminder">⏰ منبه</button></div></div><div class="card"><div class="ct">✅ المهام</div><div id="tasks-wrap">${tasksWrap()}</div></div>`}
 let NTQ='';
 function noteGridHTML(){const list=S.notes.filter(n=>!NTQ||n.title.includes(NTQ)||n.body.includes(NTQ)).sort((a,b)=>(b.pinned-a.pinned)||(b.at-a.at));return list.length?`<div class="notes">${list.map(noteCard).join('')}</div>`:`<div class="card empty"><div class="e-ic">🗒️</div><b>لا ملاحظات</b></div>`}
 function renderNotes(){return`<div class="vhead"><div><h1 class="vt">الملاحظات 📝</h1></div><div class="vact"><button class="btn" data-act="m-note">${IC('plus')} ملاحظة</button></div></div><div class="card toolbar"><div class="srch">${IC('search')}<input id="nt-q" placeholder="ابحث…" value="${esc(NTQ)}"></div></div><div id="nt-grid">${noteGridHTML()}</div>`}
@@ -1480,7 +1341,7 @@ function quizAdvance(){quizSession.currentIdx++;const html=renderQuizQuestion();
 function analyzeProgress(){let a='<b>📊 تحليل مستواك:</b><br>';let weak=[];S.subjects.forEach(s=>{if(!s.lessons.length)return;if(prog(s)<0.4)weak.push(s)});if(weak.length){a+='<br><span style="color:var(--red)">⚠️ تحتاج تركيز:</span><ul>';weak.forEach(s=>{a+=`<li>${s.emoji} <b>${esc(s.name)}</b>: ${Math.round(prog(s)*100)}%</li>`});a+='</ul>'}else{a+='<br>✅ مستواك جيد! واصل.'}return a}
 function suggestStudy(){const ranked=S.subjects.filter(s=>s.lessons.length).map(s=>({s,need:s.coef*(1-prog(s))})).sort((a,b)=>b.need-a.need);if(!ranked.length)return'أضف دروسًا أولًا';const s=ranked[0].s,l=s.lessons.find(x=>!x.done);if(!l)return`أنجزت كل ${esc(s.name)}! 🎉`;return`أنصحك بـ <b>«${esc(l.t)}»</b> في ${s.emoji} ${esc(s.name)}<br><button class="chip-btn" data-act="open-lesson" data-id="${l.id}">📖 افتح</button>`}
 function planHTML(){const ranked=S.subjects.filter(s=>s.lessons.length).map(s=>({s,need:s.coef*(1-prog(s))})).sort((a,b)=>b.need-a.need).slice(0,4);if(!ranked.length)return'أضف دروسًا';let h='<b>🗓️ خطة:</b><br>';['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس'].forEach((d,i)=>{const o=ranked[i%ranked.length],p=o.s.lessons.find(l=>!l.done);h+=`• <b>${d}:</b> ${o.s.emoji} ${p?'«'+esc(p.t)+'»':'مراجعة'}<br>`});return h}
-function summaryHTML(txt){const map=[['اقتصاد','eco'],['قانون','droit'],['محاسبة','cpt'],['تسيير','gest'],['رياضيات','math']];const hit=map.find(([k])=>txt.includes(k));const s=hit?subj(hit[1]):null;if(s&&s.summary)return`<b>📌 ملخص — ${esc(s.name)}</b><ul>${s.summary.map(li=>`<li>${li}</li>`).join('')}</ul>`;return'ملخصات متاحة في: الاقتصاد، القانون، المحاسبة، التسيير، الرياضيات'}
+function summaryHTML(txt){const map=[['اقتصاد','eco'],['قانون','droit'],['محاسبة','cpt'],['تسيير','gest'],['رياضيات','math']];const hit=map.find(([k])=>txt.includes(k));const s=hit?subj(hit[1]):null;if(s&&Array.isArray(s.summary)&&s.summary.length)return`<b>📌 ملخص — ${esc(s.name)}</b><ul>${s.summary.map(li=>`<li>${li}</li>`).join('')}</ul>`;return'ملخصات متاحة في: الاقتصاد، القانون، المحاسبة، التسيير، الرياضيات'}
 async function sendChat(txt){
 txt=(txt||'').trim();if(!txt)return;
 S.chat.push({r:'me',h:esc(txt),at:Date.now()});
@@ -1516,16 +1377,13 @@ return`<div class="vhead"><div><h1 class="vt">الإعدادات ⚙️</h1></di
 <label class="chk"><input type="checkbox" ${S.profile.sound?'checked':''} data-act="toggle-sound">🔊 الأصوات</label>
 <label class="chk"><input type="checkbox" ${S.profile.notif?'checked':''} data-act="toggle-notif">📱 إشعارات المتصفح</label>
 <button class="btn btn-ghost sm2 mt" data-act="request-notif">طلب الصلاحية</button></div>
-<div class="card set-card"><h3>☁️ المزامنة السحابية (Firebase)</h3>
-<p class="vs" style="margin-bottom:10px">بياناتك محفوظة تلقائيًا على Firebase Realtime Database.</p>
+<div class="card set-card"><h3>☁️ المزامنة السحابية</h3>
+<p class="vs" style="margin-bottom:10px">بياناتك تُحفظ تلقائيًا في Firebase Realtime Database.</p>
 <div class="chips">
-<span class="chip ${fbConnected?'ok':''}" id="fb-status-chip">${fbConnected?'☁️ متصل':'⚠️ غير متصل'}</span>
-<span class="chip">🆔 ${esc(fbUserId.slice(0,12))}</span>
+<span class="chip ${fbConnected?'ok':''}">${fbConnected?'☁️ متصل':'⚠️ محلي فقط'}</span>
+${fbUserId?`<span class="chip">🆔 ${esc(fbUserId.slice(0,12))}</span>`:''}
 </div>
-<div class="frow mt">
-<button class="btn btn-soft sm2" data-act="fb-sync-now">${IC('refresh')} مزامنة الآن</button>
-<button class="btn btn-ghost sm2" data-act="fb-force-load">📥 تحميل من السحابة</button>
-</div>
+<button class="btn btn-soft sm2 mt" data-act="fb-sync-now">${IC('refresh')} مزامنة الآن</button>
 </div>
 <div class="card set-card"><h3>💾 البيانات</h3>
 <div class="frow"><button class="btn btn-ghost sm2" data-act="export">${IC('dl')} تصدير</button><button class="btn btn-ghost sm2" data-act="import-btn">${IC('ul')} استيراد</button><input type="file" id="imp" accept=".json" hidden></div>
@@ -1634,48 +1492,10 @@ nb.onclick=quizAdvance;box.appendChild(nb)},
 'ask-reset-progress'(){askConfirm('حذف كل التقدم (XP، الأوسمة، السجل)؟ المواد والدروس تبقى.','reset-progress','x')},
 'reset-progress'(){S.ledger=[];S.xp=0;S.streak={count:0,last:null,best:0,activeDays:[]};S.badges=[];S.studyHistory=[];S.focusSessions=[];S.activity={};S.subjects.forEach(s=>{s.lessons.forEach(l=>{l.done=false;l.doneAt=null;l.xpDone=false;l.prog=0;l.lesEx.forEach(x=>{x.done=false;x.xpDone=false})});s.exercises.forEach(x=>{x.done=false;x.xpDone=false})});S.tasks.forEach(t=>{t.done=false;t.xpDone=false});S.notes.forEach(n=>n.xpDone=false);S.homeSchedule.forEach(h=>{h.done=false;h.xpDone=false});S.exams.forEach(e=>{e.status='planned';e.score=null;e.xpDone=false});save();closeModal();toast('♻️ تم','info');refresh()},
 'ask-reset-all'(){askConfirm('⚠️ حذف كل البيانات نهائيًا والعودة للبداية. لا يمكن التراجع!','reset-all','x')},
-'reset-all'(){
-  // Clear Firebase too
-  if (fbDb && fbUserId) {
-    try { fbDb.ref('users/' + fbUserId).remove(); } catch(e){}
-  }
-  localStorage.removeItem(CFG.storageKey);
-  localStorage.removeItem('studyhub_uid');
-  location.reload()
-},
+'reset-all'(){if(fbDb&&fbUserId){try{fbDb.ref('users/'+fbUserId).remove()}catch(e){}}localStorage.removeItem(CFG.storageKey);localStorage.removeItem('studyhub_uid');location.reload()},
 'resume'(){if(S.last)location.hash='#subject/'+S.last},
-// Firebase actions
-'fb-sync-now'(){
-  if (!fbDb) return toast('Firebase غير مهيأ','err');
-  updateFbStatus('syncing','مزامنة...');
-  fbSave(S);
-  setTimeout(() => {
-    if (fbConnected) updateFbStatus('connected','متصل ☁️');
-    toast('☁️ تم إرسال البيانات للسحابة','info');
-  }, 800);
-},
-'fb-force-load'(){
-  askConfirm('سيتم استبدال بياناتك المحلية بما في السحابة. متابعة؟','fb-force-load-confirm','x');
-}
+'fb-sync-now'(){if(!fbDb){toast('Firebase غير متاح','err');return}fbSave(S);const el=document.getElementById('fb-status');if(el){el.classList.remove('offline');el.classList.add('syncing');setTimeout(()=>{el.classList.remove('syncing');if(fbConnected)el.classList.add('connected');else el.classList.add('offline')},1500)}toast('☁️ جاري المزامنة...','info')}
 };
-
-// Add force-load confirm handler
-A['fb-force-load-confirm'] = async function() {
-  closeModal();
-  updateFbStatus('syncing','تحميل...');
-  const data = await fbLoad();
-  if (data && data.subjects) {
-    S = data;
-    save();
-    toast('☁️ تم التحميل من السحابة','info');
-    refresh();
-    syncHUD();
-  } else {
-    toast('⚠️ لا توجد بيانات في السحابة','err');
-    updateFbStatus('connected','متصل ☁️');
-  }
-};
-
 document.addEventListener('click',e=>{
 if(e.target.id==='modal-ovl'){closeModal();return}
 const el=e.target.closest('[data-act]');
@@ -1700,10 +1520,7 @@ goals(f){S.dailyGoal.min=Math.max(10,Math.min(480,+f.daily.value||60));S.weeklyG
 chat(f){sendChat($('#chat-txt').value)},
 'focus-start'(f){const min=+f.min.value||25;closeModal();FOCUS.start(min,f.sid.value,f.goal.value.trim())},
 'focus-from-task'(f){const t=S.tasks.find(x=>x.id===+f.tid.value);if(!t)return;closeModal();FOCUS.start(+f.min.value||25,t.sid,f.goal.value.trim(),t.id)},
-onboard(f){S.profile.name=f.name.value.trim();S.profile.goal=+f.goal.value||3;save();closeModal();syncHUD();toast(`🚀 أهلًا ${S.profile.name||'يا بطل'}!`,'badge');confetti();
-  // Sync onboarding to Firebase
-  fbSave(S);
-},
+onboard(f){S.profile.name=f.name.value.trim();S.profile.goal=+f.goal.value||3;save();closeModal();syncHUD();toast(`🚀 أهلًا ${S.profile.name||'يا بطل'}!`,'badge');confetti();fbSave(S)},
 };
 document.addEventListener('submit',e=>{const f=e.target.closest('form[data-form]');if(!f)return;e.preventDefault();const fn=F[f.dataset.form];if(fn)fn(f)});
 document.addEventListener('input',e=>{
@@ -1737,14 +1554,23 @@ if(!total)html=`<div class="empty"><div class="e-ic">🔍</div><b>لا نتائ�
 modal({title:'🔍 نتائج البحث',body:html});
 }
 const routes={dashboard:renderDashboard,subjects:renderSubjects,subject:renderSubject,lesson:renderLesson,lessons:renderLessons,exercises:renderExercises,exams:renderExams,school:renderSchool,home:renderHome,focus:renderFocus,planner:renderPlanner,notes:renderNotes,progress:renderProgress,history:renderHistory,notifs:renderNotifs,ai:renderAI,settings:renderSettings};
-
+buildNav();syncHUD();route();
 function onboard(){modal({title:'🎓 أهلًا بك في STUDY HUB',body:`<p class="vs" style="margin-bottom:14px">نظام الدراسة الشخصي الكامل لطلاب <b>2 ثانوي — تسيير واقتصاد</b>.<br><br>📚 دروس + فيديوهات + ملخصات<br>✏️ تمارين + فروض + اختبارات<br>🏫 جدول المدرسة + 🏠 جدول المنزل<br>⏱️ Focus Mode + 🔔 تنبيهات<br>🤖 مساعد ذكي عام (دراسة + برمجة + كتابة)<br>⭐ نظام XP عادل وموثوق<br>☁️ مزامنة سحابية عبر Firebase</p><form data-form="onboard" class="fcol"><label>اسمك<input name="name" placeholder="مثال: أمين" maxlength="20" autofocus></label><label>هدفك اليومي<select name="goal"><option value="2">2 مهام</option><option value="3" selected>3 مهام ✅</option><option value="5">5 مهام 🔥</option></select></label><button class="btn" type="submit">🚀 ابدأ</button></form>`})}
-
-// Start the app
-initApp();
-
+if(firstRun)setTimeout(onboard,1200);
+setTimeout(()=>{const sp=$('#splash');if(sp){sp.classList.add('off');setTimeout(()=>sp.remove(),600)}},1400);
+setInterval(()=>{checkReminders();
+if(S.streak.last){const gap=daysLeft(S.streak.last);if(gap<-1){S.streak.count=0;save();syncHUD()}}
+},30000);
+setInterval(()=>{checkDailyGoal();checkWeeklyGoal();syncHUD()},60000);
+setTimeout(()=>{
+S.exams.filter(e=>e.status==='planned').forEach(e=>{
+const dl=daysLeft(e.date);const s=subj(e.subjectId);
+if(dl===1)pushNotif('📝 فرض غدًا!',(s?s.name+' — ':'')+(e.title||e.type),'gold');
+else if(dl===0)pushNotif('🚨 فرض اليوم!',(s?s.name+' — ':'')+(e.title||e.type),'gold');
+});
+},2500);
 console.log('%c📚 STUDY HUB — 2AS Gestion & Économie','background:#0B8A63;color:#fff;font-size:16px;padding:8px 16px;border-radius:8px;font-weight:bold');
-console.log('%c☁️ Firebase: chikha-9a2eb','background:#DD9A26;color:#fff;padding:4px 10px;border-radius:6px');
+console.log('%c☁️ Firebase: '+(fbDb?'متصل':'محلي'),'background:#DD9A26;color:#fff;padding:4px 10px;border-radius:6px');
 </script>
 </body>
 </html>
