@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="STUDY HUB — نظام الدراسة الشخصي لطلاب 2 ثانوي تسيير واقتصاد">
-<meta name="theme-color" content="#0B8A63">
 <title>STUDY HUB — 2AS Gestion & Économie</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Changa:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>try{var _s=JSON.parse(localStorage.getItem('studyhub2as'));if(_s&&_s.theme)document.documentElement.dataset.theme=_s.theme;else if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.dataset.theme='dark';}catch(e){}</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -28,7 +24,6 @@ textarea{resize:vertical;min-height:70px}
 [hidden]{display:none!important}
 .ic{width:20px;height:20px;flex:none}
 ::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .side{position:fixed;inset-block:0;inset-inline-start:0;width:266px;padding:18px 14px 16px;display:flex;flex-direction:column;gap:12px;background:color-mix(in srgb,var(--surface) 86%,transparent);backdrop-filter:blur(14px);border-inline-end:1px solid var(--line);z-index:40;overflow-y:auto}
 .brand{display:flex;gap:11px;align-items:center;padding:2px 6px}
 .b-mark{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#0E9A6E,#0A4A38);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px -6px rgba(11,138,99,.55);flex:none}
@@ -208,8 +203,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
 .m-col{display:flex;flex-direction:column;min-width:0;flex:1}
 .m-bb{background:var(--surface-2);border:1px solid var(--line);padding:12px 16px;border-radius:16px;border-start-start-radius:5px;font-size:13.8px;line-height:1.8;overflow-wrap:break-word;word-wrap:break-word}
 .msg.me .m-bb{background:var(--green);color:#fff;border-color:transparent;border-start-end-radius:5px;border-start-start-radius:16px}
-.m-bb ul{margin-inline-start:18px}.m-bb li{margin-bottom:4px}.m-bb pre{background:rgba(0,0,0,.1);padding:8px;border-radius:8px;overflow-x:auto;margin:6px 0;font-family:monospace;font-size:12px}
-.m-bb code{background:rgba(0,0,0,.08);padding:2px 5px;border-radius:4px;font-family:monospace;font-size:12.5px}
+.m-bb ul{margin-inline-start:18px}.m-bb li{margin-bottom:4px}
 .m-acts{display:flex;gap:6px;margin-top:6px;opacity:.6;transition:.2s}
 .msg:hover .m-acts{opacity:1}
 .m-acts button{font-size:11px;font-weight:800;color:var(--ink-2);border:1px solid var(--line);border-radius:8px;padding:2px 9px;transition:.2s;background:var(--surface)}
@@ -238,7 +232,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
 .tl-it.done{opacity:.55}
 .tl-time{font-family:'Changa';font-weight:700;font-size:13px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .tl-t{font-weight:800;font-size:13.5px}
-.tl-s{font-size:11px;color:var(--ink-2);font-weight:600}
 @keyframes pulseB{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 35%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 .sch-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .sch-grid{display:grid;grid-template-columns:repeat(7,minmax(128px,1fr));gap:10px;min-width:900px}
@@ -320,11 +313,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
 .summary-card{background:var(--green-soft);border:1px solid var(--green);border-radius:14px;padding:16px;margin-bottom:12px}
 .summary-card h5{color:var(--green);font-family:'Changa';font-size:14px;margin-bottom:8px}
 .lesson-summary-badge{display:inline-flex;align-items:center;gap:4px;background:var(--green-soft);color:var(--green);padding:3px 10px;border-radius:99px;font-size:11px;font-weight:800}
-.fb-status{position:fixed;top:8px;inset-inline-end:8px;z-index:60;display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);padding:5px 11px;border-radius:99px;font-size:11.5px;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
-.fb-status .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}
-.fb-status.connected .dot{background:#2FBE8F;box-shadow:0 0 0 3px rgba(47,190,143,.25)}
-.fb-status.offline .dot{background:var(--red)}
-.fb-status.syncing .dot{background:var(--gold)}
 html,body{max-width:100%;overflow-x:hidden}
 img,svg,video,canvas{max-width:100%}
 button,input,select,textarea{max-width:100%}
@@ -345,7 +333,6 @@ button,input,select,textarea{max-width:100%}
 .vact>.btn{min-width:0}
 .row{max-width:100%}
 .sch-scroll{width:100%;max-width:100%}
-.fb-status{top:auto;bottom:calc(70px + env(safe-area-inset-bottom));inset-inline-end:8px;font-size:10.5px;padding:4px 9px}
 }
 @media(max-width:620px){
 .main{padding:12px 10px calc(110px + env(safe-area-inset-bottom))}
@@ -444,12 +431,6 @@ button,input,select,textarea{max-width:100%}
 </head>
 <body>
 <div id="splash"><div class="sp-in"><div class="sp-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 9-10-5L2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 9v5"/></svg></div><div class="sp-name">STUDY HUB</div><div class="sp-sub">2 ثانوي • تسيير واقتصاد</div><div class="sp-bar"><i></i></div></div></div>
-
-<div class="fb-status offline" id="fb-status" title="حالة Firebase">
-  <span class="dot"></span>
-  <span id="fb-status-text">⚠️ محلي</span>
-</div>
-
 <aside class="side">
 <div class="brand"><div class="b-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 9-10-5L2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 9v5"/></svg></div><div><b>STUDY HUB</b><span>2AS • Gestion & Économie</span></div></div>
 <nav id="snav"></nav>
@@ -487,63 +468,76 @@ button,input,select,textarea{max-width:100%}
 <div id="modal-root"></div>
 <div id="confetti"></div>
 
+<!-- ✅ تحميل Firebase بشكل async مع timeout - لن يعطل التطبيق -->
+<script>
+window.__fbReady = false;
+window.__fbTimeout = setTimeout(function(){ 
+  console.warn('⚠️ Firebase timeout - التطبيق يعمل محليًا');
+  window.__fbReady = 'timeout';
+}, 4000);
+</script>
+<script async src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" onload="window.__fbAppLoaded=true" onerror="window.__fbAppLoaded='error'"></script>
+<script async src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js" onload="window.__fbDbLoaded=true" onerror="window.__fbDbLoaded='error'"></script>
+
 <script>
 'use strict';
 
 /* ═══════════════════════════════════════════════════════════
-   🔥 FIREBASE (اختياري - لا يعطل التطبيق)
+   🔥 FIREBASE - اختياري تمامًا، لا يعطل التطبيق أبدًا
    ═══════════════════════════════════════════════════════════ */
-let fbDb = null, fbUserId = null, fbConnected = false, fbSaveTimer = null;
-try {
-  if (typeof firebase !== 'undefined' && firebase.initializeApp) {
-    const fbApp = firebase.initializeApp({
-      apiKey: "AIzaSyACGMGETrqeyCD3bdZ_05Zzbi5E8gf2z80",
-      authDomain: "chikha-9a2eb.firebaseapp.com",
-      databaseURL: "https://chikha-9a2eb-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "chikha-9a2eb",
-      storageBucket: "chikha-9a2eb.firebasestorage.app",
-      messagingSenderId: "861691651940",
-      appId: "1:861691651940:web:943aa0dbf3a349020abc71"
-    });
-    fbDb = firebase.database();
-    fbUserId = localStorage.getItem('studyhub_uid');
-    if (!fbUserId) {
-      fbUserId = 'user_' + Math.random().toString(36).slice(2, 12) + Date.now().toString(36);
-      localStorage.setItem('studyhub_uid', fbUserId);
-    }
-    fbDb.ref('.info/connected').on('value', snap => {
-      fbConnected = snap.val() === true;
-      const el = document.getElementById('fb-status');
-      const txt = document.getElementById('fb-status-text');
-      if (el) {
-        el.classList.remove('connected','offline','syncing');
-        el.classList.add(fbConnected ? 'connected' : 'offline');
-        if (txt) txt.textContent = fbConnected ? '☁️ سحابي' : '⚠️ محلي';
+const FB = {
+  db: null, uid: null, connected: false, saveTimer: null,
+  init() {
+    try {
+      if (typeof firebase === 'undefined' || !firebase.initializeApp) {
+        console.log('ℹ️ Firebase غير متاح - الوضع المحلي');
+        return;
       }
+      clearTimeout(window.__fbTimeout);
+      firebase.initializeApp({
+        apiKey: "AIzaSyACGMGETrqeyCD3bdZ_05Zzbi5E8gf2z80",
+        authDomain: "chikha-9a2eb.firebaseapp.com",
+        databaseURL: "https://chikha-9a2eb-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "chikha-9a2eb",
+        storageBucket: "chikha-9a2eb.firebasestorage.app",
+        messagingSenderId: "861691651940",
+        appId: "1:861691651940:web:943aa0dbf3a349020abc71"
+      });
+      this.db = firebase.database();
+      this.uid = localStorage.getItem('studyhub_uid');
+      if (!this.uid) {
+        this.uid = 'u_' + Math.random().toString(36).slice(2, 12);
+        localStorage.setItem('studyhub_uid', this.uid);
+      }
+      this.db.ref('.info/connected').on('value', s => {
+        this.connected = s.val() === true;
+      });
+      console.log('%c☁️ Firebase متصل','color:#0B8A63;font-weight:bold');
+    } catch(e) {
+      console.warn('⚠️ Firebase init failed:', e.message);
+    }
+  },
+  save(data) {
+    if (!this.db || !this.uid || !this.connected) return;
+    clearTimeout(this.saveTimer);
+    this.saveTimer = setTimeout(() => {
+      try { this.db.ref('users/' + this.uid + '/data').set(data).catch(()=>{}); } catch(e) {}
+    }, 1000);
+  },
+  load() {
+    return new Promise(resolve => {
+      if (!this.db || !this.uid) { resolve(null); return; }
+      try {
+        this.db.ref('users/' + this.uid + '/data').once('value')
+          .then(s => resolve(s.val()))
+          .catch(() => resolve(null));
+      } catch(e) { resolve(null); }
     });
   }
-} catch (e) { console.warn('Firebase غير متاح:', e.message); }
+};
 
-function fbSave(data) {
-  if (!fbDb || !fbUserId) return;
-  clearTimeout(fbSaveTimer);
-  fbSaveTimer = setTimeout(() => {
-    try {
-      fbDb.ref('users/' + fbUserId + '/data').set(data).catch(()=>{});
-    } catch(e) {}
-  }, 800);
-}
-
-function fbLoad() {
-  return new Promise(resolve => {
-    if (!fbDb || !fbUserId) { resolve(null); return; }
-    try {
-      fbDb.ref('users/' + fbUserId + '/data').once('value')
-        .then(snap => resolve(snap.val()))
-        .catch(() => resolve(null));
-    } catch(e) { resolve(null); }
-  });
-}
+// ✅ محاولة تهيئة Firebase - إذا فشل التطبيق يكمل عادي
+try { FB.init(); } catch(e) { console.warn(e); }
 
 /* ═══════════════════════════════════════════════════════════
    APP CONFIG
@@ -616,7 +610,7 @@ mk('eco','الاقتصاد والماناجمنت','📊','#0B8A63',6,[
 ['مفهوم الاقتصاد وأنواعه','مدخل'],['الحاجات الاقتصادية','مدخل'],['الموارد والندرة','مدخل'],['الإنتاج وعوامله','الوحدة 1'],['التوزيع وأنماطه','الوحدة 2'],
 {t:'النظام البنكي في الجزائر',u:'الوحدة 3',dur:40,diff:'متوسط',
 desc:'يتكون النظام البنكي الجزائري من بنك الجزائر (البنك المركزي) الذي يشرف على السياسة النقدية ويحتكر إصدار العملة، إضافة إلى البنوك التجارية التي تجمع الأموال وتمنح القروض للأفراد والمؤسسات.',
-summary:'بنك الجزائر = بنك البنوك + مصدر العملة + المشرف على السياسة النقدية. البنوك التجارية = وسيط بين أصحاب الفوائض والمحتاجين للتمويل.',
+summary:'بنك الجزائر = بنك البنوك + مصدر العملة + المشرف على السياسة النقدية.',
 rules:['بنك الجزائر مؤسسة عمومية تتمتع بالاستقلال المالي','يحتكر بنك الجزائر إصدار الأوراق النقدية','البنوك التجارية تجمع الودائع وتمنح القروض','يشرف بنك الجزائر على مراقبة نشاط البنوك'],
 examples:['إصدار ورقة 2000 دج من صلاحيات بنك الجزائر فقط','قرض بنكي لمؤسسة ناشئة = عملية ائتمان من بنك تجاري'],
 lesEx:[lx('ميّز بين وظائف بنك الجزائر والبنوك التجارية'),lx('اذكر 3 خدمات يقدمها البنك التجاري')]}],
@@ -624,7 +618,7 @@ lesEx:[lx('ميّز بين وظائف بنك الجزائر والبنوك ال�
 mk('gest','التسيير والتنظيم','🧭','#0E8F8F',5,[
 ['مفهوم التسيير','الوحدة 1'],
 {t:'وظائف المؤسسة',u:'الوحدة 2',dur:35,
-desc:'تتكون المؤسسة من مجموعة وظائف متكاملة تضمن استمرارها: الإنتاج، التجارية، المالية، المحاسبية، الموارد البشرية، والإدارة.',
+desc:'تتكون المؤسسة من مجموعة وظائف متكاملة: الإنتاج، التجارية، المالية، المحاسبية، الموارد البشرية، والإدارة.',
 summary:'الوظائف الست: إنتاج، تجارية، مالية، محاسبية، موارد بشرية، إدارة.',
 rules:['وظيفة الإنتاج: تحويل المواد الأولية إلى منتجات','الوظيفة التجارية: الشراء والبيع والتسويق','الوظيفة المالية: توفير الأموال وتسييرها','وظيفة الموارد البشرية: التوظيف والتكوين والأجور'],
 examples:['قسم التسويق يدرس السوق قبل إطلاق منتج جديد','مصلحة المستخدمين توظف محاسبًا جديدًا'],
@@ -634,30 +628,30 @@ lesEx:[lx('عرّف كل وظيفة من وظائف المؤسسة مع مثال
 mk('cpt','المحاسبة والتسيير المالي','🧮','#D98E2B',5,[
 ['مفهوم المحاسبة','تمهيد'],
 {t:'الموازنة: الوضعية المالية',u:'الوحدة 1',dur:45,diff:'متوسط',
-desc:'الموازنة جدول محاسبي يبيّن الوضعية المالية للمؤسسة في لحظة معينة. تتكون من طرفين متوازنين: الأصول (استخدامات الأموال) والخصوم (موارد الأموال).',
+desc:'الموازنة جدول محاسبي يبيّن الوضعية المالية للمؤسسة. تتكون من طرفين: الأصول والخصوم.',
 summary:'الأصول = الخصوم + رؤوس الأموال الخاصة.',
-rules:['معادلة الموازنة: الأصول = الخصوم + رؤوس الأموال الخاصة','الأصول تمثل ما تملكه المؤسسة (الاستخدامات)','الخصوم تمثل ديون المؤسسة تجاه الغير (الموارد)','رؤوس الأموال الخاصة: رأس المال + الاحتياطيات + النتائج'],
-examples:['آلة بقيمة 500,000 دج تسجل في الأصول','قرض بنكي 200,000 دج يسجل في الخصوم','رأس مال المؤسسة 1,000,000 دج ضمن رؤوس الأموال الخاصة'],
-lesEx:[lx('صنّف العناصر التالية: صندوق، موردون، آلة، قرض بنكي'),lx('مؤسسة أصولها 800,000 دج وخصومها 300,000 دج — احسب رؤوس أموالها')]},
+rules:['معادلة الموازنة: الأصول = الخصوم + رؤوس الأموال الخاصة','الأصول تمثل ما تملكه المؤسسة','الخصوم تمثل ديون المؤسسة','رؤوس الأموال الخاصة: رأس المال + الاحتياطيات + النتائج'],
+examples:['آلة بقيمة 500,000 دج تسجل في الأصول','قرض بنكي 200,000 دج يسجل في الخصوم'],
+lesEx:[lx('صنّف العناصر: صندوق، موردون، آلة، قرض بنكي'),lx('أصول 800,000 وخصوم 300,000 — احسب رؤوس الأموال')]},
 ['الحساب ومخطط الحسابات','الوحدة 1'],['السجل اليومي','الوحدة 2']],
 [['تطبيقات الموازنة','متوسط']],['الأصول = الخصوم + رؤوس الأموال الخاصة.']),
 mk('droit','القانون','⚖️','#3563C4',4,[
 ['مفهوم القانون','الوحدة 1'],
 {t:'خصائص القاعدة القانونية',u:'الوحدة 1',dur:30,
-desc:'القاعدة القانونية قاعدة سلوك اجتماعي تنظم العلاقات بين الأفراد، وتتميز عن قواعد الأخلاق والدين بخصائص تجعلها فريدة: العمومية والتجريد، الإلزام، واقترانها بجزاء مادي منظم.',
+desc:'القاعدة القانونية قاعدة سلوك اجتماعي تتميز بخصائص فريدة.',
 summary:'الخصائص الأربع: عامة ومجردة + ملزمة + مقترنة بجزاء دنيوي منظم.',
-rules:['عامة ومجردة: لا تخاطب شخصًا معينًا بالذات','ملزمة: لا يُترك أمر تطبيقها لاختيار الأفراد','مقترنة بجزاء: من يخالفها يتعرض لعقوبة','الجزاء دنيوي ومنظم: تفرضه السلطة العامة'],
-examples:['قانون المرور يطبق على جميع السائقين (عمومية)','عقوبة السرقة بالسجن (جزاء مادي منظم)'],
-lesEx:[lx('فرّق بين القاعدة القانونية وقاعدة الأخلاق من حيث الجزاء')]},
+rules:['عامة ومجردة: لا تخاطب شخصًا معينًا','ملزمة: لا يُترك تطبيقها لاختيار الأفراد','مقترنة بجزاء: من يخالفها يتعرض لعقوبة','الجزاء دنيوي ومنظم: تفرضه السلطة العامة'],
+examples:['قانون المرور يطبق على جميع السائقين','عقوبة السرقة بالسجن'],
+lesEx:[lx('فرّق بين القاعدة القانونية وقاعدة الأخلاق')]},
 ['فروع القانون','الوحدة 1'],['مصادر القاعدة القانونية','الوحدة 2']],
 [['أسئلة خصائص القاعدة','سهل']],['خصائص القاعدة: عامة، مجردة، ملزمة، مقترنة بجزاء.']),
 mk('math','الرياضيات','📐','#7C5CD6',4,[
 {t:'المتتاليات العددية',u:'الوحدة 1',dur:50,diff:'متوسط',
-desc:'المتتالية العددية دالة تربط كل عدد طبيعي n بعدد حقيقي Un. ندرس نوعين أساسيين: الحسابية (إضافة نفس العدد r) والهندسية (الضرب في نفس العدد q).',
-summary:'حسابية: Un = U0 + n×r (الأساس r جمع). هندسية: Un = U0 × qⁿ (الأساس q ضرب).',
-rules:['المتتالية الحسابية: Un+1 = Un + r حيث r أساس ثابت','الحد العام للحسابية: Un = U0 + n×r','المتتالية الهندسية: Un+1 = Un × q حيث q أساس ثابت','الحد العام للهندسية: Un = U0 × qⁿ','لمعرفة نوع المتتالية: احسب Un+1 − Un (ثابت ← حسابية) أو Un+1 ÷ Un (ثابت ← هندسية)'],
-examples:['المتتالية 2 ، 5 ، 8 ، 11 … حسابية أساسها r = 3','المتتالية 3 ، 6 ، 12 ، 24 … هندسية أساسها q = 2','إذا كان U0 = 4 و r = 3 فإن: U5 = 4 + 5×3 = 19'],
-lesEx:[lx('أحسب الحد العام لمتتالية حسابية حدها الأول 2 وأساسها 3'),lx('بيّن أن المتتالية المعرفة بـ Un = 5n + 1 حسابية'),lx('متتالية هندسية حدها الأول 3 وأساسها 2، أحسب U4')]},
+desc:'المتتالية العددية دالة تربط كل عدد طبيعي n بعدد حقيقي Un.',
+summary:'حسابية: Un = U0 + n×r. هندسية: Un = U0 × qⁿ.',
+rules:['الحسابية: Un+1 = Un + r','الحد العام: Un = U0 + n×r','الهندسية: Un+1 = Un × q','الحد العام: Un = U0 × qⁿ'],
+examples:['2 ، 5 ، 8 ، 11 … حسابية أساسها r = 3','3 ، 6 ، 12 ، 24 … هندسية أساسها q = 2'],
+lesEx:[lx('أحسب الحد العام لمتتالية حسابية حدها الأول 2 وأساسها 3'),lx('متتالية هندسية حدها الأول 3 وأساسها 2، أحسب U4')]},
 ['الإحصاء الوصفي','الوحدة 2']],
 [['سلسلة المتتاليات','متوسط']],['حسابية: Un = U0 + n×r — هندسية: Un = U0 × qⁿ']),
 mk('ar','اللغة العربية وآدابها','✒️','#C6474E',3,[['الأدب العباسي','الوحدة 1']],[],[]),
@@ -688,29 +682,19 @@ function seedHomeSchedule(){return[
 function seedNotes(){return[
 {id:uid(),title:'مرحباً بك',body:'هذه منصتك الدراسية الشخصية. أضف ملاحظاتك هنا.',color:'green',pinned:true,at:Date.now(),xpDone:true}
 ]}
-function seedReminders(){return[]}
 const AI_WELCOME=`أهلًا بك! 👋 أنا <b>رفيق</b>، مساعدك الشخصي الذكي.<br><br>أستطيع مساعدتك في:<br>• <b>الدراسة:</b> شرح، تلخيص، اختبار 📚<br>• <b>البرمجة والتكنولوجيا</b> 💻<br>• <b>الكتابة:</b> رسائل، إيميلات ✍️<br>• <b>اللغات والحسابات</b> 🌍<br><br>كيف أساعدك اليوم؟`;
 function defaults(){
 return {
 v:CFG.version,
 profile:{name:'',goal:3,year:'2 ثانوي',track:'تسيير واقتصاد',sound:true,notif:true},
 theme:document.documentElement.dataset.theme==='dark'?'dark':'light',
-ledger:[],
-xp:0,
+ledger:[],xp:0,
 streak:{count:0,last:null,best:0,activeDays:[]},
 activity:{},
-subjects:seedSubjects(),
-exams:seedExams(),
-tasks:seedTasks(),
-timetable:seedTT(),
-homeSchedule:seedHomeSchedule(),
-notes:seedNotes(),
-reminders:seedReminders(),
-notifications:[],
-studyHistory:[],
-focusSessions:[],
-badges:[],
-last:null,
+subjects:seedSubjects(),exams:seedExams(),tasks:seedTasks(),
+timetable:seedTT(),homeSchedule:seedHomeSchedule(),
+notes:seedNotes(),reminders:[],notifications:[],
+studyHistory:[],focusSessions:[],badges:[],last:null,
 quizStats:{correct:0,answered:0},
 chat:[{r:'ai',h:AI_WELCOME,at:Date.now()}],
 dailyGoal:{min:CFG.DAILY_GOAL_MIN,xpGiven:dstr(new Date(Date.now()-864e5*2))},
@@ -735,31 +719,28 @@ S.notes.forEach(n=>{n.xpDone=!!n.xpDone});
 S.homeSchedule.forEach(h=>{h.xpDone=!!h.xpDone});
 if(!S.timetable['الجمعة'])S.timetable['الجمعة']=[];
 if(!S.timetable['السبت'])S.timetable['السبت']=[];
-Object.keys(S.timetable).forEach(d=>{
-if(Array.isArray(S.timetable[d])&&S.timetable[d].length&&typeof S.timetable[d][0]==='string'){
-S.timetable[d]=S.timetable[d].map((sid,i)=>sid?{sid,start:String(8+i).padStart(2,'0')+':00',end:String(9+i).padStart(2,'0')+':00',teacher:'',room:''}:null).filter(Boolean);
-}
-});
 S.v=CFG.version;dirty=true;
 }
 if(dirty)save();
 }
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} fbSave(S)}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} try{FB.save(S)}catch(e){}}
 
-// تحميل من Firebase بعد بدء التطبيق
+// ✅ تحميل البيانات من Firebase في الخلفية (لا يعطل التطبيق)
 setTimeout(async () => {
   try {
-    const remote = await fbLoad();
-    if (remote && remote.subjects && remote.v >= (S.v||0)) {
-      if (confirm('وجدنا بياناتك في السحابة ☁️\nهل تريد تحميلها؟')) {
-        S = remote;
-        migrate();
-        save();
-        location.reload();
-      }
+    if (!FB.db) return;
+    const remote = await FB.load();
+    if (remote && remote.subjects && (!S.v || remote.v >= S.v)) {
+      // دمج صامت بدون confirm
+      S = remote;
+      migrate();
+      save();
+      console.log('☁️ تم التحميل من Firebase');
+      syncHUD();
+      if (cur.name === 'dashboard') refresh();
     }
-  } catch(e) {}
-}, 2000);
+  } catch(e) { console.warn('Firebase load error:', e); }
+}, 2500);
 
 const XP = {
 total(){return S.ledger.reduce((a,e)=>a+e.amount,0)},
@@ -885,20 +866,12 @@ this.paused=!this.paused;
 if(this.paused){this.pausedAt=Date.now();$('#fo-pause').innerHTML='▶ استئناف'}
 else{this.startAt+=Date.now()-this.pausedAt;$('#fo-pause').innerHTML='⏸ إيقاف مؤقت'}
 },
-finish(){
-if(!this.on)return;
-const elapsedSec=Math.max(0,this.totalSec-this.remainSec);
-this.close(true,elapsedSec);
-},
-cancel(){
-if(!this.on)return;
-askConfirm('إلغاء الجلسة؟ لن تحصل على XP.','focus-cancel-confirm','x');
-},
+finish(){if(!this.on)return;const e=Math.max(0,this.totalSec-this.remainSec);this.close(true,e)},
+cancel(){if(!this.on)return;askConfirm('إلغاء الجلسة؟ لن تحصل على XP.','focus-cancel-confirm','x')},
 cancelConfirm(){
-const elapsedSec=Math.max(0,this.totalSec-this.remainSec);
-S.focusSessions.push({id:uid(),date:todayDateStr(),subjectId:this.subject?.id||null,goal:this.goal,minutes:Math.floor(elapsedSec/60),completed:false,at:nowISO()});
-save();this.close(false,elapsedSec);
-toast('⏹️ ألغيت الجلسة — لم تحصل على XP','info');
+const e=Math.max(0,this.totalSec-this.remainSec);
+S.focusSessions.push({id:uid(),date:todayDateStr(),subjectId:this.subject?.id||null,goal:this.goal,minutes:Math.floor(e/60),completed:false,at:nowISO()});
+save();this.close(false,e);toast('⏹️ ألغيت الجلسة','info');
 },
 complete(){
 if(!this.on)return;
@@ -907,11 +880,11 @@ S.focusSessions.push({id:uid(),date:todayDateStr(),subjectId:this.subject?.id||n
 save();
 XP.award(this.xpAtEnd,`جلسة تركيز ${min}د ⏱️`,'focus',uid());
 bumpStreak();
-pushNotif('🎉 أحسنت!',`أنهيت جلسة ${min} دقيقة وربحت +${this.xpAtEnd} XP`,'gold');
+pushNotif('🎉 أحسنت!',`أنهيت جلسة ${min} دقيقة`,'gold');
 if(S.profile.sound)playAlarmSound();
 if(this.linkedTask){
 const t=S.tasks.find(x=>x.id===this.linkedTask);
-if(t)modal({title:'هل أكملت المهمة؟',body:`<p class="vs" style="margin-bottom:14px">انتهت جلسة التركيز المرتبطة بمهمة: <b>${esc(t.title)}</b></p><div class="frow end"><button class="btn btn-ghost" data-act="close-modal">لا، أبقى غير مكتملة</button><button class="btn" data-act="finish-linked-task" data-id="${t.id}">✓ نعم، أكمل المهمة</button></div>`});
+if(t)modal({title:'هل أكملت المهمة؟',body:`<p class="vs" style="margin-bottom:14px">انتهت جلسة التركيز المرتبطة بمهمة: <b>${esc(t.title)}</b></p><div class="frow end"><button class="btn btn-ghost" data-act="close-modal">لا</button><button class="btn" data-act="finish-linked-task" data-id="${t.id}">✓ نعم</button></div>`});
 }
 this.close(true,this.totalSec);confetti();
 },
@@ -955,7 +928,6 @@ const c=$('#confetti'),cols=['#0B8A63','#E3A63C','#D6484F','#3563C4','#7C5CD6'];
 for(let i=0;i<38;i++){const p=document.createElement('i');p.style.cssText=`--x:${Math.random()*100}%;--d:${(.9+Math.random()*1.5).toFixed(2)}s;background:${cols[i%5]}`;c.appendChild(p)}
 setTimeout(()=>c.innerHTML='',2800);
 }
-function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)();const o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=880;g.gain.value=.07;o.start();o.stop(c.currentTime+.4)}catch(e){}}
 function modal({title,body}){
 $('#modal-root').innerHTML=`<div class="ovl" id="modal-ovl"><div class="dlg"><div class="dlg-h"><h3>${title}</h3><button class="icon-btn mini" data-act="close-modal">${IC('x')}</button></div><div class="dlg-b">${body}</div></div></div>`;
 }
@@ -1146,9 +1118,9 @@ return`<button class="back" data-act="nav" data-id="subjects">${IC('back')} كل
 <section data-sec="ex" hidden><div style="display:flex;justify-content:flex-end;margin-bottom:10px"><button class="btn sm2" data-act="m-exercise" data-id="${s.id}">${IC('plus')} تمرين</button></div>${s.exercises.length?s.exercises.map(x=>rowX(x)).join(''):`<div class="card empty"><div class="e-ic">🧩</div><b>لا تمارين</b></div>`}</section>
 <section data-sec="ev" hidden><div style="display:flex;justify-content:flex-end;margin-bottom:10px"><button class="btn sm2" data-act="m-exam" data-id="${s.id}">${IC('plus')} تقييم</button></div>${evs.length?evs.map(examCard).join(''):`<div class="card empty"><div class="e-ic">📝</div><b>لا تقييمات</b></div>`}</section>`}
 function ytCard(l){
-if(!l.yt)return`<div class="mini-empty"><div style="font-size:34px;margin-bottom:6px">🎥</div><b>لم تتم إضافة فيديو لهذا الدرس بعد.</b><br><button class="btn btn-soft sm2 mt" data-act="edit-lesson" data-id="${l.id}">➕ إضافة رابط الفيديو</button></div>`;
+if(!l.yt)return`<div class="mini-empty"><div style="font-size:34px;margin-bottom:6px">🎥</div><b>لم تتم إضافة فيديو.</b><br><button class="btn btn-soft sm2 mt" data-act="edit-lesson" data-id="${l.id}">➕ إضافة رابط</button></div>`;
 const id=ytId(l.yt);
-return`<div class="yt-card">${id?`<button class="yt-thumb-b" data-act="open-yt" data-id="${l.id}" title="تشغيل"><img class="yt-thumb" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" onerror="this.parentElement.style.display='none'"><span class="yt-play">▶</span></button>`:''}<div class="yt-info"><b>🎥 مشاهدة شرح الدرس</b><p class="yt-url" dir="ltr">${esc(l.yt)}</p><button class="yt-big-btn" data-act="open-yt" data-id="${l.id}">▶ فتح الفيديو على يوتيوب</button></div></div>`}
+return`<div class="yt-card">${id?`<button class="yt-thumb-b" data-act="open-yt" data-id="${l.id}" title="تشغيل"><img class="yt-thumb" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" onerror="this.parentElement.style.display='none'"><span class="yt-play">▶</span></button>`:''}<div class="yt-info"><b>🎥 مشاهدة الشرح</b><p class="yt-url" dir="ltr">${esc(l.yt)}</p><button class="yt-big-btn" data-act="open-yt" data-id="${l.id}">▶ فتح الفيديو</button></div></div>`}
 function renderLesson(){
 const f=findLesson(cur.arg);
 if(!f)return`<div class="empty"><div class="e-ic">🤔</div><b>الدرس غير موجود</b><button class="btn mt" data-act="nav" data-id="subjects">عودة</button></div>`;
@@ -1168,22 +1140,22 @@ ${!l.done?`<button class="btn" data-act="lesson-toggle" data-id="${l.id}">${IC('
 <div class="card mt">
 <div class="ct">📈 نسبة التقدم <b id="pv" style="color:var(--green)">${pc}%</b></div>
 <input type="range" id="ls-prog" data-id="${l.id}" min="0" max="100" step="5" value="${pc}">
-<p class="vs">عند 100% يُعتبر الدرس مكتملًا (+${CFG.XP.lesson} XP)</p>
+<p class="vs">عند 100% يُعتبر الدرس مكتملًا</p>
 </div>
 ${l.summary?`<div class="summary-card mt"><h5>📝 ملخص الدرس</h5><p class="txt-body">${esc(l.summary)}</p></div>`:''}
 <div class="ls-grid">
-<div class="card sec-card"><h4>📖 شرح الدرس</h4>${l.desc?`<p class="txt-body">${esc(l.desc)}</p>`:`<div class="mini-empty">لا يوجد شرح بعد.</div>`}</div>
-<div class="card sec-card"><h4>📏 القواعد ${l.rules.length?`<span class="chip">${l.rules.length}</span>`:''}</h4>${l.rules.length?`<ul class="rules-list">${l.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`:`<div class="mini-empty">لا قواعد بعد.</div>`}</div>
-<div class="card sec-card"><h4>💡 أمثلة ${l.examples.length?`<span class="chip">${l.examples.length}</span>`:''}</h4>${l.examples.length?`<ul class="examples-list">${l.examples.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`:`<div class="mini-empty">لا أمثلة بعد.</div>`}</div>
+<div class="card sec-card"><h4>📖 شرح الدرس</h4>${l.desc?`<p class="txt-body">${esc(l.desc)}</p>`:`<div class="mini-empty">لا يوجد شرح.</div>`}</div>
+<div class="card sec-card"><h4>📏 القواعد ${l.rules.length?`<span class="chip">${l.rules.length}</span>`:''}</h4>${l.rules.length?`<ul class="rules-list">${l.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`:`<div class="mini-empty">لا قواعد.</div>`}</div>
+<div class="card sec-card"><h4>💡 أمثلة ${l.examples.length?`<span class="chip">${l.examples.length}</span>`:''}</h4>${l.examples.length?`<ul class="examples-list">${l.examples.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`:`<div class="mini-empty">لا أمثلة.</div>`}</div>
 <div class="card sec-card"><h4>🎥 فيديو الشرح</h4>${ytCard(l)}</div>
 </div>
 <div class="card mt sec-card"><h4>✏️ تمارين الدرس ${l.lesEx.length?`<span class="chip">${l.lesEx.filter(x=>x.done).length}/${l.lesEx.length}</span>`:''}</h4>
-${l.lesEx.length?l.lesEx.map(x=>`<div class="row ${x.done?'done':''}"><button class="ck ${x.done?'on':''}" data-act="lsex-tog" data-id="${l.id}|${x.id}">${IC('check')}</button><div class="r-t"><b>${esc(x.t)}</b></div>${!x.done?`<span class="chip">+${CFG.XP.lesEx} XP</span>`:''}<button class="icon-btn mini" data-act="lsex-del" data-id="${l.id}|${x.id}">${IC('trash')}</button></div>`).join(''):'<p class="vs">لا تمارين بعد.</p>'}
-<form data-form="lsexAdd" class="frow mt"><input type="hidden" name="lid" value="${l.id}"><input name="t" placeholder="اكتب تمرينًا جديدًا…" required><button class="btn btn-soft" type="submit" style="width:46px;flex:none">${IC('plus')}</button></form>
+${l.lesEx.length?l.lesEx.map(x=>`<div class="row ${x.done?'done':''}"><button class="ck ${x.done?'on':''}" data-act="lsex-tog" data-id="${l.id}|${x.id}">${IC('check')}</button><div class="r-t"><b>${esc(x.t)}</b></div>${!x.done?`<span class="chip">+${CFG.XP.lesEx} XP</span>`:''}<button class="icon-btn mini" data-act="lsex-del" data-id="${l.id}|${x.id}">${IC('trash')}</button></div>`).join(''):'<p class="vs">لا تمارين.</p>'}
+<form data-form="lsexAdd" class="frow mt"><input type="hidden" name="lid" value="${l.id}"><input name="t" placeholder="تمرين جديد…" required><button class="btn btn-soft" type="submit" style="width:46px;flex:none">${IC('plus')}</button></form>
 </div>
 <div class="card mt sec-card"><h4>🧠 اختبار قصير</h4>
 ${l.rules.length?`<div class="flash-grid">${l.rules.map((r,i)=>`<div class="flash" data-act="flash"><div class="f-front"><b>💭 القاعدة ${i+1}</b><span>اضغط للإظهار</span></div><div class="f-back">${esc(r)}</div></div>`).join('')}</div>`:''}
-<div id="lsquiz-${l.id}" class="mt">${qbN?`<button class="btn btn-soft" data-act="ls-quiz" data-id="${l.id}">🧠 ابدأ اختبار (${qbN} أسئلة)</button>`:`<p class="vs mt">لا أسئلة جاهزة.</p>`}</div>
+<div id="lsquiz-${l.id}" class="mt">${qbN?`<button class="btn btn-soft" data-act="ls-quiz" data-id="${l.id}">🧠 ابدأ اختبار (${qbN})</button>`:`<p class="vs mt">لا أسئلة.</p>`}</div>
 </div>`}
 let LF={q:'',s:'all',st:'all'};
 function lessonListHTML(){let rows=[];S.subjects.forEach(s=>s.lessons.forEach(l=>{if(LF.s!=='all'&&LF.s!==s.id)return;if(LF.q&&!l.t.toLowerCase().includes(LF.q.toLowerCase()))return;if(LF.st==='todo'&&l.done)return;if(LF.st==='done'&&!l.done)return;if(LF.st==='rev'&&!(l.done&&l.doneAt&&((Date.now()-new Date(l.doneAt))/864e5>7)))return;rows.push(rowL(l,s))}));return rows.length?rows.join(''):`<div class="card empty"><div class="e-ic">🔍</div><b>لا نتائج</b></div>`}
@@ -1225,7 +1197,7 @@ return`<div class="vhead"><div><h1 class="vt">⏱️ Focus Mode</h1></div></div>
 <div class="ct">🎯 ابدأ جلسة تركيز</div>
 <form data-form="focus-start" class="fcol mt">
 <label>المدة<select name="min"><option value="25">25 دقيقة (+${CFG.XP.focus25} XP)</option><option value="50">50 دقيقة (+${CFG.XP.focus50} XP)</option><option value="90">90 دقيقة (+${CFG.XP.focus90} XP)</option></select></label>
-<label>المادة (اختياري)<select name="sid"><option value="">— بدون —</option>${S.subjects.map(s=>`<option value="${s.id}">${s.emoji} ${esc(s.name)}</option>`).join('')}</select></label>
+<label>المادة<select name="sid"><option value="">— بدون —</option>${S.subjects.map(s=>`<option value="${s.id}">${s.emoji} ${esc(s.name)}</option>`).join('')}</select></label>
 <label>الهدف<input name="goal" placeholder="مثال: مراجعة المتتاليات"></label>
 <button class="btn" type="submit">▶️ ابدأ الجلسة</button>
 </form>
@@ -1235,7 +1207,7 @@ return`<div class="vhead"><div><h1 class="vt">⏱️ Focus Mode</h1></div></div>
 <div class="tile" style="--tc:var(--gold)"><div class="t-ic">✅</div><div class="t-num" data-count="${completed}">0</div><div class="t-lb">جلسة مكتملة</div></div>
 </section>
 <div class="card mt"><div class="ct">📜 سجل الجلسات</div>
-${sessions.length?sessions.map(f=>{const s=f.subjectId?subj(f.subjectId):null;return`<div class="hist-r">${f.completed?'<span style="color:var(--green)">✓</span>':'<span style="color:var(--red)">✕</span>'}<b>${fmtDuration(f.minutes)}</b><span>${s?s.emoji+' '+esc(s.name):'عامة'}</span><span style="margin-inline-start:auto;font-size:11px">${new Date(f.at).toLocaleDateString('ar-DZ',{day:'numeric',month:'short'})}</span></div>`}).join(''):`<div class="empty"><div class="e-ic">⏱️</div><b>لا جلسات بعد</b></div>`}
+${sessions.length?sessions.map(f=>{const s=f.subjectId?subj(f.subjectId):null;return`<div class="hist-r">${f.completed?'<span style="color:var(--green)">✓</span>':'<span style="color:var(--red)">✕</span>'}<b>${fmtDuration(f.minutes)}</b><span>${s?s.emoji+' '+esc(s.name):'عامة'}</span><span style="margin-inline-start:auto;font-size:11px">${new Date(f.at).toLocaleDateString('ar-DZ',{day:'numeric',month:'short'})}</span></div>`}).join(''):`<div class="empty"><div class="e-ic">⏱️</div><b>لا جلسات</b></div>`}
 </div>`}
 let TF='today';
 function tasksWrap(){
@@ -1256,7 +1228,7 @@ return`<div class="vhead"><div><h1 class="vt">تتبع المستوى 📈</h1><
 <div class="card lvl">
 <div class="ring-w">${ring(info.pct,132,11,'var(--line2)','var(--gold)')}<div class="ring-c"><b style="font-family:Changa;font-size:31px;color:var(--gold)">${info.lvl}</b><span>المستوى</span></div></div>
 <div class="lvl-t"><h2>${info.title}</h2>
-<p class="vs">${S.xp} XP إجمالي • ${info.needed} XP للمستوى ${info.lvl+1}</p>
+<p class="vs">${S.xp} XP • ${info.needed} XP للمستوى ${info.lvl+1}</p>
 <div class="bar mt" style="--sc:var(--gold)"><i style="width:${info.pct}%"></i></div>
 <div class="chips mt"><span class="chip">🔥 ${S.streak.count}</span><span class="chip">🏆 ${S.streak.best}</span>${avg?`<span class="chip warn">🎓 ${avg}/20</span>`:''}</div>
 </div>
@@ -1274,7 +1246,7 @@ return`<div class="vhead"><div><h1 class="vt">تتبع المستوى 📈</h1><
 <div class="card mt"><div class="ct">📚 تقدم المواد</div>
 ${S.subjects.map(s=>{const p=Math.round(prog(s)*100);return`<div class="pg-row"><span class="pg-e">${s.emoji}</span><div class="pg-n"><b>${esc(s.name)}</b><div class="bar"><i style="width:${p}%;background:${s.color}"></i></div></div><b class="pg-p" style="color:${s.color}">${p}%</b></div>`}).join('')}
 </div>
-<div class="card mt"><div class="ct">📋 سجل XP الكامل <span class="chip">${S.ledger.length}</span></div>
+<div class="card mt"><div class="ct">📋 سجل XP <span class="chip">${S.ledger.length}</span></div>
 ${S.ledger.slice().reverse().slice(0,25).map(e=>`<div class="hist-r"><b class="${e.amount>0?'xp-pos':'xp-neg'}">${e.amount>0?'+':''}${e.amount}</b><span>${esc(e.desc)}</span><span style="margin-inline-start:auto;font-size:11px">${new Date(e.at).toLocaleString('ar-DZ',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')}
 </div>`}
 function renderHistory(){
@@ -1282,7 +1254,7 @@ const byDate={};
 S.ledger.forEach(e=>{const d=e.at.slice(0,10);(byDate[d]=byDate[d]||[]).push(e)});
 const dates=Object.keys(byDate).sort((a,b)=>b.localeCompare(a));
 return`<div class="vhead"><div><h1 class="vt">📜 سجل الدراسة</h1></div></div>
-${dates.length?dates.map(d=>`<div class="hist-d">${new Date(d).toLocaleDateString('ar-DZ',{weekday:'long',day:'numeric',month:'long'})}</div>${byDate[d].map(h=>`<div class="hist-r"><b class="${h.amount>0?'xp-pos':'xp-neg'}">${h.amount>0?'+':''}${h.amount||0}</b><span>${esc(h.desc)}</span><span style="margin-inline-start:auto;font-size:11px">${new Date(h.at).toLocaleTimeString('ar-DZ',{hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')}`).join(''):`<div class="card empty"><div class="e-ic">📜</div><b>لا سجل بعد</b></div>`}`}
+${dates.length?dates.map(d=>`<div class="hist-d">${new Date(d).toLocaleDateString('ar-DZ',{weekday:'long',day:'numeric',month:'long'})}</div>${byDate[d].map(h=>`<div class="hist-r"><b class="${h.amount>0?'xp-pos':'xp-neg'}">${h.amount>0?'+':''}${h.amount||0}</b><span>${esc(h.desc)}</span><span style="margin-inline-start:auto;font-size:11px">${new Date(h.at).toLocaleTimeString('ar-DZ',{hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')}`).join(''):`<div class="card empty"><div class="e-ic">📜</div><b>لا سجل</b></div>`}`}
 function renderNotifs(){
 return`<div class="vhead"><div><h1 class="vt">🔔 الإشعارات</h1><p class="vs">${unreadNotifs()} غير مقروء</p></div>
 <div class="vact">${unreadNotifs()?`<button class="btn btn-soft sm2" data-act="mark-all-read">✓ قراءة الكل</button>`:''}${S.notifications.length?`<button class="btn btn-ghost sm2" data-act="clear-notifs">${IC('trash')} مسح</button>`:''}</div></div>
@@ -1292,18 +1264,15 @@ const QUOTES=['النجاح مجموع جهود صغيرة تتكرر كل يو�
 const QB=[
 {s:'eco',q:'ما موضوع علم الاقتصاد؟',a:['دراسة القوانين الفيزيائية','دراسة إشباع الحاجات بموارد نادرة','إدارة البنوك فقط','حساب الأرباح'],c:1},
 {s:'eco',q:'البنك المركزي في الجزائر هو:',a:['القرض الشعبي','بنك الفلاحة','بنك الجزائر','بنك التنمية المحلية'],c:2},
-{s:'cpt',q:'معادلة الموازنة الصحيحة هي:',a:['الأصول = الخصوم + الأموال الخاصة','الأصول = الخصوم − الأموال الخاصة','الخصوم = الأصول + الأموال الخاصة','الأموال = الأصول + الخصوم'],c:0},
+{s:'cpt',q:'معادلة الموازنة الصحيحة:',a:['الأصول = الخصوم + الأموال الخاصة','الأصول = الخصوم − الأموال الخاصة','الخصوم = الأصول + الأموال الخاصة','الأموال = الأصول + الخصوم'],c:0},
 {s:'droit',q:'من خصائص القاعدة القانونية:',a:['اختيارية التطبيق','عامة ومجردة وملزمة','تخص شخصًا معينًا','بدون جزاء'],c:1},
 {s:'math',q:'الحد العام للمتتالية الحسابية:',a:['Un = U0 + n×r','Un = U0 × qⁿ','Un = n²','Un = U0 + q'],c:0}];
 const CHIPS=[['📊 حلل مستواي','حلل مستواي'],['🧠 كويزات','كويزات'],['🗓️ خطة','خطة ذكية'],['💡 نصيحة','نصيحة'],['🔥 تحفيز','تحفيز'],['⏱️ بومودورو','بومودورو'],['🌍 عاصمة اليابان','عاصمة اليابان'],['💻 شرح JavaScript','شرح JavaScript'],['✍️ اكتب لي رسالة','اكتب لي رسالة'],['🧮 25×4','25×4']];
 let quizSession={active:false,questions:[],currentIdx:0,score:0,target:'chat',src:null};
-async function callAIProvider(msg){
-await new Promise(r=>setTimeout(r,100));
-return localAIEngine(msg);
-}
+async function callAIProvider(msg){await new Promise(r=>setTimeout(r,100));return localAIEngine(msg)}
 function localAIEngine(txt){
 const t=txt.replace(/[\u064B-\u0652]/g,'').toLowerCase();
-if(quizSession.active&&quizSession.target==='chat'&&!/(إيقاف|توقف)/.test(t)&&!/كويز|اختبر/.test(t))return'نحن في منتصف الكويز! أجب على السؤال أو اكتب «إيقاف».';
+if(quizSession.active&&quizSession.target==='chat'&&!/(إيقاف|توقف)/.test(t)&&!/كويز|اختبر/.test(t))return'نحن في منتصف الكويز! أجب أو اكتب «إيقاف».';
 if(/(إيقاف|توقف)/.test(t)&&quizSession.active){quizSession.active=false;return'تم إيقاف الكويز ⏹️'}
 const calcMatch=txt.match(/(\d+(?:\.\d+)?)\s*([+\-*/x×÷^])\s*(\d+(?:\.\d+)?)/);
 if(calcMatch){const a=+calcMatch[1],op=calcMatch[2],b=+calcMatch[3];let r=null;if(op==='+')r=a+b;else if(op==='-')r=a-b;else if(op==='*'||op==='x'||op==='×')r=a*b;else if(op==='/'||op==='÷')r=b?a/b:'غير معرف';else if(op==='^')r=Math.pow(a,b);if(r!==null)return`🧮 ${a} ${op} ${b} = <b>${typeof r==='number'?Math.round(r*10000)/10000:r}</b>`}
@@ -1313,16 +1282,15 @@ if(/(حلل|مستواي)/.test(t))return analyzeProgress();
 if(/(ماذا أدرس|اقترح)/.test(t))return suggestStudy();
 if(/(كويز|اختبر)/.test(t)){const match=t.match(/في\s*(.+)/);let filter=null;if(match){const found=S.subjects.find(s=>s.name.includes(match[1].trim()));if(found)filter=found.id}return generateQuiz(filter,'chat')}
 if(/(خطة|برنامج)/.test(t))return planHTML();
-if(/(ملخص|لخص)/.test(t))return summaryHTML(t);
-if(/(javascript|js)\b/.test(t))return`<b>💻 JavaScript</b> — لغة الويب:<br>• المتغيرات (let, const)<br>• الدوال والشروط والحلقات<br>• DOM والتفاعل مع الصفحة<br>• ES6+ و async/await<br><br>تعلم من: freeCodeCamp + MDN Docs`;
+if(/(javascript|js)\b/.test(t))return`<b>💻 JavaScript</b> — لغة الويب:<br>• المتغيرات (let, const)<br>• الدوال والشروط والحلقات<br>• DOM والتفاعل<br>• ES6+ و async/await`;
 if(/\b(html|css)\b/.test(t))return`<b>🌐 HTML و CSS:</b><br>• HTML = الهيكل 🦴<br>• CSS = التصميم 🎨<br>• JavaScript = التفاعل ⚡`;
-if(/(اكتب.*رسالة|رسالة.*زبون)/.test(t))return`✍️ <b>قالب رسالة مهنية:</b><br><br>السيد/السيدة [الاسم]،<br><br>تحية طيبة،<br>نشكركم على تواصلكم. [الموضوع].<br>مع التقدير،<br>[اسمك]`;
+if(/(اكتب.*رسالة|رسالة.*زبون)/.test(t))return`✍️ <b>قالب رسالة مهنية:</b><br><br>السيد/السيدة [الاسم]،<br>تحية طيبة،<br>[الموضوع].<br>مع التقدير،<br>[اسمك]`;
 if(/(نصيحة)/.test(t))return`💡 ${pick(TIPS)}`;
 if(/(حماس|تحفيز|تعبت)/.test(t))return`🔥 ${pick(QUOTES)}`;
 if(/(بومودورو|جلسة)/.test(t)){setTimeout(()=>startTimer(25),500);return'⏱️ شغّلت مؤقت 25 دقيقة!'}
 if(/(شكرا)/.test(t))return'العفو! 🤝';
 if(/(سلام|مرحبا|هلا)/.test(t))return`أهلًا ${S.profile.name?'يا '+esc(S.profile.name):''}! 👋`;
-return`🤔 لم أجد إجابة محددة.<br><br>يمكنني مساعدتك في:<br>• الدراسة: «حلل مستواي»، «اختبرني»<br>• الحسابات: «25 × 4»<br>• العواصم: «عاصمة اليابان»<br>• البرمجة: «شرح JavaScript»<br>• الكتابة: «اكتب لي رسالة»`}
+return`🤔 لم أجد إجابة محددة.<br><br>يمكنني مساعدتك في:<br>• «حلل مستواي»، «اختبرني»<br>• «25 × 4»<br>• «عاصمة اليابان»<br>• «شرح JavaScript»<br>• «اكتب لي رسالة»`}
 function generateQuiz(subjectId,target='chat'){
 let pool=subjectId?QB.filter(q=>q.s===subjectId):[...QB];
 if(!pool.length)pool=[...QB];
@@ -1338,10 +1306,9 @@ return`<div class="ai-result-card"><h4>🏁 النتيجة: <span class="ai-scor
 const q=quizSession.questions[quizSession.currentIdx],s=subj(q.s);
 return`<div class="quiz"><div class="chip" style="margin-bottom:8px">سؤال ${quizSession.currentIdx+1}/${quizSession.questions.length} • ${s?s.emoji:''}</div><p class="q-txt">${q.q}</p>${q.a.map((o,i)=>`<button class="q-opt" data-act="ai-quiz-ans" data-c="${i}">${o}</button>`).join('')}</div>`}
 function quizAdvance(){quizSession.currentIdx++;const html=renderQuizQuestion();const last=[...S.chat].reverse().find(m=>m.r==='ai'&&m.h.includes('q-opt'));if(last){last.h=html;save()}paintChat()}
-function analyzeProgress(){let a='<b>📊 تحليل مستواك:</b><br>';let weak=[];S.subjects.forEach(s=>{if(!s.lessons.length)return;if(prog(s)<0.4)weak.push(s)});if(weak.length){a+='<br><span style="color:var(--red)">⚠️ تحتاج تركيز:</span><ul>';weak.forEach(s=>{a+=`<li>${s.emoji} <b>${esc(s.name)}</b>: ${Math.round(prog(s)*100)}%</li>`});a+='</ul>'}else{a+='<br>✅ مستواك جيد! واصل.'}return a}
+function analyzeProgress(){let a='<b>📊 تحليل مستواك:</b><br>';let weak=[];S.subjects.forEach(s=>{if(!s.lessons.length)return;if(prog(s)<0.4)weak.push(s)});if(weak.length){a+='<br><span style="color:var(--red)">⚠️ تحتاج تركيز:</span><ul>';weak.forEach(s=>{a+=`<li>${s.emoji} <b>${esc(s.name)}</b>: ${Math.round(prog(s)*100)}%</li>`});a+='</ul>'}else{a+='<br>✅ مستواك جيد!'}return a}
 function suggestStudy(){const ranked=S.subjects.filter(s=>s.lessons.length).map(s=>({s,need:s.coef*(1-prog(s))})).sort((a,b)=>b.need-a.need);if(!ranked.length)return'أضف دروسًا أولًا';const s=ranked[0].s,l=s.lessons.find(x=>!x.done);if(!l)return`أنجزت كل ${esc(s.name)}! 🎉`;return`أنصحك بـ <b>«${esc(l.t)}»</b> في ${s.emoji} ${esc(s.name)}<br><button class="chip-btn" data-act="open-lesson" data-id="${l.id}">📖 افتح</button>`}
 function planHTML(){const ranked=S.subjects.filter(s=>s.lessons.length).map(s=>({s,need:s.coef*(1-prog(s))})).sort((a,b)=>b.need-a.need).slice(0,4);if(!ranked.length)return'أضف دروسًا';let h='<b>🗓️ خطة:</b><br>';['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس'].forEach((d,i)=>{const o=ranked[i%ranked.length],p=o.s.lessons.find(l=>!l.done);h+=`• <b>${d}:</b> ${o.s.emoji} ${p?'«'+esc(p.t)+'»':'مراجعة'}<br>`});return h}
-function summaryHTML(txt){const map=[['اقتصاد','eco'],['قانون','droit'],['محاسبة','cpt'],['تسيير','gest'],['رياضيات','math']];const hit=map.find(([k])=>txt.includes(k));const s=hit?subj(hit[1]):null;if(s&&Array.isArray(s.summary)&&s.summary.length)return`<b>📌 ملخص — ${esc(s.name)}</b><ul>${s.summary.map(li=>`<li>${li}</li>`).join('')}</ul>`;return'ملخصات متاحة في: الاقتصاد، القانون، المحاسبة، التسيير، الرياضيات'}
 async function sendChat(txt){
 txt=(txt||'').trim();if(!txt)return;
 S.chat.push({r:'me',h:esc(txt),at:Date.now()});
@@ -1378,10 +1345,10 @@ return`<div class="vhead"><div><h1 class="vt">الإعدادات ⚙️</h1></di
 <label class="chk"><input type="checkbox" ${S.profile.notif?'checked':''} data-act="toggle-notif">📱 إشعارات المتصفح</label>
 <button class="btn btn-ghost sm2 mt" data-act="request-notif">طلب الصلاحية</button></div>
 <div class="card set-card"><h3>☁️ المزامنة السحابية</h3>
-<p class="vs" style="margin-bottom:10px">بياناتك تُحفظ تلقائيًا في Firebase Realtime Database.</p>
+<p class="vs" style="margin-bottom:10px">بياناتك تُحفظ تلقائيًا في Firebase.</p>
 <div class="chips">
-<span class="chip ${fbConnected?'ok':''}">${fbConnected?'☁️ متصل':'⚠️ محلي فقط'}</span>
-${fbUserId?`<span class="chip">🆔 ${esc(fbUserId.slice(0,12))}</span>`:''}
+<span class="chip ${FB.connected?'ok':''}">${FB.connected?'☁️ متصل':'⚠️ محلي'}</span>
+${FB.uid?`<span class="chip">🆔 ${esc(FB.uid.slice(0,12))}</span>`:''}
 </div>
 <button class="btn btn-soft sm2 mt" data-act="fb-sync-now">${IC('refresh')} مزامنة الآن</button>
 </div>
@@ -1396,7 +1363,7 @@ function modalExercise(sid){const sel=sid?`<input type="hidden" name="sid" value
 function modalExam(pre){modal({title:'برمجة تقييم',body:`<form data-form="exam" class="fcol"><label>المادة<select name="sid">${S.subjects.map(s=>`<option value="${s.id}" ${pre===s.id?'selected':''}>${s.emoji} ${esc(s.name)}</option>`).join('')}</select></label><div class="frow"><label style="flex:1">النوع<select name="type"><option>فرض</option><option>اختبار</option></select></label><label style="flex:2">التاريخ *<input type="date" name="date" required min="${dstr()}"></label></div><label>العنوان<input name="title"></label><button class="btn" type="submit">${IC('cal')} برمجة</button></form>`})}
 function modalTask(){modal({title:'مهمة جديدة',body:`<form data-form="task" class="fcol"><label>المهمة *<input name="title" required></label><div class="frow"><label style="flex:2">المادة<select name="sid"><option value="">عامة</option>${S.subjects.map(s=>`<option value="${s.id}">${s.emoji} ${esc(s.name)}</option>`).join('')}</select></label><label style="flex:1">الأولوية<select name="p"><option value="high">🔴 عالية</option><option value="med" selected>🟡 متوسطة</option><option value="low">🟢 منخفضة</option></select></label></div><label>اليوم<select name="day">${ARABIC_DAYS.map(d=>`<option ${d===new Date().toLocaleDateString('ar-DZ',{weekday:'long'})?'selected':''}>${d}</option>`).join('')}</select></label><button class="btn" type="submit">${IC('plus')} إضافة</button></form>`})}
 function modalNote(n){n=n||{};const cols=['green','gold','blue','red','purple','gray'],cc={green:'#2FBE8F',gold:'#E0A63C',blue:'#5B84DC',red:'#E0656C',purple:'#9B7BDB',gray:'#93A1BA'};modal({title:n.id?'تعديل':'ملاحظة',body:`<form data-form="note" class="fcol"><input type="hidden" name="nid" value="${n.id||''}"><label>العنوان *<input name="title" required value="${esc(n.title||'')}"></label><label>المحتوى *<textarea name="body" rows="4" required>${esc(n.body||'')}</textarea></label><label>اللون<div class="swatches">${cols.map((c,i)=>`<label class="swatch"><input type="radio" name="color" value="${c}" ${(n.color||'green')===c||(i===0&&!n.color)?'checked':''}><span style="background:${cc[c]}"></span></label>`).join('')}</div></label><button class="btn" type="submit">${IC('check')} حفظ</button></form>`})}
-function modalTT(day,slot){const cur=slot!=null?(S.timetable[day]||[])[slot]:null;modal({title:slot!=null?'تعديل الحصة':'إضافة حصة',body:`<form data-form="ttcell" class="fcol"><input type="hidden" name="day" value="${day}"><input type="hidden" name="slot" value="${slot??''}"><label>المادة<select name="sub"><option value="">— بدون —</option>${S.subjects.map(s=>`<option value="${s.id}" ${cur&&cur.sid===s.id?'selected':''}>${s.emoji} ${esc(s.name)}</option>`).join('')}</select></label><div class="frow"><label style="flex:1">البداية<input type="time" name="start" value="${cur?cur.start:'08:00'}"></label><label style="flex:1">النهاية<input type="time" name="end" value="${cur?cur.end:'09:00'}"></label></div><label>الأستاذ (اختياري)<input name="teacher" value="${cur?esc(cur.teacher||''):''}"></label><label>القاعة (اختياري)<input name="room" value="${cur?esc(cur.room||''):''}"></label><button class="btn" type="submit">${IC('check')} حفظ</button></form>`})}
+function modalTT(day,slot){const cur=slot!=null?(S.timetable[day]||[])[slot]:null;modal({title:slot!=null?'تعديل الحصة':'إضافة حصة',body:`<form data-form="ttcell" class="fcol"><input type="hidden" name="day" value="${day}"><input type="hidden" name="slot" value="${slot??''}"><label>المادة<select name="sub"><option value="">— بدون —</option>${S.subjects.map(s=>`<option value="${s.id}" ${cur&&cur.sid===s.id?'selected':''}>${s.emoji} ${esc(s.name)}</option>`).join('')}</select></label><div class="frow"><label style="flex:1">البداية<input type="time" name="start" value="${cur?cur.start:'08:00'}"></label><label style="flex:1">النهاية<input type="time" name="end" value="${cur?cur.end:'09:00'}"></label></div><label>الأستاذ<input name="teacher" value="${cur?esc(cur.teacher||''):''}"></label><label>القاعة<input name="room" value="${cur?esc(cur.room||''):''}"></label><button class="btn" type="submit">${IC('check')} حفظ</button></form>`})}
 function modalHome(id){const h=id?(S.homeSchedule||[]).find(x=>x.id===id):null;modal({title:h?'تعديل جلسة':'جلسة مراجعة',body:`<form data-form="homeCell" class="fcol"><input type="hidden" name="hid" value="${h?h.id:''}"><label>الاسم *<input name="name" required value="${h?esc(h.name||''):''}"></label><label>المادة<select name="sid">${S.subjects.map(s=>`<option value="${s.id}" ${h&&h.sid===s.id?'selected':''}>${s.emoji} ${esc(s.name)}</option>`).join('')}</select></label><div class="frow"><label style="flex:1">اليوم<select name="day">${ARABIC_DAYS.map(d=>`<option ${h&&h.day===d?'selected':(!h&&d===new Date().toLocaleDateString('ar-DZ',{weekday:'long'})?'selected':'')}>${d}</option>`).join('')}</select></label><label style="flex:1">التكرار<select name="repeat"><option value="once" ${h&&h.repeat==='once'?'selected':''}>مرة</option><option value="daily" ${h&&h.repeat==='daily'?'selected':''}>يوميًا</option><option value="weekly" ${!h||h.repeat==='weekly'?'selected':''}>أسبوعيًا</option></select></label></div><div class="frow"><label style="flex:1">البداية<input type="time" name="start" value="${h?h.start:'17:00'}"></label><label style="flex:1">النهاية<input type="time" name="end" value="${h?h.end:'18:00'}"></label></div><label>ملاحظة<textarea name="note" rows="2">${h?esc(h.note||''):''}</textarea></label><button class="btn" type="submit">${IC('check')} حفظ</button></form>`})}
 function modalScore(id){const e=S.exams.find(x=>x.id===id);if(!e)return;modal({title:'تسجيل النتيجة',body:`<form data-form="score" class="fcol"><input type="hidden" name="eid" value="${id}"><label>النتيجة (من 20) *<input type="number" name="v" min="0" max="20" step="0.25" required ${e.score!=null?`value="${e.score}"`:''}></label><button class="btn" type="submit">${IC('check')} حفظ</button></form>`})}
 function modalReminder(){modal({title:'منبه جديد ⏰',body:`<form data-form="reminder" class="fcol"><label>العنوان *<input name="title" required></label><div class="frow"><label style="flex:1">التاريخ<input type="date" name="date" required min="${dstr()}" value="${dstr()}"></label><label style="flex:1">الوقت<input type="time" name="time" required value="17:00"></label></div><button class="btn" type="submit">${IC('check')} ضبط</button></form>`})}
@@ -1414,7 +1381,7 @@ const A={
 'focus-finish'(){FOCUS.finish()},
 'focus-cancel'(){FOCUS.cancel()},
 'focus-cancel-confirm'(){closeModal();FOCUS.cancelConfirm()},
-'focus-task'(id){const t=S.tasks.find(x=>x.id===id);if(!t)return;modal({title:'جلسة تركيز للمهمة',body:`<form data-form="focus-from-task" class="fcol"><input type="hidden" name="tid" value="${id}"><label>المدة (دقائق)<input type="number" name="min" min="5" max="240" value="25"></label><label>الهدف<input name="goal" value="${esc(t.title)}"></label><button class="btn" type="submit">▶️ ابدأ</button></form>`})},
+'focus-task'(id){const t=S.tasks.find(x=>x.id===id);if(!t)return;modal({title:'جلسة تركيز للمهمة',body:`<form data-form="focus-from-task" class="fcol"><input type="hidden" name="tid" value="${id}"><label>المدة<input type="number" name="min" min="5" max="240" value="25"></label><label>الهدف<input name="goal" value="${esc(t.title)}"></label><button class="btn" type="submit">▶️ ابدأ</button></form>`})},
 'focus-home'(id){const h=(S.homeSchedule||[]).find(x=>x.id===id);if(!h)return;const [h1,m1]=h.start.split(':').map(Number),[h2,m2]=h.end.split(':').map(Number);FOCUS.start(Math.max(5,(h2*60+m2)-(h1*60+m1)),h.sid,h.name)},
 'finish-linked-task'(id){const t=S.tasks.find(x=>x.id===id);if(t&&!t.done){t.done=true;t.doneAt=todayDateStr();if(!t.xpDone){t.xpDone=true;XP.award(CFG.XP.task,`مهمة: ${t.title}`,'task',t.id)}bumpStreak()}closeModal();refresh()},
 'lesson-toggle'(id){const f=findLesson(id);if(!f)return;const l=f.l;
@@ -1434,7 +1401,7 @@ else{l.done=true;l.doneAt=todayDateStr();l.prog=100;if(!l.xpDone){l.xpDone=true;
 'del-ex'(id){const f=findEx(id);if(!f)return;f.s.exercises=f.s.exercises.filter(x=>x.id!==id);save();refresh()},
 'task-toggle'(id){const t=S.tasks.find(x=>x.id===id);if(!t)return;if(t.done){t.done=false;t.doneAt=null;if(t.xpDone){t.xpDone=false;XP.revoke(CFG.XP.task,`إلغاء: ${t.title}`,'task',t.id)}save();refresh()}else{t.done=true;t.doneAt=todayDateStr();if(!t.xpDone){t.xpDone=true;XP.award(CFG.XP.task,`مهمة: ${t.title}`,'task',t.id)}bumpStreak();save();refresh()}},
 'del-task'(id){S.tasks=S.tasks.filter(t=>t.id!==id);save();refresh()},
-'home-done'(id){const h=(S.homeSchedule||[]).find(x=>x.id===id);if(!h)return;h.done=true;if(!h.xpDone){h.xpDone=true;XP.award(10,`جلسة مراجعة: ${h.name}`,'home',id+':'+todayDateStr())}bumpStreak();save();refresh()},
+'home-done'(id){const h=(S.homeSchedule||[]).find(x=>x.id===id);if(!h)return;h.done=true;if(!h.xpDone){h.xpDone=true;XP.award(10,`جلسة: ${h.name}`,'home',id+':'+todayDateStr())}bumpStreak();save();refresh()},
 'home-undone'(id){const h=(S.homeSchedule||[]).find(x=>x.id===id);if(!h)return;h.done=false;if(h.xpDone){h.xpDone=false;XP.revoke(10,`إلغاء: ${h.name}`,'home',id+':'+todayDateStr())}save();refresh()},
 'home-edit'(id){modalHome(id)},
 'home-add'(day){modalHome(null);setTimeout(()=>{const d=$('#modal-root [name=day]');if(d&&day)d.value=day},100)},
@@ -1489,12 +1456,12 @@ nb.onclick=quizAdvance;box.appendChild(nb)},
 'request-notif'(){if(!('Notification' in window))return toast('غير مدعوم','err');Notification.requestPermission().then(p=>{toast(p==='granted'?'✅ مفعّل':'❌ مرفوض',p==='granted'?'ok':'err');if(cur.name==='settings')refresh()})},
 'export'(){const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='studyhub-backup-'+todayDateStr()+'.json';a.click();toast('💾 تم التصدير','info')},
 'import-btn'(){$('#imp').click()},
-'ask-reset-progress'(){askConfirm('حذف كل التقدم (XP، الأوسمة، السجل)؟ المواد والدروس تبقى.','reset-progress','x')},
+'ask-reset-progress'(){askConfirm('حذف كل التقدم؟ المواد تبقى.','reset-progress','x')},
 'reset-progress'(){S.ledger=[];S.xp=0;S.streak={count:0,last:null,best:0,activeDays:[]};S.badges=[];S.studyHistory=[];S.focusSessions=[];S.activity={};S.subjects.forEach(s=>{s.lessons.forEach(l=>{l.done=false;l.doneAt=null;l.xpDone=false;l.prog=0;l.lesEx.forEach(x=>{x.done=false;x.xpDone=false})});s.exercises.forEach(x=>{x.done=false;x.xpDone=false})});S.tasks.forEach(t=>{t.done=false;t.xpDone=false});S.notes.forEach(n=>n.xpDone=false);S.homeSchedule.forEach(h=>{h.done=false;h.xpDone=false});S.exams.forEach(e=>{e.status='planned';e.score=null;e.xpDone=false});save();closeModal();toast('♻️ تم','info');refresh()},
-'ask-reset-all'(){askConfirm('⚠️ حذف كل البيانات نهائيًا والعودة للبداية. لا يمكن التراجع!','reset-all','x')},
-'reset-all'(){if(fbDb&&fbUserId){try{fbDb.ref('users/'+fbUserId).remove()}catch(e){}}localStorage.removeItem(CFG.storageKey);localStorage.removeItem('studyhub_uid');location.reload()},
+'ask-reset-all'(){askConfirm('⚠️ حذف كل البيانات نهائيًا!','reset-all','x')},
+'reset-all'(){try{if(FB.db&&FB.uid)FB.db.ref('users/'+FB.uid).remove().catch(()=>{})}catch(e){}localStorage.removeItem(CFG.storageKey);localStorage.removeItem('studyhub_uid');location.reload()},
 'resume'(){if(S.last)location.hash='#subject/'+S.last},
-'fb-sync-now'(){if(!fbDb){toast('Firebase غير متاح','err');return}fbSave(S);const el=document.getElementById('fb-status');if(el){el.classList.remove('offline');el.classList.add('syncing');setTimeout(()=>{el.classList.remove('syncing');if(fbConnected)el.classList.add('connected');else el.classList.add('offline')},1500)}toast('☁️ جاري المزامنة...','info')}
+'fb-sync-now'(){if(!FB.db){toast('Firebase غير متاح','err');return}FB.save(S);toast('☁️ جاري المزامنة...','info');setTimeout(()=>toast('☁️ تم الإرسال','ok'),1500)}
 };
 document.addEventListener('click',e=>{
 if(e.target.id==='modal-ovl'){closeModal();return}
@@ -1520,7 +1487,7 @@ goals(f){S.dailyGoal.min=Math.max(10,Math.min(480,+f.daily.value||60));S.weeklyG
 chat(f){sendChat($('#chat-txt').value)},
 'focus-start'(f){const min=+f.min.value||25;closeModal();FOCUS.start(min,f.sid.value,f.goal.value.trim())},
 'focus-from-task'(f){const t=S.tasks.find(x=>x.id===+f.tid.value);if(!t)return;closeModal();FOCUS.start(+f.min.value||25,t.sid,f.goal.value.trim(),t.id)},
-onboard(f){S.profile.name=f.name.value.trim();S.profile.goal=+f.goal.value||3;save();closeModal();syncHUD();toast(`🚀 أهلًا ${S.profile.name||'يا بطل'}!`,'badge');confetti();fbSave(S)},
+onboard(f){S.profile.name=f.name.value.trim();S.profile.goal=+f.goal.value||3;save();closeModal();syncHUD();toast(`🚀 أهلًا ${S.profile.name||'يا بطل'}!`,'badge');confetti()},
 };
 document.addEventListener('submit',e=>{const f=e.target.closest('form[data-form]');if(!f)return;e.preventDefault();const fn=F[f.dataset.form];if(fn)fn(f)});
 document.addEventListener('input',e=>{
@@ -1542,7 +1509,7 @@ if(e.key==='Enter'&&!e.shiftKey&&document.activeElement.id==='chat-txt'){e.preve
 function runGlobalSearch(q){
 q=q.toLowerCase().trim();if(!q)return;
 const res={lessons:[],tasks:[],notes:[]};
-S.subjects.forEach(s=>{s.lessons.forEach(l=>{if(l.t.toLowerCase().includes(q)||l.desc?.toLowerCase().includes(q)||l.summary?.toLowerCase().includes(q))res.lessons.push({s,l})})});
+S.subjects.forEach(s=>{s.lessons.forEach(l=>{if(l.t.toLowerCase().includes(q)||(l.desc&&l.desc.toLowerCase().includes(q))||(l.summary&&l.summary.toLowerCase().includes(q)))res.lessons.push({s,l})})});
 S.tasks.forEach(t=>{if(t.title.toLowerCase().includes(q))res.tasks.push(t)});
 S.notes.forEach(n=>{if(n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q))res.notes.push(n)});
 const total=res.lessons.length+res.tasks.length+res.notes.length;
@@ -1554,10 +1521,25 @@ if(!total)html=`<div class="empty"><div class="e-ic">🔍</div><b>لا نتائ�
 modal({title:'🔍 نتائج البحث',body:html});
 }
 const routes={dashboard:renderDashboard,subjects:renderSubjects,subject:renderSubject,lesson:renderLesson,lessons:renderLessons,exercises:renderExercises,exams:renderExams,school:renderSchool,home:renderHome,focus:renderFocus,planner:renderPlanner,notes:renderNotes,progress:renderProgress,history:renderHistory,notifs:renderNotifs,ai:renderAI,settings:renderSettings};
-buildNav();syncHUD();route();
-function onboard(){modal({title:'🎓 أهلًا بك في STUDY HUB',body:`<p class="vs" style="margin-bottom:14px">نظام الدراسة الشخصي الكامل لطلاب <b>2 ثانوي — تسيير واقتصاد</b>.<br><br>📚 دروس + فيديوهات + ملخصات<br>✏️ تمارين + فروض + اختبارات<br>🏫 جدول المدرسة + 🏠 جدول المنزل<br>⏱️ Focus Mode + 🔔 تنبيهات<br>🤖 مساعد ذكي عام (دراسة + برمجة + كتابة)<br>⭐ نظام XP عادل وموثوق<br>☁️ مزامنة سحابية عبر Firebase</p><form data-form="onboard" class="fcol"><label>اسمك<input name="name" placeholder="مثال: أمين" maxlength="20" autofocus></label><label>هدفك اليومي<select name="goal"><option value="2">2 مهام</option><option value="3" selected>3 مهام ✅</option><option value="5">5 مهام 🔥</option></select></label><button class="btn" type="submit">🚀 ابدأ</button></form>`})}
+
+/* ═══════════════════════════════════════════════════════════
+   ✅ بدء التطبيق - مضمون 100%
+   ═══════════════════════════════════════════════════════════ */
+try {
+  buildNav();
+  syncHUD();
+  route();
+} catch(e) {
+  console.error('خطأ في بدء التطبيق:', e);
+  document.getElementById('view').innerHTML = '<div class="card empty"><div class="e-ic">⚠️</div><b>حدث خطأ</b><p>اضغط F5 لإعادة التحميل</p></div>';
+}
+
+function onboard(){modal({title:'🎓 أهلًا بك في STUDY HUB',body:`<p class="vs" style="margin-bottom:14px">نظام الدراسة الشخصي الكامل لطلاب <b>2 ثانوي — تسيير واقتصاد</b>.<br><br>📚 دروس + فيديوهات + ملخصات<br>✏️ تمارين + فروض + اختبارات<br>🏫 جدول المدرسة + 🏠 جدول المنزل<br>⏱️ Focus Mode + 🔔 تنبيهات<br>🤖 مساعد ذكي عام<br>⭐ نظام XP عادل<br>☁️ مزامنة سحابية Firebase</p><form data-form="onboard" class="fcol"><label>اسمك<input name="name" placeholder="مثال: أمين" maxlength="20" autofocus></label><label>هدفك اليومي<select name="goal"><option value="2">2 مهام</option><option value="3" selected>3 مهام ✅</option><option value="5">5 مهام 🔥</option></select></label><button class="btn" type="submit">🚀 ابدأ</button></form>`})}
 if(firstRun)setTimeout(onboard,1200);
-setTimeout(()=>{const sp=$('#splash');if(sp){sp.classList.add('off');setTimeout(()=>sp.remove(),600)}},1400);
+
+// ✅ إخفاء الـ splash - مضمون دائمًا
+setTimeout(()=>{const sp=$('#splash');if(sp){sp.classList.add('off');setTimeout(()=>{try{sp.remove()}catch(e){}},600)}},800);
+
 setInterval(()=>{checkReminders();
 if(S.streak.last){const gap=daysLeft(S.streak.last);if(gap<-1){S.streak.count=0;save();syncHUD()}}
 },30000);
@@ -1569,8 +1551,12 @@ if(dl===1)pushNotif('📝 فرض غدًا!',(s?s.name+' — ':'')+(e.title||e.ty
 else if(dl===0)pushNotif('🚨 فرض اليوم!',(s?s.name+' — ':'')+(e.title||e.type),'gold');
 });
 },2500);
-console.log('%c📚 STUDY HUB — 2AS Gestion & Économie','background:#0B8A63;color:#fff;font-size:16px;padding:8px 16px;border-radius:8px;font-weight:bold');
-console.log('%c☁️ Firebase: '+(fbDb?'متصل':'محلي'),'background:#DD9A26;color:#fff;padding:4px 10px;border-radius:6px');
+
+// ✅ حماية إضافية: إذا بقي splash بعد 3 ثواني، أزله بالقوة
+setTimeout(()=>{const sp=document.getElementById('splash');if(sp&&sp.parentNode)sp.remove()},3000);
+
+console.log('%c📚 STUDY HUB — 2AS','background:#0B8A63;color:#fff;font-size:16px;padding:8px 16px;border-radius:8px;font-weight:bold');
+console.log('%c☁️ Firebase: '+(FB.db?'متصل':'محلي فقط'),'color:#DD9A26;padding:4px 10px;border-radius:6px');
 </script>
 </body>
 </html>
