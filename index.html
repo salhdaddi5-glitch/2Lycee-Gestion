@@ -484,21 +484,43 @@ button,input,select,textarea{max-width:100%}
 
 <script>
 'use strict';
-/* ═══════════════ 🔥 FIREBASE (اختياري وآمن) ═══════════════ */
-var FB={db:null,uid:null,connected:false,saveTimer:null,
+/* ═══════════════ 🔥 FIREBASE — مزامنة موحّدة بين كل أجهزتك ═══════════════
+   ✅ الإصلاح الجوهري: مسار واحد ثابت (SYNC_KEY) لكل الأجهزة بدل معرف عشوائي
+   لكل جهاز. الآن الهاتف والكمبيوتر يقرآن ويكتبان في نفس المكان تمامًا،
+   مع استماع حي (live listener) يجعل أي تعديل يصل فورًا للجهاز الآخر. */
+var SYNC_KEY='chikha-main'; /* ← ثبّت نفس الاسم في كل الأجهزة (يمكنك تغييره لكن بنفس القيمة partout) */
+var FB={db:null,ref:null,connected:false,saveTimer:null,
 init:function(){
 try{
 if(typeof firebase==='undefined'||!firebase.initializeApp){console.log('ℹ️ Firebase غير متاح — وضع محلي');return;}
 firebase.initializeApp({apiKey:"AIzaSyACGMGETrqeyCD3bdZ_05Zzbi5E8gf2z80",authDomain:"chikha-9a2eb.firebaseapp.com",databaseURL:"https://chikha-9a2eb-default-rtdb.europe-west1.firebasedatabase.app",projectId:"chikha-9a2eb",storageBucket:"chikha-9a2eb.firebasestorage.app",messagingSenderId:"861691651940",appId:"1:861691651940:web:943aa0dbf3a349020abc71"});
 this.db=firebase.database();
-this.uid=localStorage.getItem('studyhub_uid');
-if(!this.uid){this.uid='u_'+Math.random().toString(36).slice(2,12);localStorage.setItem('studyhub_uid',this.uid);}
+this.ref=this.db.ref('users/'+SYNC_KEY+'/data');
 var self=this;
-this.db.ref('.info/connected').on('value',function(s){
-self.connected=s.val()===true;self.ui();
-if(self.connected&&typeof S!=='undefined'&&S)self.save(S);
+this.db.ref('.info/connected').on('value',function(s){self.connected=s.val()===true;self.ui();});
+/* استماع حي: أي تعديل من جهاز آخر يصل فورًا ويحدّث الشاشة */
+this.ref.on('value',function(snap){
+try{
+var remote=snap.val();
+if(!remote||!remote.subjects)return;
+if(typeof S==='undefined'||!S)return;
+if((remote.updatedAt||0)>(S.updatedAt||0)){
+S=remote;
+try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+try{syncHUD();refresh();}catch(e){}
+toast('🔄 تم استلام تحديث من جهاز آخر','info');
+}
+}catch(e){}
 });
-console.log('%c☁️ Firebase جاهز','color:#0B8A63;font-weight:bold');
+/* أول مرة: إذا كانت السحابة فارغة ارفع بيانات هذا الجهاز */
+setTimeout(function(){
+if(self.db&&self.connected){
+self.ref.once('value').then(function(s){
+if(!s.val()&&typeof S!=='undefined'&&S&&S.subjects){self.ref.set(S).catch(function(){});}
+}).catch(function(){});
+}
+},3000);
+console.log('%c☁️ Firebase جاهز — مسار المزامنة: users/'+SYNC_KEY+'/data','color:#0B8A63;font-weight:bold');
 }catch(e){console.warn('⚠️ خطأ Firebase:',e.message);}
 },
 ui:function(){
@@ -508,19 +530,17 @@ el.classList.toggle('connected',this.connected);
 if(tx)tx.textContent=this.connected?'☁️ سحابي':'⚠️ محلي';
 },
 save:function(data){
-if(!this.db||!this.uid||!this.connected)return;
+if(!this.db||!this.ref||!this.connected)return;
 var self=this;
 clearTimeout(this.saveTimer);
 this.saveTimer=setTimeout(function(){
-try{self.db.ref('users/'+self.uid+'/data').set(data).catch(function(){});}catch(e){}
+try{self.ref.set(data).catch(function(){});}catch(e){}
 },900);
 },
-load:function(){
-var self=this;
-return new Promise(function(res){
-if(!self.db||!self.uid){res(null);return;}
-try{self.db.ref('users/'+self.uid+'/data').once('value').then(function(s){res(s.val());}).catch(function(){res(null);});}catch(e){res(null);}
-});
+pushNow:function(){
+if(!this.ref||!this.connected)return false;
+try{this.ref.set(S).catch(function(){});}catch(e){}
+return true;
 }
 };
 try{FB.init();}catch(e){}
@@ -625,7 +645,7 @@ lesEx:[lx('أحسب الحد العام لمتتالية حسابية حدها �
 [['سلسلة المتتاليات','متوسط']],['حسابية: Un = U0 + n×r — هندسية: Un = U0 × qⁿ']),
 mk('ar','اللغة العربية وآدابها','✒️','#C6474E',3,[['الأدب العباسي','الوحدة 1']],[],[]),
 mk('isl','العلوم الإسلامية','🕌','#2AA07A',2,[['سورة يوسف','القرآن']],[],[]),
-mk('fr','اللغة الفرنسية','🇫','#4A7BD0',2,[['La lettre administrative','Séq 1']],[],[]),
+mk('fr','اللغة الفرنسية','🇫🇷','#4A7BD0',2,[['La lettre administrative','Séq 1']],[],[]),
 mk('en','اللغة الإنجليزية','🌍','#E07B39',2,[['Ethics in business','Unit 1']],[],[]),
 mk('hist','التاريخ والجغرافيا','🗺️','#8A6D3B',2,[['الحرب العالمية الثانية','التاريخ']],[],[]),
 mk('philo','الفلسفة','💭','#5B6B8C',2,[['المشكلة الفلسفية','الوحدة 1']],[],[])]}
@@ -691,20 +711,8 @@ S.v=CFG.version;dirty=true;
 }
 if(dirty)save();
 }
-function save(){S.updatedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}FB.save(S);}
-/* استرجاع سحابي آمن عند الفتح */
-setTimeout(function(){
-if(!FB.db)return;
-FB.load().then(function(remote){
-try{
-if(remote&&remote.subjects&&remote.updatedAt&&remote.updatedAt>(S.updatedAt||0)){
-S=remote;migrate();
-try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
-syncHUD();refresh();toast('☁️ تم استرجاع بياناتك من السحابة','info');
-}
-}catch(e){}
-});
-},2500);
+/* ✅ حفظ محلي + رفع سحابي، مع طابع زمني تصاعدي لضمان أحدث نسخة */
+function save(){S.updatedAt=Math.max(Date.now(),(S.updatedAt||0)+1);try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}FB.save(S);}
 const XP={
 total(){return S.ledger.reduce((a,e)=>a+e.amount,0)},
 recalc(){S.xp=XP.total();save()},
@@ -886,7 +894,7 @@ const info=lvlInfo();$('#me-lvl').textContent=`المستوى ${info.lvl} • ${
 $('#sp').textContent='🔥 '+S.streak.count;
 const d=S.theme==='dark';
 $('#th-d').innerHTML=d?'☀️ الوضع الفاتح':'🌙 الوضع الداكن';
-$('#th-m').textContent=d?'☀️':'';
+$('#th-m').textContent=d?'☀️':'🌙';
 syncBell();}
 function timeAgo(at){const d=Date.now()-at;if(d<60000)return'الآن';if(d<3600000)return Math.floor(d/60000)+' د';if(d<86400000)return Math.floor(d/3600000)+' س';return Math.floor(d/86400000)+' يوم'}
 const NAV=[
@@ -1199,7 +1207,7 @@ if(quizSession.active&&quizSession.target==='chat'&&!/(إيقاف|توقف)/.tes
 if(/(إيقاف|توقف)/.test(t)&&quizSession.active){quizSession.active=false;return'تم إيقاف الكويز ⏹️'}
 const calcMatch=txt.match(/(\d+(?:\.\d+)?)\s*([+\-*/x×÷^])\s*(\d+(?:\.\d+)?)/);
 if(calcMatch){const a=+calcMatch[1],op=calcMatch[2],b=+calcMatch[3];let r=null;if(op==='+')r=a+b;else if(op==='-')r=a-b;else if(op==='*'||op==='x'||op==='×')r=a*b;else if(op==='/'||op==='÷')r=b?a/b:'غير معرف';else if(op==='^')r=Math.pow(a,b);if(r!==null)return`🧮 ${a} ${op} ${b} = <b>${typeof r==='number'?Math.round(r*10000)/10000:r}</b>`}
-const capitals={'اليابان':'طوكيو 🇯🇵','فرنسا':'باريس 🇫🇷','الجزائر':'الجزائر العاصمة 🇩🇿','مصر':'القاهرة 🇪🇬','المغرب':'الرباط 🇲🇦','السعودية':'الرياض 🇸🇦','تركيا':'أنقرة 🇹','ألمانيا':'برلين 🇩🇪','أمريكا':'واشنطن 🇺🇸'};
+const capitals={'اليابان':'طوكيو 🇯🇵','فرنسا':'باريس 🇫🇷','الجزائر':'الجزائر العاصمة 🇩🇿','مصر':'القاهرة 🇪','المغرب':'الرباط 🇲🇦','السعودية':'الرياض 🇸🇦','تركيا':'أنقرة 🇹🇷','ألمانيا':'برلين 🇩🇪','أمريكا':'واشنطن 🇺🇸'};
 for(const [c,cap] of Object.entries(capitals)){if(t.includes(c))return`🌍 عاصمة <b>${c}</b> هي <b>${cap}</b>`}
 if(/(حلل|مستواي)/.test(t))return analyzeProgress();
 if(/(ماذا أدرس|اقترح)/.test(t))return suggestStudy();
@@ -1269,12 +1277,12 @@ return`<div class="vhead"><div><h1 class="vt">الإعدادات ⚙️</h1></di
 <label class="chk"><input type="checkbox" ${S.profile.notif?'checked':''} data-act="toggle-notif">📱 إشعارات المتصفح</label>
 <button class="btn btn-ghost sm2 mt" data-act="request-notif">طلب الصلاحية</button></div>
 <div class="card set-card"><h3>☁️ المزامنة السحابية</h3>
-<p class="vs" style="margin-bottom:10px">بياناتك تُحفظ تلقائيًا في Firebase Realtime Database.</p>
+<p class="vs" style="margin-bottom:10px">كل أجهزتك تتشارك نفس المسار: <b dir="ltr">users/${esc(SYNC_KEY)}/data</b><br>أي تعديل في جهاز يصل فورًا لبقية الأجهزة.</p>
 <div class="chips">
 <span class="chip ${FB.connected?'ok':''}">${FB.connected?'☁️ متصل':'⚠️ محلي فقط'}</span>
-${FB.uid?`<span class="chip">🆔 ${esc(FB.uid.slice(0,12))}</span>`:''}
+<span class="chip">🔑 ${esc(SYNC_KEY)}</span>
 </div>
-<button class="btn btn-soft sm2 mt" data-act="fb-sync-now">${IC('refresh')} مزامنة الآن</button>
+<button class="btn btn-soft sm2 mt" data-act="fb-sync-now">${IC('refresh')} مزامنة الآن (رفع بياناتي)</button>
 </div>
 <div class="card set-card"><h3>💾 البيانات</h3>
 <div class="frow"><button class="btn btn-ghost sm2" data-act="export">${IC('dl')} تصدير</button><button class="btn btn-ghost sm2" data-act="import-btn">${IC('ul')} استيراد</button><input type="file" id="imp" accept=".json" hidden></div>
@@ -1382,10 +1390,10 @@ nb.onclick=quizAdvance;box.appendChild(nb)},
 'import-btn'(){$('#imp').click()},
 'ask-reset-progress'(){askConfirm('حذف كل التقدم (XP، الأوسمة، السجل)؟ المواد والدروس تبقى.','reset-progress','x')},
 'reset-progress'(){S.ledger=[];S.xp=0;S.streak={count:0,last:null,best:0,activeDays:[]};S.badges=[];S.studyHistory=[];S.focusSessions=[];S.activity={};S.subjects.forEach(s=>{s.lessons.forEach(l=>{l.done=false;l.doneAt=null;l.xpDone=false;l.prog=0;l.lesEx.forEach(x=>{x.done=false;x.xpDone=false})});s.exercises.forEach(x=>{x.done=false;x.xpDone=false})});S.tasks.forEach(t=>{t.done=false;t.xpDone=false});S.notes.forEach(n=>n.xpDone=false);S.homeSchedule.forEach(h=>{h.done=false;h.xpDone=false});S.exams.forEach(e=>{e.status='planned';e.score=null;e.xpDone=false});save();closeModal();toast('♻️ تم','info');refresh()},
-'ask-reset-all'(){askConfirm('⚠️ حذف كل البيانات نهائيًا والعودة للبداية. لا يمكن التراجع!','reset-all','x')},
-'reset-all'(){try{if(FB.db&&FB.uid)FB.db.ref('users/'+FB.uid).remove().catch(function(){})}catch(e){}localStorage.removeItem(CFG.storageKey);localStorage.removeItem('studyhub_uid');location.reload()},
+'ask-reset-all'(){askConfirm('⚠️ حذف كل البيانات نهائيًا (محليًا وسحابيًا) والعودة للبداية!','reset-all','x')},
+'reset-all'(){try{if(FB.ref)FB.ref.remove().catch(function(){})}catch(e){}localStorage.removeItem(CFG.storageKey);location.reload()},
 'resume'(){if(S.last)location.hash='#subject/'+S.last},
-'fb-sync-now'(){if(!FB.db){toast('Firebase غير متاح','err');return}FB.save(S);toast('☁️ جاري المزامنة...','info');setTimeout(()=>toast(FB.connected?'☁️ تم الإرسال للسحابة':'⚠️ لا يوجد اتصال — سيُزامَن لاحقًا',FB.connected?'ok':'err'),1500)}
+'fb-sync-now'(){if(!FB.db){toast('Firebase غير متاح','err');return}if(FB.pushNow()){toast('☁️ تم رفع بياناتك للسحابة','ok')}else{toast('⚠️ لا يوجد اتصال بالإنترنت','err')}}
 };
 document.addEventListener('click',e=>{
 if(e.target.id==='modal-ovl'){closeModal();return}
@@ -1451,7 +1459,7 @@ console.error('خطأ تشغيل:',err);
 const v=document.getElementById('view');
 if(v)v.innerHTML='<div class="card empty"><div class="e-ic">⚠️</div><b>حدث خطأ أثناء التشغيل</b><p class="vs mt">'+esc(err.message)+'</p><button class="btn btn-danger mt" data-act="ask-reset-all">💥 إعادة ضبط البيانات</button></div>';
 }
-function onboard(){modal({title:'🎓 أهلًا بك في STUDY HUB',body:`<p class="vs" style="margin-bottom:14px">نظام الدراسة الشخصي الكامل لطلاب <b>2 ثانوي — تسيير واقتصاد</b>.<br><br>📚 دروس + فيديوهات + ملخصات<br>✏️ تمارين + فروض + اختبارات<br>🏫 جدول المدرسة + 🏠 جدول المنزل<br>⏱️ Focus Mode + 🔔 تنبيهات<br>🤖 مساعد ذكي عام (دراسة + برمجة + كتابة)<br>⭐ نظام XP عادل وموثوق<br>☁️ مزامنة سحابية Firebase</p><form data-form="onboard" class="fcol"><label>اسمك<input name="name" placeholder="مثال: أمين" maxlength="20" autofocus></label><label>هدفك اليومي<select name="goal"><option value="2">2 مهام</option><option value="3" selected>3 مهام ✅</option><option value="5">5 مهام 🔥</option></select></label><button class="btn" type="submit">🚀 ابدأ</button></form>`})}
+function onboard(){modal({title:'🎓 أهلًا بك في STUDY HUB',body:`<p class="vs" style="margin-bottom:14px">نظام الدراسة الشخصي الكامل لطلاب <b>2 ثانوي — تسيير واقتصاد</b>.<br><br>📚 دروس + فيديوهات + ملخصات<br>✏️ تمارين + فروض + اختبارات<br>🏫 جدول المدرسة + 🏠 جدول المنزل<br>⏱️ Focus Mode + 🔔 تنبيهات<br>🤖 مساعد ذكي عام (دراسة + برمجة + كتابة)<br>⭐ نظام XP عادل وموثوق<br>☁️ مزامنة فورية بين كل أجهزتك</p><form data-form="onboard" class="fcol"><label>اسمك<input name="name" placeholder="مثال: أمين" maxlength="20" autofocus></label><label>هدفك اليومي<select name="goal"><option value="2">2 مهام</option><option value="3" selected>3 مهام ✅</option><option value="5">5 مهام 🔥</option></select></label><button class="btn" type="submit">🚀 ابدأ</button></form>`})}
 if(firstRun)setTimeout(onboard,1200);
 setTimeout(()=>{const sp=$('#splash');if(sp){sp.classList.add('off');setTimeout(()=>{if(sp.parentNode)sp.remove()},600)}},1400);
 setInterval(()=>{checkReminders();
@@ -1466,7 +1474,7 @@ else if(dl===0)pushNotif('🚨 فرض اليوم!',(s?s.name+' — ':'')+(e.titl
 });
 },2500);
 console.log('%c📚 STUDY HUB — 2AS Gestion & Économie','background:#0B8A63;color:#fff;font-size:16px;padding:8px 16px;border-radius:8px;font-weight:bold');
-console.log('%c☁️ Firebase: '+(FB.db?'متصل':'محلي فقط'),'color:#DD9A26;padding:4px 10px;border-radius:6px');
+console.log('%c☁️ مسار المزامنة: users/'+SYNC_KEY+'/data','color:#DD9A26;padding:4px 10px;border-radius:6px');
 </script>
 
 <script>
