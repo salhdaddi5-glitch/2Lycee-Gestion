@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نخبة 2AS | منصة ذكية لطلاب تسيير واقتصاد</title>
+<title>نخبة 2AS | منصة تعليمية ذكية - Division 2G1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Noto+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -38,7 +38,6 @@ body {
 
 .app { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
 
-/* Sidebar */
 .sidebar {
   background: var(--navy);
   color: white;
@@ -84,7 +83,6 @@ body {
 .nav-item:hover { background: var(--navy-light); color: white; }
 .nav-item.active { background: var(--emerald); color: var(--navy); font-weight: 700; }
 
-/* Main */
 .main { padding: 2rem; max-width: 1400px; margin: 0 auto; width: 100%; }
 
 .topbar {
@@ -105,7 +103,6 @@ body {
 
 [data-theme="dark"] .page-title h2 { color: white; }
 
-/* Cards */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -150,7 +147,6 @@ body {
 .card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
 [data-theme="dark"] .card h3 { color: white; }
 
-/* Buttons */
 .btn {
   padding: .6rem 1.25rem;
   border-radius: 8px;
@@ -169,6 +165,110 @@ body {
 .btn-secondary { background: var(--navy); color: white; }
 .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
 
+/* Schedule Table */
+.schedule-container {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+[data-theme="dark"] .schedule-container { background: var(--navy-light); }
+
+.schedule-header {
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+
+.schedule-table th {
+  background: var(--navy);
+  color: white;
+  padding: 1rem .5rem;
+  text-align: center;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.schedule-table td {
+  padding: .75rem .5rem;
+  border: 1px solid var(--border);
+  text-align: center;
+  vertical-align: middle;
+  min-width: 100px;
+}
+
+.schedule-table tr:nth-child(even) { background: var(--sand); }
+[data-theme="dark"] .schedule-table tr:nth-child(even) { background: var(--navy); }
+
+.schedule-cell {
+  cursor: pointer;
+  transition: all .2s;
+  padding: .5rem;
+  border-radius: 6px;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+}
+
+.schedule-cell:hover { background: rgba(16,185,129,.1); }
+
+.schedule-cell.filled {
+  background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(16,185,129,.05));
+  border: 2px solid var(--emerald);
+}
+
+.schedule-cell.current {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.schedule-cell.next {
+  background: linear-gradient(135deg, #3B82F6, #1E40AF);
+  color: white;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .8; }
+}
+
+.schedule-cell .subject-name {
+  font-weight: 700;
+  font-size: .85rem;
+  color: var(--navy);
+}
+
+.schedule-cell.current .subject-name,
+.schedule-cell.next .subject-name { color: white; }
+
+[data-theme="dark"] .schedule-cell .subject-name { color: white; }
+
+.schedule-cell .subject-teacher {
+  font-size: .75rem;
+  color: var(--text-light);
+}
+
+.schedule-cell.current .subject-teacher,
+.schedule-cell.next .subject-teacher { color: rgba(255,255,255,.9); }
+
 /* AI Chat */
 .ai-container {
   background: white;
@@ -178,6 +278,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 70vh;
+  max-height: 700px;
 }
 
 [data-theme="dark"] .ai-container { background: var(--navy-light); }
@@ -190,6 +291,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .ai-avatar {
@@ -212,7 +314,7 @@ body {
 .message {
   display: flex;
   gap: .75rem;
-  max-width: 80%;
+  max-width: 85%;
 }
 
 .message.user {
@@ -236,6 +338,7 @@ body {
   padding: 1rem;
   border-radius: 12px;
   line-height: 1.6;
+  white-space: pre-wrap;
 }
 
 [data-theme="dark"] .message-content { background: var(--navy); }
@@ -258,6 +361,7 @@ body {
   border-radius: 8px;
   resize: vertical;
   font-family: inherit;
+  font-size: .95rem;
 }
 
 .image-preview {
@@ -265,6 +369,7 @@ body {
   gap: .5rem;
   flex-wrap: wrap;
   margin-bottom: .5rem;
+  width: 100%;
 }
 
 .image-preview-item {
@@ -292,171 +397,6 @@ body {
   font-size: .75rem;
   display: flex; align-items: center; justify-content: center;
 }
-
-/* Schedule Tables */
-.schedule-container {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  overflow: hidden;
-  margin-bottom: 2rem;
-}
-
-[data-theme="dark"] .schedule-container { background: var(--navy-light); }
-
-.schedule-header {
-  background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
-  color: white;
-  padding: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.schedule-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.schedule-table th {
-  background: var(--navy);
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  font-weight: 700;
-}
-
-.schedule-table td {
-  padding: .75rem;
-  border: 1px solid var(--border);
-  text-align: center;
-  min-width: 120px;
-  vertical-align: middle;
-}
-
-.schedule-table tr:nth-child(even) { background: var(--sand); }
-[data-theme="dark"] .schedule-table tr:nth-child(even) { background: var(--navy); }
-
-.schedule-cell {
-  cursor: pointer;
-  transition: all .2s;
-  padding: .5rem;
-  border-radius: 6px;
-  min-height: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .25rem;
-}
-
-.schedule-cell:hover { background: rgba(16,185,129,.1); }
-
-.schedule-cell.filled {
-  background: linear-gradient(135deg, rgba(16,185,129,.2), rgba(16,185,129,.1));
-  border: 2px solid var(--emerald);
-}
-
-.schedule-cell .subject-name {
-  font-weight: 700;
-  font-size: .85rem;
-  color: var(--navy);
-}
-
-[data-theme="dark"] .schedule-cell .subject-name { color: white; }
-
-.schedule-cell .subject-time {
-  font-size: .75rem;
-  color: var(--text-light);
-}
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.6);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 1rem;
-}
-
-.modal-overlay.show { display: flex; }
-
-.modal {
-  background: white;
-  border-radius: var(--radius);
-  max-width: 500px;
-  width: 100%;
-  padding: 1.5rem;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-[data-theme="dark"] .modal { background: var(--navy-light); color: white; }
-
-.modal h3 { margin-bottom: 1rem; color: var(--navy); }
-[data-theme="dark"] .modal h3 { color: white; }
-
-.form-group { margin-bottom: 1rem; }
-.form-group label { display: block; margin-bottom: .5rem; font-weight: 600; }
-.form-group input, .form-group select {
-  width: 100%;
-  padding: .75rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-family: inherit;
-}
-
-/* Toast */
-.toast {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--navy);
-  color: white;
-  padding: .75rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,.2);
-  z-index: 2000;
-  opacity: 0;
-  transition: opacity .3s;
-  pointer-events: none;
-}
-
-.toast.show { opacity: 1; }
-
-/* Responsive */
-@media (max-width: 968px) {
-  .app { grid-template-columns: 1fr; }
-  .sidebar {
-    position: fixed;
-    right: 0; top: 0;
-    width: 280px;
-    z-index: 999;
-    transform: translateX(100%);
-    transition: transform .3s;
-  }
-  .sidebar.open { transform: translateX(0); }
-  .main { padding: 1rem; }
-  .schedule-table { font-size: .85rem; }
-  .schedule-table td, .schedule-table th { padding: .5rem; min-width: 80px; }
-}
-
-.badge {
-  display: inline-block;
-  padding: .25rem .75rem;
-  border-radius: 20px;
-  font-size: .75rem;
-  font-weight: 600;
-}
-
-.badge-success { background: #D1FAE5; color: #065F46; }
-.badge-warning { background: #FEF3C7; color: #92400E; }
-.badge-info { background: #DBEAFE; color: #1E40AF; }
 
 .lesson-section {
   background: white;
@@ -492,15 +432,70 @@ body {
   flex-shrink: 0;
 }
 
-.definition-box {
-  background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
-  border-right: 4px solid var(--emerald);
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
+.badge {
+  display: inline-block;
+  padding: .25rem .75rem;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
 }
 
-[data-theme="dark"] .definition-box { background: rgba(16,185,129,.1); }
+.badge-success { background: #D1FAE5; color: #065F46; }
+.badge-warning { background: #FEF3C7; color: #92400E; }
+.badge-info { background: #DBEAFE; color: #1E40AF; }
+
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: white;
+  padding: .75rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,.2);
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+
+.toast.show { opacity: 1; }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: white;
+  border-radius: var(--radius);
+  max-width: 500px;
+  width: 100%;
+  padding: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+[data-theme="dark"] .modal { background: var(--navy-light); color: white; }
+
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: .5rem; font-weight: 600; }
+.form-group input, .form-group select {
+  width: 100%;
+  padding: .75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+}
 
 .loading {
   display: inline-block;
@@ -515,30 +510,70 @@ body {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+@media (max-width: 968px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar {
+    position: fixed;
+    right: 0; top: 0;
+    width: 280px;
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform .3s;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .main { padding: 1rem; }
+  .schedule-table { font-size: .75rem; }
+  .schedule-table td, .schedule-table th { padding: .5rem .25rem; min-width: 70px; }
+  .message { max-width: 95%; }
+}
+
+.quick-actions {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: .5rem;
+}
+
+.quick-action-btn {
+  padding: .4rem .8rem;
+  background: var(--sand);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: .8rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.quick-action-btn:hover {
+  background: var(--emerald);
+  color: white;
+  border-color: var(--emerald);
+}
 </style>
 </head>
 <body>
 
 <div class="app">
-  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="logo">
       <div class="logo-icon">ن</div>
       <div>
         <h1 style="font-size: 1.1rem; font-weight: 800;">نخبة 2AS</h1>
-        <p style="font-size: .75rem; color: #94A3B8;">منصة ذكية</p>
+        <p style="font-size: .75rem; color: #94A3B8;">Division 2G1</p>
       </div>
     </div>
 
-    <button class="nav-item active" data-route="home">🏠 الرئيسية</button>
-    <button class="nav-item" data-route="ai">🤖 المساعد الذكي</button>
-    <button class="nav-item" data-route="school">🏫 الجدول المدرسي</button>
-    <button class="nav-item" data-route="home-schedule">🏠 الجدول المنزلي</button>
-    <button class="nav-item" data-route="subjects">📚 المواد الدراسية</button>
-    <button class="nav-item" data-route="dashboard">📊 لوحة التحكم</button>
+    <button class="nav-item active" data-route="home"> الرئيسية</button>
+    <button class="nav-item" data-route="schedule">📅 جدولي الدراسي</button>
+    <button class="nav-item" data-route="ai">🤖 المساعد الدراسي</button>
+    <button class="nav-item" data-route="subjects">📚 موادّي الدراسية</button>
+    <button class="nav-item" data-route="lessons"> دروسي</button>
+    <button class="nav-item" data-route="exercises">️ تماريني</button>
+    <button class="nav-item" data-route="progress"> تقدمّي الدراسي</button>
+    <button class="nav-item" data-route="dashboard">️ الإعدادات</button>
   </aside>
 
-  <!-- Main -->
   <main class="main" id="main">
     <div class="topbar">
       <button class="btn btn-outline" onclick="toggleSidebar()" style="display: none;" id="menuBtn">☰</button>
@@ -551,8 +586,6 @@ body {
 </div>
 
 <div class="toast" id="toast"></div>
-
-<!-- Modal -->
 <div class="modal-overlay" id="modal">
   <div class="modal" id="modalContent"></div>
 </div>
@@ -562,17 +595,51 @@ body {
 const state = {
   currentRoute: 'home',
   theme: localStorage.getItem('theme') || 'light',
-  schoolSchedule: JSON.parse(localStorage.getItem('schoolSchedule') || '{}'),
+  schoolSchedule: JSON.parse(localStorage.getItem('schoolSchedule2G1') || 'null'),
   homeSchedule: JSON.parse(localStorage.getItem('homeSchedule') || '{}'),
   aiMessages: JSON.parse(localStorage.getItem('aiMessages') || '[]'),
   uploadedImages: [],
-  geminiApiKey: localStorage.getItem('geminiApiKey') || ''
+  geminiApiKey: localStorage.getItem('geminiApiKey') || '',
+  completedLessons: JSON.parse(localStorage.getItem('completedLessons') || '[]'),
+  bookmarks: JSON.parse(localStorage.getItem('bookmarks') || '[]')
 };
 
 document.documentElement.setAttribute('data-theme', state.theme);
 
-// ==================== GEMINI AI INTEGRATION ====================
+// Initialize default schedule if not exists
+if (!state.schoolSchedule) {
+  state.schoolSchedule = {
+    '0-0': { subject: 'ECOM', teacher: 'M.GES1', subjectAr: 'الاقتصاد والمناجمنت' },
+    '0-1': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية' },
+    '0-2': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات' },
+    '0-3': { subject: 'SPOR', teacher: 'M.SPO84', subjectAr: 'التربية البدنية' },
+    '0-4': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا' },
+    '0-5': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي' },
+    '0-7': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات' },
+    '1-0': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية' },
+    '1-1': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات' },
+    '1-2': { subject: 'ECONOM', teacher: 'M.GES1', subjectAr: 'الاقتصاد' },
+    '1-4': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي' },
+    '2-0': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا' },
+    '2-1': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية' },
+    '2-2': { subject: 'SC/IS', teacher: 'M.SC/IS4', subjectAr: 'العلوم الإسلامية' },
+    '2-3': { subject: 'Droit', teacher: 'M.GES4', subjectAr: 'القانون' },
+    '3-0': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي' },
+    '3-1': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية' },
+    '3-2': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية' },
+    '3-3': { subject: 'Droit', teacher: 'M.GES4', subjectAr: 'القانون' },
+    '3-4': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات' },
+    '3-5': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية' },
+    '4-0': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا' },
+    '4-1': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية' },
+    '4-2': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية' },
+    '4-3': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية' },
+    '4-4': { subject: 'SC/IS', teacher: 'M.SC/IS4', subjectAr: 'العلوم الإسلامية' }
+  };
+  localStorage.setItem('schoolSchedule2G1', JSON.stringify(state.schoolSchedule));
+}
 
+// ==================== GEMINI AI ====================
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 async function callGeminiAPI(prompt, images = []) {
@@ -582,7 +649,6 @@ async function callGeminiAPI(prompt, images = []) {
 
   const parts = [{ text: prompt }];
 
-  // Add images if provided
   for (const img of images) {
     parts.push({
       inline_data: {
@@ -620,7 +686,6 @@ async function callGeminiAPI(prompt, images = []) {
 }
 
 // ==================== ROUTING ====================
-
 function navigate(route) {
   state.currentRoute = route;
   render();
@@ -636,17 +701,18 @@ function updateNav() {
 }
 
 // ==================== RENDERERS ====================
-
 function render() {
   const content = document.getElementById('content');
   let html = '';
 
   switch (state.currentRoute) {
     case 'home': html = renderHome(); break;
+    case 'schedule': html = renderSchedule(); break;
     case 'ai': html = renderAI(); break;
-    case 'school': html = renderSchoolSchedule(); break;
-    case 'home-schedule': html = renderHomeSchedule(); break;
     case 'subjects': html = renderSubjects(); break;
+    case 'lessons': html = renderLessons(); break;
+    case 'exercises': html = renderExercises(); break;
+    case 'progress': html = renderProgress(); break;
     case 'dashboard': html = renderDashboard(); break;
     default: html = renderHome();
   }
@@ -656,58 +722,106 @@ function render() {
 }
 
 function renderHome() {
+  const currentClass = getCurrentClass();
+  const nextClass = getNextClass();
+  
   return `
     <div class="page-title">
       <h2>مرحباً بك في نخبة 2AS 🎓</h2>
-      <p>منصة تعليمية ذكية لطلاب السنة الثانية ثانوي - شعبة تسيير واقتصاد</p>
+      <p>Division 2G1 - Lycée Thaalbiya El Alger | السنة الثانية ثانوي - تسيير واقتصاد</p>
     </div>
 
+    ${currentClass ? `
+      <div class="lesson-section" style="background: linear-gradient(135deg, #F59E0B, #D97706); color: white; border: none;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <div style="font-size: 3rem;">📚</div>
+          <div style="flex: 1;">
+            <h3 style="margin: 0; color: white;">الحصة الحالية</h3>
+            <p style="margin: .5rem 0 0; font-size: 1.1rem;"><strong>${currentClass.subjectAr}</strong> - ${currentClass.subject} (${currentClass.teacher})</p>
+            <p style="margin: .25rem 0 0; font-size: .9rem; opacity: .9;">${currentClass.time}</p>
+          </div>
+        </div>
+      </div>
+    ` : ''}
+
+    ${nextClass && !currentClass ? `
+      <div class="lesson-section" style="background: linear-gradient(135deg, #3B82F6, #1E40AF); color: white; border: none;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <div style="font-size: 3rem;">⏰</div>
+          <div style="flex: 1;">
+            <h3 style="margin: 0; color: white;">الحصة القادمة</h3>
+            <p style="margin: .5rem 0 0; font-size: 1.1rem;"><strong>${nextClass.subjectAr}</strong> - ${nextClass.subject} (${nextClass.teacher})</p>
+            <p style="margin: .25rem 0 0; font-size: .9rem; opacity: .9;">${nextClass.time}</p>
+          </div>
+        </div>
+      </div>
+    ` : ''}
+
     <div class="cards-grid">
+      <div class="card" onclick="navigate('schedule')">
+        <div class="card-header">
+          <div class="card-icon">📅</div>
+          <div>
+            <h3>جدولي الدراسي</h3>
+            <p style="font-size: .85rem; color: var(--text-light);">Division 2G1</p>
+          </div>
+        </div>
+        <p style="color: var(--text-light);">جدول التوقيت الأسبوعي الحقيقي</p>
+      </div>
+
       <div class="card" onclick="navigate('ai')">
         <div class="card-header">
-          <div class="card-icon">🤖</div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #8B5CF6, #6D28D9);">🤖</div>
           <div>
-            <h3>المساعد الذكي</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">مدعوم بـ Google Gemini</p>
+            <h3>المساعد الدراسي</h3>
+            <p style="font-size: .85rem; color: var(--text-light);">مدعوم بالذكاء الاصطناعي</p>
           </div>
         </div>
-        <p style="color: var(--text-light);">اطرح أسئلتك، احصل على ملخصات، وأرسل صور ملخصاتك للتحليل</p>
-        <div style="margin-top: 1rem;">
-          <span class="badge badge-success">✓ متاح الآن</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="navigate('school')">
-        <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #3B82F6, #1E40AF);">🏫</div>
-          <div>
-            <h3>الجدول المدرسي</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">أوقات الحصص الأسبوعية</p>
-          </div>
-        </div>
-        <p style="color: var(--text-light);">نظم أوقات حصصك المدرسية بسهولة</p>
-      </div>
-
-      <div class="card" onclick="navigate('home-schedule')">
-        <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #8B5CF6, #6D28D9);">🏠</div>
-          <div>
-            <h3>الجدول المنزلي</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">أوقات المراجعة والدراسة</p>
-          </div>
-        </div>
-        <p style="color: var(--text-light);">خطط مراجعاتك المنزلية بذكاء</p>
+        <p style="color: var(--text-light);">اطرح أسئلتك، احصل على ملخصات، وأرسل صور تمارينك</p>
       </div>
 
       <div class="card" onclick="navigate('subjects')">
         <div class="card-header">
           <div class="card-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">📚</div>
           <div>
-            <h3>المواد الدراسية</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">10 مواد كاملة</p>
+            <h3>موادّي الدراسية</h3>
+            <p style="font-size: .85rem; color: var(--text-light);">10 مواد</p>
           </div>
         </div>
         <p style="color: var(--text-light);">دروس، تمارين، وفيديوهات لجميع المواد</p>
+      </div>
+
+      <div class="card" onclick="navigate('lessons')">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #10B981, #059669);"></div>
+          <div>
+            <h3>دروسي</h3>
+            <p style="font-size: .85rem; color: var(--text-light);">محتوى تعليمي</p>
+          </div>
+        </div>
+        <p style="color: var(--text-light);">دروس مفصلة مع شروحات وأمثلة</p>
+      </div>
+
+      <div class="card" onclick="navigate('exercises')">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #EF4444, #DC2626);">✏️</div>
+          <div>
+            <h3>تماريني</h3>
+            <p style="font-size: .85rem; color: var(--text-light);">تمارين محلولة</p>
+          </div>
+        </div>
+        <p style="color: var(--text-light);">تمارين تطبيقية مع الحلول المفصلة</p>
+      </div>
+
+      <div class="card" onclick="navigate('progress')">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">📊</div>
+          <div>
+            <h3>تقدمّي الدراسي</h3>
+            <p style="font-size: .85rem; color: var(--text-light);">إحصائيات</p>
+          </div>
+        </div>
+        <p style="color: var(--text-light);">تتبع تقدمك وإنجازاتك</p>
       </div>
     </div>
 
@@ -718,8 +832,8 @@ function renderHome() {
       </div>
       <ul style="padding-right: 1.5rem; line-height: 2;">
         <li><strong>استخدم المساعد الذكي:</strong> اطلب منه تلخيص الدروس الصعبة أو شرح المفاهيم</li>
-        <li><strong>ارسل صور ملخصاتك:</strong> سيساعدك في تحسينها وإضافة النقاط الناقصة</li>
-        <li><strong>نظم وقتك:</strong> استخدم الجدولين المدرسي والمنزلي للتخطيط</li>
+        <li><strong>ارسل صور تمارينك:</strong> سيساعدك في حلها خطوة بخطوة</li>
+        <li><strong>راجع جدولك يومياً:</strong> تعرف على حصصك القادمة واستعد لها</li>
         <li><strong>المراجعة المنتظمة:</strong> راجع دروسك يومياً ولو لمدة 30 دقيقة</li>
         <li><strong>حل التمارين:</strong> التطبيق العملي أهم من القراءة فقط</li>
       </ul>
@@ -727,11 +841,102 @@ function renderHome() {
   `;
 }
 
+function renderSchedule() {
+  const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
+  const times = ['08:00-09:00', '09:00-10:00', '10:00-11:00', '11:00-12:00', '12:00-13:00', '13:00-14:00', '14:00-14:30', '15:30-16:30'];
+  const currentClass = getCurrentClass();
+  const nextClass = getNextClass();
+
+  return `
+    <div class="page-title">
+      <h2>📅 جدولي الدراسي - Division 2G1</h2>
+      <p>Lycée Thaalbiya El Alger | السنة الثانية ثانوي - تسيير واقتصاد</p>
+    </div>
+
+    <div class="schedule-container">
+      <div class="schedule-header">
+        <div>
+          <h3 style="margin: 0;">الجدول الأسبوعي للحصص</h3>
+          <p style="margin: .5rem 0 0; font-size: .85rem; opacity: .9;">القسم: 2G1 | الشعبة: Gestion et Économie</p>
+        </div>
+        <div style="display: flex; gap: .5rem; flex-wrap: wrap;">
+          <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="printSchedule()">🖨️ طباعة</button>
+          <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="toggleFullscreen()">⛶ ملء الشاشة</button>
+        </div>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>الوقت</th>
+              ${days.map(d => `<th>${d}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${times.map((time, timeIdx) => `
+              <tr>
+                <td style="font-weight: 700; background: var(--navy); color: white; white-space: nowrap;">${time}</td>
+                ${days.map((day, dayIdx) => {
+                  const key = `${dayIdx}-${timeIdx}`;
+                  const cell = state.schoolSchedule[key];
+                  const isCurrent = currentClass && currentClass.key === key;
+                  const isNext = nextClass && nextClass.key === key;
+                  return `
+                    <td>
+                      <div class="schedule-cell ${cell ? 'filled' : ''} ${isCurrent ? 'current' : ''} ${isNext ? 'next' : ''}" onclick="showClassDetails('${key}')">
+                        ${cell ? `
+                          <div class="subject-name">${cell.subjectAr || cell.subject}</div>
+                          <div class="subject-teacher">${cell.teacher}</div>
+                        ` : '<span style="color: var(--text-light); font-size: .8rem;">-</span>'}
+                      </div>
+                    </td>
+                  `;
+                }).join('')}
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+      <div style="flex: 1; min-width: 200px; padding: 1rem; background: linear-gradient(135deg, #F59E0B, #D97706); color: white; border-radius: 10px;">
+        <strong> الحصة الحالية</strong>
+        <p style="margin: .5rem 0 0; font-size: .9rem;">الحصة التي تجري الآن</p>
+      </div>
+      <div style="flex: 1; min-width: 200px; padding: 1rem; background: linear-gradient(135deg, #3B82F6, #1E40AF); color: white; border-radius: 10px;">
+        <strong> الحصة القادمة</strong>
+        <p style="margin: .5rem 0 0; font-size: .9rem;">الحصة التالية في الجدول</p>
+      </div>
+      <div style="flex: 1; min-width: 200px; padding: 1rem; background: linear-gradient(135deg, var(--emerald), var(--emerald-dark)); color: white; border-radius: 10px;">
+        <strong>🟢 حصة عادية</strong>
+        <p style="margin: .5rem 0 0; font-size: .9rem;">حصص مجدولة</p>
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon">📋</div>
+        ملخص المواد والأساتذة
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+        ${getSubjectSummary().map(s => `
+          <div style="padding: 1rem; background: var(--sand); border-radius: 8px;">
+            <strong>${s.subjectAr}</strong>
+            <p style="font-size: .85rem; color: var(--text-light); margin: .25rem 0;">${s.subject} - ${s.teacher}</p>
+            <p style="font-size: .8rem; color: var(--emerald);">${s.hours} حصص/أسبوع</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
 function renderAI() {
   return `
     <div class="page-title">
-      <h2>🤖 المساعد الذكي</h2>
-      <p>مدعوم بـ Google Gemini AI - اسأل أي سؤال أو أرسل صور ملخصاتك</p>
+      <h2>🤖 المساعد الدراسي</h2>
+      <p>مساعدك الذكي للشرح والتلخيص وحل التمارين</p>
     </div>
 
     ${!state.geminiApiKey ? `
@@ -740,7 +945,7 @@ function renderAI() {
         <p style="color: #78350F; margin-bottom: 1rem;">
           لاستخدام المساعد الذكي، تحتاج إلى مفتاح Google Gemini API (مجاني).
         </p>
-        <button class="btn btn-primary" onclick="showApiSetup()">🔑 إعداد مفتاح API</button>
+        <button class="btn btn-primary" onclick="navigate('dashboard')">🔑 إعداد مفتاح API</button>
         <p style="font-size: .85rem; color: var(--text-light); margin-top: 1rem;">
           احصل على مفتاح مجاني من: <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: var(--emerald);">Google AI Studio</a>
         </p>
@@ -750,25 +955,26 @@ function renderAI() {
     <div class="ai-container">
       <div class="ai-header">
         <div class="ai-avatar">🤖</div>
-        <div>
-          <h3 style="margin: 0;">مساعد نخبة الذكي</h3>
-          <p style="font-size: .85rem; color: #94A3B8; margin: 0;">مدعوم بـ Google Gemini 1.5 Flash</p>
+        <div style="flex: 1;">
+          <h3 style="margin: 0;">المساعد الدراسي</h3>
+          <p style="font-size: .85rem; color: #94A3B8; margin: 0;">جاهز لمساعدتك في دراستك</p>
         </div>
-        <button class="btn btn-outline" style="margin-right: auto; background: rgba(255,255,255,.1); color: white; border-color: rgba(255,255,255,.2);" onclick="clearChat()">🗑 مسح المحادثة</button>
+        <button class="btn btn-outline" style="background: rgba(255,255,255,.1); color: white; border-color: rgba(255,255,255,.2);" onclick="clearChat()">🗑 مسح</button>
       </div>
 
       <div class="ai-messages" id="aiMessages">
         ${state.aiMessages.length === 0 ? `
           <div class="message ai">
-            <div class="message-avatar">🤖</div>
+            <div class="message-avatar"></div>
             <div class="message-content">
-              <strong>مرحباً! أنا مساعدك الذكي 👋</strong><br><br>
+              <strong>مرحباً! أنا مساعدك الدراسي 👋</strong><br><br>
               يمكنني مساعدتك في:<br>
-              • 📝 إنشاء ملخصات للدروس<br>
-              • 🖼️ تحليل صور ملخصاتك وإ اقتراح تحسينات<br>
+              • 📝 تلخيص الدروس وإنشاء ملخصات مصورة<br>
+              • 🖼️ تحليل صور التمارين والملخصات<br>
               • ❓ الإجابة على أسئلتك في جميع المواد<br>
-              • 💡 شرح المفاهيم الصعبة<br><br>
-              اسألني أي شيء أو أرسل صورة ملخصك!
+              • 💡 شرح المفاهيم الصعبة<br>
+              • 🎯 إنشاء خرائط ذهنية وبطاقات حفظ<br><br>
+              اسألني أي شيء أو أرسل صورة تمرين!
             </div>
           </div>
         ` : state.aiMessages.map(m => renderMessage(m)).join('')}
@@ -776,13 +982,21 @@ function renderAI() {
 
       <div class="ai-input-area">
         <div class="image-preview" id="imagePreview"></div>
-        <textarea id="aiInput" placeholder="اكتب سؤالك هنا... أو أرفق صورة ملخص"></textarea>
+        <textarea id="aiInput" placeholder="اكتب سؤالك هنا... أو أرفق صورة تمرين"></textarea>
         <label class="btn btn-outline" style="cursor: pointer;">
-          📎 إرفاق صورة
-          <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;" onchange="handleImageUpload(event)">
+          📎 صورة
+          <input type="file" id="imageUpload" accept="image/*" capture="environment" multiple style="display: none;" onchange="handleImageUpload(event)">
         </label>
         <button class="btn btn-primary" onclick="sendMessage()">📤 إرسال</button>
       </div>
+    </div>
+
+    <div class="quick-actions" style="margin-top: 1rem;">
+      <button class="quick-action-btn" onclick="quickAction('لخص لي درس التدفقات النقدية في المحاسبة')"> تلخيص درس</button>
+      <button class="quick-action-btn" onclick="quickAction('اشرح لي مفهوم القيد المزدوج')"> شرح مفهوم</button>
+      <button class="quick-action-btn" onclick="quickAction('أنشئ خريطة ذهنية للمؤسسة الاقتصادية')">🧠 خريطة ذهنية</button>
+      <button class="quick-action-btn" onclick="quickAction('أعطني تمارين على القيمة المطلقة')">✏️ تمارين</button>
+      <button class="quick-action-btn" onclick="quickAction('ما هي حقوق وواجبات التاجر في القانون التجاري؟')">⚖️ سؤال قانوني</button>
     </div>
   `;
 }
@@ -804,151 +1018,24 @@ function renderMessage(msg) {
   `;
 }
 
-function renderSchoolSchedule() {
-  const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
-  const times = ['08:00-09:00', '09:00-10:00', '10:00-11:00', '11:00-12:00', '13:00-14:00', '14:00-15:00', '15:00-16:00'];
-
-  return `
-    <div class="page-title">
-      <h2>🏫 الجدول المدرسي</h2>
-      <p>نظم أوقات حصصك الأسبوعية</p>
-    </div>
-
-    <div class="schedule-container">
-      <div class="schedule-header">
-        <h3 style="margin: 0;">الجدول الأسبوعي للحصص</h3>
-        <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="exportSchedule('school')">📥 تصدير</button>
-      </div>
-      <div style="overflow-x: auto;">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>الوقت</th>
-              ${days.map(d => `<th>${d}</th>`).join('')}
-            </tr>
-          </thead>
-          <tbody>
-            ${times.map(time => `
-              <tr>
-                <td style="font-weight: 700; background: var(--navy); color: white;">${time}</td>
-                ${days.map((day, dayIdx) => {
-                  const key = `${dayIdx}-${times.indexOf(time)}`;
-                  const cell = state.schoolSchedule[key];
-                  return `
-                    <td>
-                      <div class="schedule-cell ${cell ? 'filled' : ''}" onclick="editScheduleCell('school', '${key}', '${day}', '${time}')">
-                        ${cell ? `
-                          <div class="subject-name">${cell.subject}</div>
-                          <div class="subject-time">${cell.room || ''}</div>
-                        ` : '<span style="color: var(--text-light); font-size: .85rem;">+ إضافة</span>'}
-                      </div>
-                    </td>
-                  `;
-                }).join('')}
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">💡</div>
-        نصائح لاستخدام الجدول المدرسي
-      </div>
-      <ul style="padding-right: 1.5rem;">
-        <li>انقر على أي خلية لإضافة حصة أو تعديلها</li>
-        <li>استخدم الألوان المختلفة للمواد المختلفة</li>
-        <li>أضف رقم القاعة لتسهيل التنقل</li>
-        <li>يمكنك تصدير الجدول كصورة أو PDF</li>
-      </ul>
-    </div>
-  `;
-}
-
-function renderHomeSchedule() {
-  const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-  const times = ['16:00-17:00', '17:00-18:00', '18:00-19:00', '19:00-20:00', '20:00-21:00', '21:00-22:00'];
-
-  return `
-    <div class="page-title">
-      <h2>🏠 الجدول المنزلي</h2>
-      <p>خطط مراجعاتك المنزلية بذكاء</p>
-    </div>
-
-    <div class="schedule-container">
-      <div class="schedule-header" style="background: linear-gradient(135deg, #8B5CF6, #6D28D9);">
-        <h3 style="margin: 0;">جدول المراجعة المنزلية</h3>
-        <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="exportSchedule('home')">📥 تصدير</button>
-      </div>
-      <div style="overflow-x: auto;">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>الوقت</th>
-              ${days.map(d => `<th>${d}</th>`).join('')}
-            </tr>
-          </thead>
-          <tbody>
-            ${times.map(time => `
-              <tr>
-                <td style="font-weight: 700; background: #8B5CF6; color: white;">${time}</td>
-                ${days.map((day, dayIdx) => {
-                  const key = `${dayIdx}-${times.indexOf(time)}`;
-                  const cell = state.homeSchedule[key];
-                  return `
-                    <td>
-                      <div class="schedule-cell ${cell ? 'filled' : ''}" onclick="editScheduleCell('home', '${key}', '${day}', '${time}')">
-                        ${cell ? `
-                          <div class="subject-name">${cell.subject}</div>
-                          <div class="subject-time">${cell.task || ''}</div>
-                        ` : '<span style="color: var(--text-light); font-size: .85rem;">+ إضافة</span>'}
-                      </div>
-                    </td>
-                  `;
-                }).join('')}
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">💡</div>
-        نصائح للمراجعة المنزلية الفعالة
-      </div>
-      <ul style="padding-right: 1.5rem;">
-        <li><strong>قاعدة 25/5:</strong> راجع 25 دقيقة ثم خذ استراحة 5 دقائق</li>
-        <li><strong>ابدأ بالأصعب:</strong> ابدأ بالمواد الصعبة وأنت في قمة نشاطك</li>
-        <li><strong>التنوع:</strong> لا تركز على مادة واحدة طوال الأسبوع</li>
-        <li><strong>المراجعة اليومية:</strong> حتى 30 دقيقة يومياً أفضل من 5 ساعات في يوم واحد</li>
-        <li><strong>استخدم المساعد الذكي:</strong> اطلب منه إنشاء ملخصات أو اختبارك</li>
-      </ul>
-    </div>
-  `;
-}
-
 function renderSubjects() {
   const subjects = [
-    { id: 'compta', name: 'التسيير المحاسبي والمالي', icon: '📊', coef: 5, color: '#10B981' },
-    { id: 'eco', name: 'الاقتصاد والمناجمنت', icon: '💼', coef: 5, color: '#3B82F6' },
-    { id: 'math', name: 'الرياضيات', icon: '🔢', coef: 4, color: '#8B5CF6' },
-    { id: 'law', name: 'القانون', icon: '⚖️', coef: 3, color: '#F59E0B' },
-    { id: 'arabic', name: 'اللغة العربية', icon: '📝', coef: 3, color: '#EF4444' },
-    { id: 'french', name: 'اللغة الفرنسية', icon: '🇫🇷', coef: 2, color: '#EC4899' },
-    { id: 'english', name: 'اللغة الإنجليزية', icon: '🇬🇧', coef: 2, color: '#14B8A6' },
-    { id: 'histgeo', name: 'التاريخ والجغرافيا', icon: '🌍', coef: 2, color: '#0EA5E9' },
-    { id: 'islamic', name: 'التربية الإسلامية', icon: '🕌', coef: 2, color: '#84CC16' },
-    { id: 'philo', name: 'الفلسفة', icon: '🤔', coef: 2, color: '#6366F1' }
+    { id: 'compta', name: 'التسيير المحاسبي والمالي', nameFr: 'Comptabilité', icon: '📊', coef: 5, color: '#10B981', teacher: 'M.GES4' },
+    { id: 'eco', name: 'الاقتصاد والمناجمنت', nameFr: 'Économie & Management', icon: '💼', coef: 5, color: '#3B82F6', teacher: 'M.GES1' },
+    { id: 'math', name: 'الرياضيات', nameFr: 'Mathématiques', icon: '', coef: 4, color: '#8B5CF6', teacher: 'M.MATH10' },
+    { id: 'law', name: 'القانون', nameFr: 'Droit', icon: '⚖️', coef: 3, color: '#F59E0B', teacher: 'M.GES4' },
+    { id: 'arabic', name: 'اللغة العربية', nameFr: 'Arabe', icon: '', coef: 3, color: '#EF4444', teacher: 'M.ARAB10' },
+    { id: 'french', name: 'اللغة الفرنسية', nameFr: 'Français', icon: '🇫🇷', coef: 2, color: '#EC4899', teacher: 'M.FRAN7' },
+    { id: 'english', name: 'اللغة الإنجليزية', nameFr: 'Anglais', icon: '🇬🇧', coef: 2, color: '#14B8A6', teacher: 'M.ANG7' },
+    { id: 'histgeo', name: 'التاريخ والجغرافيا', nameFr: 'Histoire-Géo', icon: '🌍', coef: 2, color: '#0EA5E9', teacher: 'M.HIS6' },
+    { id: 'islamic', name: 'العلوم الإسلامية', nameFr: 'Sc. Islamiques', icon: '🕌', coef: 2, color: '#84CC16', teacher: 'M.SC/IS4' },
+    { id: 'sport', name: 'التربية البدنية', nameFr: 'Éducation Physique', icon: '', coef: 1, color: '#F97316', teacher: 'M.SPO84' }
   ];
 
   return `
     <div class="page-title">
-      <h2>📚 المواد الدراسية</h2>
-      <p>جميع مواد السنة الثانية ثانوي - شعبة تسيير واقتصاد</p>
+      <h2>📚 موادّي الدراسية</h2>
+      <p>جميع مواد السنة الثانية ثانوي - شعبة تسيير واقتصاد | Division 2G1</p>
     </div>
 
     <div class="cards-grid">
@@ -960,7 +1047,8 @@ function renderSubjects() {
             </div>
             <div>
               <h3>${s.name}</h3>
-              <p style="font-size: .85rem; color: var(--text-light);">المعامل: ${s.coef}</p>
+              <p style="font-size: .85rem; color: var(--text-light);">${s.nameFr} | المعامل: ${s.coef}</p>
+              <p style="font-size: .8rem; color: var(--emerald);">الأستاذ: ${s.teacher}</p>
             </div>
           </div>
           <p style="color: var(--text-light); margin-bottom: 1rem;">
@@ -976,16 +1064,183 @@ function renderSubjects() {
   `;
 }
 
-function renderDashboard() {
+function renderLessons() {
   return `
     <div class="page-title">
-      <h2>📊 لوحة التحكم</h2>
-      <p>إحصائياتك وإعداداتك</p>
+      <h2>📖 دروسي</h2>
+      <p>دروس مفصلة مع شروحات وأمثلة تطبيقية</p>
     </div>
 
     <div class="lesson-section">
       <div class="section-title">
-        <div class="section-icon">⚙️</div>
+        <div class="section-icon">📊</div>
+        التسيير المحاسبي والمالي
+      </div>
+      <div class="cards-grid">
+        <div class="card" onclick="openLesson('compta-1')">
+          <h3>التدفقات الاقتصادية وإثباتها</h3>
+          <p style="color: var(--text-light); font-size: .9rem;">مفهوم التدفقات، القيد المزدوج، حسابات SCF</p>
+          <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
+        </div>
+        <div class="card" onclick="openLesson('compta-2')">
+          <h3>الوثائق التجارية والفوترة</h3>
+          <p style="color: var(--text-light); font-size: .9rem;">الفاتورة، الخصومات، TVA</p>
+          <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon">💼</div>
+        الاقتصاد والمناجمنت
+      </div>
+      <div class="cards-grid">
+        <div class="card" onclick="openLesson('eco-1')">
+          <h3>المؤسسة الاقتصادية</h3>
+          <p style="color: var(--text-light); font-size: .9rem;">المفهوم، الوظائف، التصنيف</p>
+          <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon">🔢</div>
+        الرياضيات
+      </div>
+      <div class="cards-grid">
+        <div class="card" onclick="openLesson('math-1')">
+          <h3>المجموعات والقيمة المطلقة</h3>
+          <p style="color: var(--text-light); font-size: .9rem;">, ℤ, ℚ, ℝ وحل المعادلات</p>
+          <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon">⚖️</div>
+        القانون
+      </div>
+      <div class="cards-grid">
+        <div class="card" onclick="openLesson('law-1')">
+          <h3>التاجر وصفته القانونية</h3>
+          <p style="color: var(--text-light); font-size: .9rem;">شروط التاجر، الأعمال التجارية</p>
+          <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderExercises() {
+  return `
+    <div class="page-title">
+      <h2>️ تماريني</h2>
+      <p>تمارين تطبيقية مع الحلول المفصلة</p>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon">📊</div>
+        تمارين المحاسبة
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>تمرين 1: تسجيل عملية شراء</h3>
+          <p style="color: var(--text-light); font-size: .9rem;">اشترت مؤسسة بضاعة بـ 200,000 دج مع TVA 19%</p>
+          <button class="btn btn-sm btn-primary" style="margin-top: .5rem;" onclick="solveExercise('compta-1')">حل التمرين</button>
+        </div>
+        <div class="card">
+          <h3>تمرين 2: حساب الفاتورة</h3>
+          <p style="color: var(--text-light); font-size: .9rem;">فاتورة 150,000 دج، خصم 10%، TVA 19%</p>
+          <button class="btn btn-sm btn-primary" style="margin-top: .5rem;" onclick="solveExercise('compta-2')">حل التمرين</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon">🔢</div>
+        تمارين الرياضيات
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>تمرين 1: القيمة المطلقة</h3>
+          <p style="color: var(--text-light); font-size: .9rem;">حل المعادلة |x - 3| = 5</p>
+          <button class="btn btn-sm btn-primary" style="margin-top: .5rem;" onclick="solveExercise('math-1')">حل التمرين</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderProgress() {
+  const totalLessons = 5;
+  const completed = state.completedLessons.length;
+  const progress = totalLessons > 0 ? Math.round((completed / totalLessons) * 100) : 0;
+
+  return `
+    <div class="page-title">
+      <h2>📊 تقدمّي الدراسي</h2>
+      <p>تتبع إنجازاتك وتقدمك في المواد</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📚</div>
+          <div>
+            <h3>الدروس المكتملة</h3>
+            <p style="font-size: 2rem; font-weight: 800; color: var(--emerald);">${completed}/${totalLessons}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #3B82F6, #1E40AF);">📈</div>
+          <div>
+            <h3>نسبة التقدم</h3>
+            <p style="font-size: 2rem; font-weight: 800; color: var(--emerald);">${progress}%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">⭐</div>
+          <div>
+            <h3>المحفوظات</h3>
+            <p style="font-size: 2rem; font-weight: 800; color: var(--emerald);">${state.bookmarks.length}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon">📊</div>
+        تقدمك في كل مادة
+      </div>
+      <p style="text-align: center; padding: 2rem; color: var(--text-light);">
+        ابدأ دراسة الدروس لتتبع تقدمك هنا
+      </p>
+    </div>
+  `;
+}
+
+function renderDashboard() {
+  return `
+    <div class="page-title">
+      <h2>️ الإعدادات</h2>
+      <p>إدارة حسابك وإعدادات التطبيق</p>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon"></div>
         إعدادات المساعد الذكي
       </div>
       <div class="form-group">
@@ -1000,23 +1255,12 @@ function renderDashboard() {
 
     <div class="lesson-section">
       <div class="section-title">
-        <div class="section-icon">📈</div>
-        إحصائيات الاستخدام
+        <div class="section-icon">🎨</div>
+        المظهر
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-        <div style="padding: 1rem; background: var(--sand); border-radius: 8px; text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald);">${state.aiMessages.filter(m => m.role === 'user').length}</div>
-          <div style="color: var(--text-light);">رسائل مرسلة</div>
-        </div>
-        <div style="padding: 1rem; background: var(--sand); border-radius: 8px; text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald);">${Object.keys(state.schoolSchedule).length}</div>
-          <div style="color: var(--text-light);">حصص مدرسية</div>
-        </div>
-        <div style="padding: 1rem; background: var(--sand); border-radius: 8px; text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald);">${Object.keys(state.homeSchedule).length}</div>
-          <div style="color: var(--text-light);">مهام منزلية</div>
-        </div>
-      </div>
+      <button class="btn btn-outline" onclick="toggleTheme()">
+        ${state.theme === 'light' ? '' : '☀️'} تبديل إلى الوضع ${state.theme === 'light' ? 'الداكن' : 'الفاتح'}
+      </button>
     </div>
 
     <div class="lesson-section">
@@ -1027,7 +1271,119 @@ function renderDashboard() {
       <button class="btn btn-outline" onclick="exportData()" style="margin-left: .5rem;">📥 تصدير جميع البيانات</button>
       <button class="btn btn-outline" onclick="clearAllData()" style="background: #EF4444; color: white; border-color: #EF4444;">🗑 مسح جميع البيانات</button>
     </div>
+
+    <div class="lesson-section">
+      <div class="section-title">
+        <div class="section-icon">ℹ️</div>
+        حول المنصة
+      </div>
+      <p><strong>نخبة 2AS</strong> - منصة تعليمية ذكية</p>
+      <p style="color: var(--text-light); margin-top: .5rem;">Division 2G1 | Lycée Thaalbiya El Alger</p>
+      <p style="color: var(--text-light);">السنة الدراسية 2026-2027</p>
+    </div>
   `;
+}
+
+// ==================== HELPER FUNCTIONS ====================
+
+function getCurrentClass() {
+  const now = new Date();
+  const day = now.getDay(); // 0=Sunday, 6=Saturday
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const currentTime = hour * 60 + minute;
+
+  const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
+  const times = [
+    { start: 8*60, end: 9*60, idx: 0 },
+    { start: 9*60, end: 10*60, idx: 1 },
+    { start: 10*60, end: 11*60, idx: 2 },
+    { start: 11*60, end: 12*60, idx: 3 },
+    { start: 12*60, end: 13*60, idx: 4 },
+    { start: 13*60, end: 14*60, idx: 5 },
+    { start: 14*60, end: 14*60+30, idx: 6 },
+    { start: 15*60+30, end: 16*60+30, idx: 7 }
+  ];
+
+  if (day > 4) return null; // Friday or Saturday
+
+  for (const time of times) {
+    if (currentTime >= time.start && currentTime < time.end) {
+      const key = `${day}-${time.idx}`;
+      const cell = state.schoolSchedule[key];
+      if (cell) {
+        return {
+          ...cell,
+          key,
+          time: `${String(Math.floor(time.start/60)).padStart(2,'0')}:${String(time.start%60).padStart(2,'0')} - ${String(Math.floor(time.end/60)).padStart(2,'0')}:${String(time.end%60).padStart(2,'0')}`
+        };
+      }
+    }
+  }
+
+  return null;
+}
+
+function getNextClass() {
+  const now = new Date();
+  const day = now.getDay();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const currentTime = hour * 60 + minute;
+
+  const times = [
+    { start: 8*60, end: 9*60, idx: 0 },
+    { start: 9*60, end: 10*60, idx: 1 },
+    { start: 10*60, end: 11*60, idx: 2 },
+    { start: 11*60, end: 12*60, idx: 3 },
+    { start: 12*60, end: 13*60, idx: 4 },
+    { start: 13*60, end: 14*60, idx: 5 },
+    { start: 14*60, end: 14*60+30, idx: 6 },
+    { start: 15*60+30, end: 16*60+30, idx: 7 }
+  ];
+
+  // Check remaining times today
+  for (const time of times) {
+    if (currentTime < time.start) {
+      const key = `${day}-${time.idx}`;
+      const cell = state.schoolSchedule[key];
+      if (cell) {
+        return {
+          ...cell,
+          key,
+          time: `${String(Math.floor(time.start/60)).padStart(2,'0')}:${String(time.start%60).padStart(2,'0')} - ${String(Math.floor(time.end/60)).padStart(2,'0')}:${String(time.end%60).padStart(2,'0')}`
+        };
+      }
+    }
+  }
+
+  // Check next days
+  for (let d = day + 1; d <= 4; d++) {
+    for (const time of times) {
+      const key = `${d}-${time.idx}`;
+      const cell = state.schoolSchedule[key];
+      if (cell) {
+        return {
+          ...cell,
+          key,
+          time: `${String(Math.floor(time.start/60)).padStart(2,'0')}:${String(time.start%60).padStart(2,'0')} - ${String(Math.floor(time.end/60)).padStart(2,'0')}:${String(time.end%60).padStart(2,'0')}`
+        };
+      }
+    }
+  }
+
+  return null;
+}
+
+function getSubjectSummary() {
+  const subjects = {};
+  Object.entries(state.schoolSchedule).forEach(([key, cell]) => {
+    if (!subjects[cell.subject]) {
+      subjects[cell.subject] = { ...cell, hours: 0 };
+    }
+    subjects[cell.subject].hours++;
+  });
+  return Object.values(subjects);
 }
 
 // ==================== AI FUNCTIONS ====================
@@ -1047,11 +1403,10 @@ async function sendMessage() {
     return;
   }
 
-  // Add user message
   const userMsg = {
     role: 'user',
     text: text || 'حلل هذه الصورة',
-    images: state.uploadedImages,
+    images: [...state.uploadedImages],
     timestamp: Date.now()
   };
   state.aiMessages.push(userMsg);
@@ -1060,11 +1415,9 @@ async function sendMessage() {
   state.uploadedImages = [];
   render();
 
-  // Scroll to bottom
   const messages = document.getElementById('aiMessages');
   messages.scrollTop = messages.scrollHeight;
 
-  // Show loading
   const loadingId = 'loading-' + Date.now();
   messages.innerHTML += `
     <div class="message ai" id="${loadingId}">
@@ -1076,28 +1429,26 @@ async function sendMessage() {
   `;
   messages.scrollTop = messages.scrollHeight;
 
-  // Build prompt
-  let prompt = `أنت مساعد تعليمي ذكي لطلاب السنة الثانية ثانوي في الجزائر (شعبة تسيير واقتصاد). أجب باللغة العربية بوضوح ودقة.\n\n`;
+  let prompt = `أنت مساعد تعليمي ذكي لطلاب السنة الثانية ثانوي في الجزائر (شعبة تسيير واقتصاد - Division 2G1). أجب باللغة العربية بوضوح ودقة. مستوى الإجابة يجب أن يكون مناسباً لتلميذ في السنة الثانية ثانوي.\n\n`;
   
   if (userMsg.images && userMsg.images.length > 0) {
-    prompt += `حلل هذه الصورة/الملخص وأعطِ:\n1. ملخص لما تحتويه\n2. نقاط القوة\n3. نقاط يمكن تحسينها\n4. إضافات مقترحة\n\n`;
+    prompt += `حلل هذه الصورة/التمرين وأعطِ:\n1. فهم محتوى الصورة\n2. حل التمرين خطوة بخطوة إذا كان تمريناً\n3. شرح المفاهيم المستخدمة\n4. نصائح للمراجعة\n\n`;
   }
   
   if (text) {
     prompt += `سؤال الطالب: ${text}`;
   }
 
-  // Call API
-  const response = await callGeminiAPI(prompt, state.uploadedImages.map((img, idx) => {
+  const imagesData = state.uploadedImages.map(img => {
     const base64 = img.split(',')[1];
     const type = img.split(';')[0].split(':')[1];
     return { data: base64, type };
-  }));
+  });
 
-  // Remove loading
+  const response = await callGeminiAPI(prompt, imagesData);
+
   document.getElementById(loadingId)?.remove();
 
-  // Add AI response
   const aiMsg = {
     role: 'ai',
     text: response.error || response.text,
@@ -1128,6 +1479,7 @@ function handleImageUpload(event) {
 
 function renderImagePreview() {
   const preview = document.getElementById('imagePreview');
+  if (!preview) return;
   preview.innerHTML = state.uploadedImages.map((img, idx) => `
     <div class="image-preview-item">
       <img src="${img}">
@@ -1149,76 +1501,21 @@ function clearChat() {
   }
 }
 
+function quickAction(text) {
+  const input = document.getElementById('aiInput');
+  if (input) {
+    input.value = text;
+    input.focus();
+  }
+}
+
 function askAIAbout(subject) {
   navigate('ai');
   setTimeout(() => {
     const input = document.getElementById('aiInput');
-    input.value = `اشرح لي أهم المفاهيم في مادة ${subject} للسنة الثانية ثانوي`;
+    input.value = `اشرح لي أهم المفاهيم في مادة ${subject} للسنة الثانية ثانوي شعبة تسيير واقتصاد`;
     input.focus();
   }, 100);
-}
-
-// ==================== SCHEDULE FUNCTIONS ====================
-
-function editScheduleCell(type, key, day, time) {
-  const schedule = type === 'school' ? state.schoolSchedule : state.homeSchedule;
-  const current = schedule[key];
-
-  const modal = document.getElementById('modal');
-  const content = document.getElementById('modalContent');
-
-  content.innerHTML = `
-    <h3>${type === 'school' ? '🏫' : '🏠'} ${current ? 'تعديل' : 'إضافة'} - ${day} ${time}</h3>
-    <div class="form-group">
-      <label>${type === 'school' ? 'المادة' : 'المادة/النشاط'}</label>
-      <input type="text" id="cellSubject" value="${current?.subject || ''}" placeholder="مثال: الرياضيات">
-    </div>
-    <div class="form-group">
-      <label>${type === 'school' ? 'رقم القاعة' : 'المهمة'}</label>
-      <input type="text" id="cellDetail" value="${current?.room || current?.task || ''}" placeholder="${type === 'school' ? 'قاعة 3' : 'حل تمارين'}">
-    </div>
-    <div style="display: flex; gap: .5rem; margin-top: 1rem;">
-      <button class="btn btn-primary" onclick="saveScheduleCell('${type}', '${key}')">💾 حفظ</button>
-      ${current ? `<button class="btn btn-outline" onclick="deleteScheduleCell('${type}', '${key}')" style="background: #EF4444; color: white; border-color: #EF4444;">🗑 حذف</button>` : ''}
-      <button class="btn btn-outline" onclick="closeModal()">إلغاء</button>
-    </div>
-  `;
-
-  modal.classList.add('show');
-}
-
-function saveScheduleCell(type, key) {
-  const subject = document.getElementById('cellSubject').value.trim();
-  const detail = document.getElementById('cellDetail').value.trim();
-
-  if (!subject) {
-    showToast('يرجى إدخال اسم المادة');
-    return;
-  }
-
-  const schedule = type === 'school' ? state.schoolSchedule : state.homeSchedule;
-  schedule[key] = {
-    subject,
-    [type === 'school' ? 'room' : 'task']: detail
-  };
-
-  localStorage.setItem(`${type}Schedule`, JSON.stringify(schedule));
-  closeModal();
-  render();
-  showToast('✓ تم الحفظ');
-}
-
-function deleteScheduleCell(type, key) {
-  const schedule = type === 'school' ? state.schoolSchedule : state.homeSchedule;
-  delete schedule[key];
-  localStorage.setItem(`${type}Schedule`, JSON.stringify(schedule));
-  closeModal();
-  render();
-  showToast('✓ تم الحذف');
-}
-
-function exportSchedule(type) {
-  showToast('📥 جاري التصدير... (ميزة قيد التطوير)');
 }
 
 // ==================== UTILITY FUNCTIONS ====================
@@ -1234,22 +1531,15 @@ function saveApiKey() {
   showToast('✓ تم حفظ المفتاح');
 }
 
-function showApiSetup() {
-  navigate('dashboard');
-}
-
 function toggleTheme() {
   state.theme = state.theme === 'light' ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', state.theme);
   localStorage.setItem('theme', state.theme);
+  render();
 }
 
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
-}
-
-function closeModal() {
-  document.getElementById('modal').classList.remove('show');
 }
 
 function showToast(message) {
@@ -1264,13 +1554,15 @@ function exportData() {
     schoolSchedule: state.schoolSchedule,
     homeSchedule: state.homeSchedule,
     aiMessages: state.aiMessages,
+    completedLessons: state.completedLessons,
+    bookmarks: state.bookmarks,
     exportDate: new Date().toISOString()
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `nokhba-backup-${Date.now()}.json`;
+  a.download = `nokhba-2g1-backup-${Date.now()}.json`;
   a.click();
   showToast('✓ تم التصدير');
 }
@@ -1282,12 +1574,59 @@ function clearAllData() {
   }
 }
 
+function showClassDetails(key) {
+  const cell = state.schoolSchedule[key];
+  if (!cell) return;
+  
+  const modal = document.getElementById('modal');
+  const content = document.getElementById('modalContent');
+  
+  content.innerHTML = `
+    <h3>📚 ${cell.subjectAr || cell.subject}</h3>
+    <p style="color: var(--text-light); margin-bottom: 1rem;">${cell.subject} - ${cell.teacher}</p>
+    <div style="display: flex; gap: .5rem; flex-wrap: wrap;">
+      <button class="btn btn-primary" onclick="askAIAbout('${cell.subjectAr || cell.subject}'); closeModal();">🤖 اسأل المساعد</button>
+      <button class="btn btn-outline" onclick="closeModal()">إغلاق</button>
+    </div>
+  `;
+  
+  modal.classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+function printSchedule() {
+  window.print();
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+function openLesson(lessonId) {
+  showToast('📖 فتح الدرس... (قيد التطوير)');
+}
+
+function solveExercise(exerciseId) {
+  navigate('ai');
+  setTimeout(() => {
+    const input = document.getElementById('aiInput');
+    input.value = `ساعدني في حل هذا التمرين: ${exerciseId}`;
+    input.focus();
+  }, 100);
+}
+
 function attachHandlers() {
   document.querySelectorAll('.nav-item').forEach(el => {
     el.onclick = () => navigate(el.dataset.route);
   });
 
-  // Auto-scroll AI messages
   const messages = document.getElementById('aiMessages');
   if (messages) {
     messages.scrollTop = messages.scrollHeight;
@@ -1297,7 +1636,6 @@ function attachHandlers() {
 // Initial render
 render();
 
-// Responsive menu
 if (window.innerWidth <= 968) {
   document.getElementById('menuBtn').style.display = 'block';
 }
@@ -1306,8 +1644,8 @@ window.addEventListener('resize', () => {
   document.getElementById('menuBtn').style.display = window.innerWidth <= 968 ? 'block' : 'none';
 });
 
-console.log('%c🎓 نخبة 2AS - منصة ذكية', 'color: #10B981; font-size: 20px; font-weight: bold;');
-console.log('%cمدعومة بـ Google Gemini AI', 'color: #64748B; font-size: 12px;');
+console.log('%c🎓 نخبة 2AS - Division 2G1', 'color: #10B981; font-size: 20px; font-weight: bold;');
+console.log('%cLycée Thaalbiya El Alger', 'color: #64748B; font-size: 12px;');
 </script>
 
 </body>
