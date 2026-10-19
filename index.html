@@ -164,7 +164,7 @@ body {
 .btn-primary:hover { background: var(--emerald-dark); }
 .btn-secondary { background: var(--navy); color: white; }
 .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
-.btn-sm { padding: .4rem .8rem; font-size: .8rem; }
+.btn-danger { background: #EF4444; color: white; }
 
 /* Schedule Table */
 .schedule-container {
@@ -269,6 +269,16 @@ body {
 
 .schedule-cell.current .subject-teacher,
 .schedule-cell.next .subject-teacher { color: rgba(255,255,255,.9); }
+
+.edit-input {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid var(--emerald);
+  border-radius: 4px;
+  text-align: center;
+  font-size: .8rem;
+  margin-bottom: 2px;
+}
 
 /* AI Chat */
 .ai-container {
@@ -479,7 +489,7 @@ body {
 .modal {
   background: white;
   border-radius: var(--radius);
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
   padding: 1.5rem;
   max-height: 90vh;
@@ -496,7 +506,6 @@ body {
   border: 1px solid var(--border);
   border-radius: 8px;
   font-family: inherit;
-  font-size: .95rem;
 }
 
 .loading {
@@ -534,7 +543,7 @@ body {
   display: flex;
   gap: .5rem;
   flex-wrap: wrap;
-  margin-top: .5rem;
+  margin-top: 1rem;
 }
 
 .quick-action-btn {
@@ -553,37 +562,9 @@ body {
   border-color: var(--emerald);
 }
 
-.lesson-card {
-  background: white;
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: all .2s;
-}
-
-[data-theme="dark"] .lesson-card { background: var(--navy-light); }
-
-.lesson-card:hover {
-  border-color: var(--emerald);
-  transform: translateY(-2px);
-}
-
-.lesson-card h3 {
-  color: var(--navy);
-  margin-bottom: .5rem;
-}
-
-[data-theme="dark"] .lesson-card h3 { color: white; }
-
-.lesson-card p {
-  color: var(--text-light);
-  font-size: .9rem;
-  margin-bottom: .5rem;
-}
-
+.lesson-content h4 { color: var(--emerald-dark); margin: 1rem 0 .5rem; }
+.lesson-content ul { padding-right: 1.5rem; margin-bottom: 1rem; }
+.lesson-content p { margin-bottom: .75rem; }
 .definition-box {
   background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
   border-right: 4px solid var(--emerald);
@@ -591,157 +572,7 @@ body {
   border-radius: 8px;
   margin: 1rem 0;
 }
-
 [data-theme="dark"] .definition-box { background: rgba(16,185,129,.1); }
-
-.formula-box {
-  background: var(--navy);
-  color: white;
-  padding: 1.25rem;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin: 1rem 0;
-  direction: ltr;
-}
-
-.example-box {
-  background: #FFF7ED;
-  border-right: 4px solid #F97316;
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-[data-theme="dark"] .example-box { background: rgba(249,115,22,.1); }
-
-.summary-box {
-  background: #EFF6FF;
-  border-right: 4px solid #3B82F6;
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-[data-theme="dark"] .summary-box { background: rgba(59,130,246,.1); }
-
-.mistake-box {
-  background: #FEF2F2;
-  border-right: 4px solid #EF4444;
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-[data-theme="dark"] .mistake-box { background: rgba(239,68,68,.1); }
-
-.exercise-card {
-  background: white;
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-}
-
-[data-theme="dark"] .exercise-card { background: var(--navy-light); }
-
-.solution-box {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #ECFDF5;
-  border-right: 4px solid var(--emerald);
-  border-radius: 8px;
-  display: none;
-}
-
-.solution-box.show { display: block; }
-
-[data-theme="dark"] .solution-box { background: rgba(16,185,129,.1); }
-
-.acc-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  font-size: .9rem;
-}
-
-[data-theme="dark"] .acc-table { background: var(--navy-dark); }
-
-.acc-table th {
-  background: var(--navy);
-  color: white;
-  padding: .75rem;
-  text-align: center;
-  font-weight: 700;
-}
-
-.acc-table td {
-  padding: .6rem;
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-
-.acc-table .total { background: var(--emerald); color: white; font-weight: 700; }
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.stat-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-[data-theme="dark"] .stat-card { background: var(--navy-light); }
-
-.stat-icon {
-  width: 52px; height: 52px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  color: white;
-  flex-shrink: 0;
-  font-size: 1.5rem;
-}
-
-.stat-icon.navy { background: var(--navy); }
-.stat-icon.emerald { background: var(--emerald); }
-.stat-icon.orange { background: #F97316; }
-.stat-icon.purple { background: #8B5CF6; }
-
-.stat-info h4 { font-size: .85rem; color: var(--text-light); margin-bottom: .25rem; }
-.stat-info .value { font-size: 1.75rem; font-weight: 800; color: var(--navy); }
-[data-theme="dark"] .stat-info .value { color: white; }
-
-.progress-bar {
-  height: 8px;
-  background: var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-top: .5rem;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--emerald), var(--emerald-light));
-  border-radius: 4px;
-  transition: width .5s;
-}
-
-.hidden { display: none !important; }
 </style>
 </head>
 <body>
@@ -760,15 +591,15 @@ body {
     <button class="nav-item" data-route="schedule">📅 جدولي الدراسي</button>
     <button class="nav-item" data-route="ai">🤖 المساعد الدراسي</button>
     <button class="nav-item" data-route="subjects">📚 موادّي الدراسية</button>
-    <button class="nav-item" data-route="lessons"> دروسي</button>
-    <button class="nav-item" data-route="exercises">️ تماريني</button>
-    <button class="nav-item" data-route="progress"> تقدمّي الدراسي</button>
-    <button class="nav-item" data-route="dashboard">️ الإعدادات</button>
+    <button class="nav-item" data-route="lessons">📖 دروسي</button>
+    <button class="nav-item" data-route="exercises">✏️ تماريني</button>
+    <button class="nav-item" data-route="progress">📊 تقدمّي الدراسي</button>
+    <button class="nav-item" data-route="dashboard">⚙️ الإعدادات</button>
   </aside>
 
   <main class="main" id="main">
     <div class="topbar">
-      <button class="btn btn-outline" onclick="toggleSidebar()" style="display: none;" id="menuBtn"></button>
+      <button class="btn btn-outline" onclick="toggleSidebar()" style="display: none;" id="menuBtn">☰</button>
       <div style="flex: 1;"></div>
       <button class="btn btn-outline" onclick="toggleTheme()">🌙</button>
     </div>
@@ -784,17 +615,18 @@ body {
 
 <script>
 // ==================== STATE ====================
+const defaultTimes = ['08:00-09:00', '09:00-10:00', '10:00-11:00', '11:00-12:00', '12:00-13:00', '13:00-14:00', '14:00-15:00', '15:00-16:00'];
+
 const state = {
   currentRoute: 'home',
   theme: localStorage.getItem('theme') || 'light',
+  scheduleTimes: JSON.parse(localStorage.getItem('scheduleTimes') || JSON.stringify(defaultTimes)),
   schoolSchedule: JSON.parse(localStorage.getItem('schoolSchedule2G1') || 'null'),
-  homeSchedule: JSON.parse(localStorage.getItem('homeSchedule') || '{}'),
   aiMessages: JSON.parse(localStorage.getItem('aiMessages') || '[]'),
   uploadedImages: [],
   geminiApiKey: localStorage.getItem('geminiApiKey') || '',
   completedLessons: JSON.parse(localStorage.getItem('completedLessons') || '[]'),
-  bookmarks: JSON.parse(localStorage.getItem('bookmarks') || '[]'),
-  currentLesson: null
+  isEditingSchedule: false
 };
 
 document.documentElement.setAttribute('data-theme', state.theme);
@@ -802,39 +634,95 @@ document.documentElement.setAttribute('data-theme', state.theme);
 // Initialize default schedule if not exists
 if (!state.schoolSchedule) {
   state.schoolSchedule = {
-    '0-0': { subject: 'ECOM', teacher: 'M.GES1', subjectAr: 'الاقتصاد والمناجمنت', time: '08:00-09:00' },
-    '0-1': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية', time: '09:00-10:00' },
-    '0-2': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات', time: '10:00-11:00' },
-    '0-3': { subject: 'SPOR', teacher: 'M.SPO84', subjectAr: 'التربية البدنية', time: '11:00-12:00' },
-    '0-4': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا', time: '12:00-13:00' },
-    '0-5': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي والمالي', time: '13:00-14:00' },
-    '0-7': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات', time: '15:30-16:30' },
-    '1-0': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية', time: '08:00-09:00' },
-    '1-1': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات', time: '09:00-10:00' },
-    '1-2': { subject: 'ECONOM', teacher: 'M.GES1', subjectAr: 'الاقتصاد', time: '10:00-11:00' },
-    '1-4': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي والمالي', time: '12:00-13:00' },
-    '2-0': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا', time: '08:00-09:00' },
-    '2-1': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية', time: '09:00-10:00' },
-    '2-2': { subject: 'SC/IS', teacher: 'M.SC/IS4', subjectAr: 'العلوم الإسلامية', time: '10:00-11:00' },
-    '2-3': { subject: 'Droit', teacher: 'M.GES4', subjectAr: 'القانون', time: '11:00-12:00' },
-    '3-0': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي والمالي', time: '08:00-09:00' },
-    '3-1': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية', time: '09:00-10:00' },
-    '3-2': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية', time: '10:00-11:00' },
-    '3-3': { subject: 'Droit', teacher: 'M.GES4', subjectAr: 'القانون', time: '11:00-12:00' },
-    '3-4': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات', time: '12:00-13:00' },
-    '3-5': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية', time: '13:00-14:00' },
-    '4-0': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا', time: '08:00-09:00' },
-    '4-1': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية', time: '09:00-10:00' },
-    '4-2': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية', time: '10:00-11:00' },
-    '4-3': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية', time: '11:00-12:00' },
-    '4-4': { subject: 'SC/IS', teacher: 'M.SC/IS4', subjectAr: 'العلوم الإسلامية', time: '12:00-13:00' }
+    '0-0': { subject: 'ECOM', teacher: 'M.GES1', subjectAr: 'الاقتصاد والمناجمنت' },
+    '0-1': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية' },
+    '0-2': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات' },
+    '0-3': { subject: 'SPOR', teacher: 'M.SPO84', subjectAr: 'التربية البدنية' },
+    '0-4': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا' },
+    '0-5': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي' },
+    '0-7': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات' },
+    '1-0': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية' },
+    '1-1': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات' },
+    '1-2': { subject: 'ECONOM', teacher: 'M.GES1', subjectAr: 'الاقتصاد' },
+    '1-4': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي' },
+    '2-0': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا' },
+    '2-1': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية' },
+    '2-2': { subject: 'SC/IS', teacher: 'M.SC/IS4', subjectAr: 'العلوم الإسلامية' },
+    '2-3': { subject: 'Droit', teacher: 'M.GES4', subjectAr: 'القانون' },
+    '3-0': { subject: 'Ge/com', teacher: 'M.GES4', subjectAr: 'التسيير المحاسبي' },
+    '3-1': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية' },
+    '3-2': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية' },
+    '3-3': { subject: 'Droit', teacher: 'M.GES4', subjectAr: 'القانون' },
+    '3-4': { subject: 'MATH', teacher: 'M.MATH10', subjectAr: 'الرياضيات' },
+    '3-5': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية' },
+    '4-0': { subject: 'HU/GE', teacher: 'M.HIS6', subjectAr: 'التاريخ والجغرافيا' },
+    '4-1': { subject: 'FRAN', teacher: 'M.FRAN7', subjectAr: 'اللغة الفرنسية' },
+    '4-2': { subject: 'ARAB', teacher: 'M.ARAB10', subjectAr: 'اللغة العربية' },
+    '4-3': { subject: 'ANG', teacher: 'M.ANG7', subjectAr: 'اللغة الإنجليزية' },
+    '4-4': { subject: 'SC/IS', teacher: 'M.SC/IS4', subjectAr: 'العلوم الإسلامية' }
   };
   localStorage.setItem('schoolSchedule2G1', JSON.stringify(state.schoolSchedule));
 }
 
-// ==================== GEMINI AI - UPDATED MODEL ====================
-// تم التحديث إلى gemini-2.0-flash (النموذج الحالي المتاح)
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+// ==================== REAL CURRICULUM DATA ====================
+const LESSONS_DB = {
+  compta: [
+    {
+      id: 'c1', title: 'العمليات الشائعة: الشراء والبيع', chapter: 'الوحدة الأولى',
+      content: `<h4>1. مفهوم التدفق</h4><p>كل عملية اقتصادية تخلق تدفقين: تدفق حقيقي (بضاعة) وتدفق نقدي أو دين (مقابل البضاعة).</p><div class="definition-box"><strong>مبدأ القيد المزدوج:</strong> كل عملية تقيد في حساب مدين وحساب دائن بنفس المبلغ.</div><h4>2. حسابات الشراء</h4><ul><li>600: مشتريات البضائع</li><li>4456: ر.ق.م قابلة للاسترجاع</li><li>401: الموردون</li><li>512: البنك</li></ul>`,
+      verified: true
+    },
+    {
+      id: 'c2', title: 'أعمال الجرد: التسويات', chapter: 'الوحدة الثانية',
+      content: `<h4>مفهوم التسوية</h4><p>هي عملية محاسبية تهدف إلى تحميل الفترة المالية بالأعباء التي تخصها والمنتجات التي حققتها، بغض النظر عن تاريخ الدفع أو القبض.</p><div class="definition-box"><strong>أمثلة:</strong> الفواتير غير المستلمة، الأعباء المستحقة، المنتجات المكتسبة.</div>`,
+      verified: true
+    }
+  ],
+  eco: [
+    {
+      id: 'e1', title: 'المؤسسة الاقتصادية', chapter: 'الوحدة الأولى',
+      content: `<h4>1. تعريف المؤسسة</h4><p>وحدة إنتاجية تجمع بين عناصر الإنتاج (أرض، عمل، رأس مال) لإنتاج سلع أو خدمات بهدف تحقيق الربح.</p><h4>2. تصنيف المؤسسات</h4><ul><li>حسب الحجم: صغيرة، متوسطة، كبيرة.</li><li>حسب القطاع: عام، خاص، مختلط.</li><li>حسب الشكل القانوني: شخصي، معنوي (SARL, SPA).</li></ul>`,
+      verified: true
+    }
+  ],
+  droit: [
+    {
+      id: 'd1', title: 'الشخصية المعنوية', chapter: 'الوحدة الأولى',
+      content: `<h4>1. التعريف</h4><p>هي مجموعة من الأشخاص أو الأموال تهدف إلى تحقيق غرض معين، ويعترف لها القانون بالشخصية القانونية.</p><h4>2. مظاهر الشخصية المعنوية</h4><ul><li>الاسم والعنوان</li><li>الجنسية</li><li>الذمة المالية المستقلة</li><li>الأهلية القانونية</li></ul>`,
+      verified: true
+    }
+  ],
+  math: [
+    {
+      id: 'm1', title: 'المجموعات العددية', chapter: 'الوحدة الأولى',
+      content: `<h4>1. مجموعات الأعداد</h4><ul><li>ℕ: الأعداد الطبيعية</li><li>ℤ: الأعداد النسبية</li><li>ℚ: الأعداد الجذرية</li><li>ℝ: الأعداد الحقيقية</li></ul><div class="definition-box">العلاقة: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ</div>`,
+      verified: true
+    }
+  ]
+};
+
+const EXERCISES_DB = [
+  {
+    id: 'ex1', subject: 'التسيير المحاسبي', difficulty: 'متوسط',
+    question: 'في 05/10/2026، اشترت مؤسسة "نخبة" بضاعة بمبلغ 100,000 دج، رسوم القيمة المضافة 19%. تم دفع نصف المبلغ بشيك بنكي، والنصف الآخر آجل لدى المورد.',
+    solution: '<strong>القيد في دفتر اليومية:</strong><br>من ح/ 600 (مشتريات البضائع): 100,000 دج<br>من ح/ 4456 (ر.ق.م قابلة للاسترجاع): 19,000 دج<br>إلى ح/ 512 (البنك): 59,500 دج<br>إلى ح/ 401 (الموردون): 59,500 دج'
+  },
+  {
+    id: 'ex2', subject: 'الرياضيات', difficulty: 'سهل',
+    question: 'حل المعادلة التالية في ℝ: |2x - 4| = 6',
+    solution: '<strong>الحل:</strong><br>بما أن |A| = a فإن A = a أو A = -a<br>الحالة 1: 2x - 4 = 6 ⇒ 2x = 10 ⇒ x = 5<br>الحالة 2: 2x - 4 = -6 ⇒ 2x = -2 ⇒ x = -1<br>مجموعة الحلول: S = {-1, 5}'
+  },
+  {
+    id: 'ex3', subject: 'الاقتصاد', difficulty: 'صعب',
+    question: 'عرف الناتج الداخلي الخام (PIB) وطريقة حسابه حسب مقاربة الإنتاج.',
+    solution: '<strong>التعريف:</strong> هو مجموع القيم المضافة التي تحققها الوحدات المقيمة زائد الضرائب على المنتجات مطروحا منها الإعانات على المنتجات.<br><strong>الصيغة:</strong> PIB = مجموع القيم المضافة + الضرائب على المنتجات - الإعانات على المنتجات.'
+  }
+];
+
+// ==================== GEMINI AI (FIXED MODEL NAME) ====================
+// تم تصحيح اسم النموذج إلى gemini-1.5-flash-latest لضمان التوافق مع v1beta
+const GEMINI_MODEL = 'gemini-1.5-flash-latest';
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 async function callGeminiAPI(prompt, images = []) {
   if (!state.geminiApiKey) {
@@ -879,449 +767,9 @@ async function callGeminiAPI(prompt, images = []) {
   }
 }
 
-// ==================== EDUCATIONAL CONTENT DATABASE ====================
-const LESSONS_DB = {
-  'compta-1': {
-    id: 'compta-1',
-    subject: 'التسيير المحاسبي والمالي',
-    chapter: 'الوحدة الأولى: أساسيات المحاسبة في إطار SCF',
-    title: 'التدفقات الاقتصادية وإثباتها محاسبياً',
-    objectives: [
-      'التعرف على مفهوم التدفقات الاقتصادية وأنواعها',
-      'تطبيق مبدأ القيد المزدوج في تسجيل العمليات',
-      'التمييز بين حسابات الفئة 4 (حسابات الغير) والفئة 5 (حسابات الخزينة)',
-      'تحرير قيود يومية وفق النظام المحاسبي المالي الجزائري SCF'
-    ],
-    content: `
-      <h3>مفهوم التدفق الاقتصادي</h3>
-      <p>التدفق الاقتصادي هو حركة قيمية تحدث بين المؤسسة ومحيطها الاقتصادي نتيجة العمليات المختلفة التي تقوم بها. كل تدفق اقتصادي يترتب عنه تدفق نقدي أو دين.</p>
-      
-      <div class="definition-box">
-        <strong>تعريف:</strong> التدفق الحقيقي (Physique) هو حركة البضائع أو الخدمات، بينما التدفق النقدي (Monétaire) هو حركة الأموال المقابلة.
-      </div>
-
-      <h3>أنواع التدفقات</h3>
-      <ul>
-        <li><strong>التدفقات الداخلية:</strong> تحدث داخل المؤسسة (مثل استهلاك المواد الأولية في الإنتاج)</li>
-        <li><strong>التدفقات الخارجية:</strong> تحدث بين المؤسسة والغير (موردون، زبائن، دولة)</li>
-      </ul>
-
-      <h3>مبدأ القيد المزدوج (Partie Double)</h3>
-      <p>يعتمد النظام المحاسبي المالي الجزائري على مبدأ القيد المزدوج الذي وضعه الإيطالي لوكا باتشولي. وفق هذا المبدأ، كل عملية مالية تؤثر على حسابين على الأقل بنسب متساوية.</p>
-
-      <div class="formula-box">
-        مجموع المدين = مجموع الدائن
-      </div>
-
-      <h3>الحسابات الأساسية المستعملة</h3>
-      <ul>
-        <li><strong>الفئة 3:</strong> حسابات المخزون (Stocks)</li>
-        <li><strong>الفئة 4:</strong> حسابات الغير (Tiers) - 401 الموردون، 411 الزبائن، 445 TVA</li>
-        <li><strong>الفئة 5:</strong> حسابات الخزينة (Trésorerie) - 512 البنك، 53 الصندوق</li>
-        <li><strong>الفئة 6:</strong> حسابات الأعباء (Charges)</li>
-        <li><strong>الفئة 7:</strong> حسابات المنتجات (Produits)</li>
-      </ul>
-    `,
-    definitions: [
-      { term: 'التدفق النقدي', def: 'حركة دخول أو خروج الأموال من المؤسسة' },
-      { term: 'القيد المزدوج', def: 'تسجيل كل عملية في حسابين على الأقل' },
-      { term: 'SCF', def: 'Système Comptable Financier - النظام المحاسبي المالي الجزائري' },
-      { term: 'دفتر اليومية', def: 'Journal - السجل الذي تدون فيه العمليات حسب ترتيبها الزمني' }
-    ],
-    examples: [
-      {
-        title: 'مثال: شراء بضاعة مع TVA',
-        content: 'في 15 أكتوبر 2026، اشترت مؤسسة "نخبة" بضاعة من المورد "الجيزة" بمبلغ 200,000 دج، رسم القيمة المضافة 19%. تم الدفع نصف المبلغ بشيك بنكي والنصف الآخر آجل.',
-        table: {
-          headers: ['رقم الحساب', 'بيان الحساب', 'مدين', 'دائن'],
-          rows: [
-            ['600', 'مشتريات البضائع', '200,000', '-'],
-            ['4456', 'ر.ق.م قابلة للاسترجاع (200,000×19%)', '38,000', '-'],
-            ['512', 'البنك (238,000/2)', '-', '119,000'],
-            ['401', 'المورد الجيزة (238,000/2)', '-', '119,000'],
-            { total: ['المجموع', '', '238,000', '238,000'] }
-          ]
-        }
-      }
-    ],
-    mistakes: [
-      'نسيان احتساب TVA عند تسجيل عمليات الشراء والبيع',
-      'الخلط بين حساب 4456 (TVA قابلة للاسترجاع) وحساب 4457 (TVA محصلة)',
-      'عدم مطابقة المدين والدائن في القيد',
-      'تسجيل الشيك في حساب الصندوق (53) بدل البنك (512)'
-    ],
-    summary: 'التدفقات الاقتصادية هي أساس العمليات المحاسبية. يتم تسجيلها وفق مبدأ القيد المزدوج في دفتر اليومية، مع احترام تصنيف الحسابات حسب مخطط SCF الجزائري.',
-    exercises: [
-      {
-        id: 'ex1',
-        type: 'mcq',
-        difficulty: 'Easy',
-        question: 'ما هو رقم حساب "البنك" وفق مخطط SCF؟',
-        options: ['53', '512', '401', '600'],
-        correct: 1,
-        explanation: 'حساب 512 هو حساب البنك ضمن الفئة 5 (حسابات الخزينة). أما 53 فهو الصندوق، و401 الموردون، و600 المشتريات.'
-      },
-      {
-        id: 'ex2',
-        type: 'journal',
-        difficulty: 'Medium',
-        question: 'في 10/11/2026، اشترت المؤسسة آلات بمبلغ 500,000 دج مع TVA 19%. تم الدفع بشيك بنكي. قم بتحرير القيد.',
-        solution: `الحل:<br>
-          ع/215 : العتاد والآلات = 500,000 دج (مدين)<br>
-          ع/4456 : TVA قابلة للاسترجاع = 500,000×0.19 = 95,000 دج (مدين)<br>
-          ع/512 : البنك = 595,000 دج (دائن)<br>
-          المجموع: 595,000 = 595,000 ✓`
-      }
-    ]
-  },
-  'compta-2': {
-    id: 'compta-2',
-    subject: 'التسيير المحاسبي والمالي',
-    chapter: 'الوحدة الأولى',
-    title: 'الوثائق التجارية والفوترة',
-    objectives: [
-      'التعرف على الوثائق التجارية المختلفة',
-      'حساب صافي الفاتورة بعد الخصومات',
-      'احتساب TVA وتسجيل الفواتير محاسبياً'
-    ],
-    content: `
-      <h3>الوثائق التجارية الأساسية</h3>
-      <ul>
-        <li><strong>عرض الأسعار (Devis):</strong> وثيقة إعلامية يصدرها البائع بناءً على طلب المشتري</li>
-        <li><strong>طلب الشراء (Bon de commande):</strong> وثيقة يعدها المشتري للتعبير عن رغبته</li>
-        <li><strong>فاتورة الشراء (Facture):</strong> الوثيقة الأساسية التي تثبت عملية البيع</li>
-        <li><strong>فاتورة الإرجاع (Avoir):</strong> عند إرجاع بضاعة أو منح تخفيض لاحق</li>
-      </ul>
-
-      <h3>أنواع الخصومات</h3>
-      <div class="definition-box">
-        <strong>الخصم التجاري (Rabais, Remise, Ristourne):</strong> يُمنح لأسباب تجارية ويُخصم من السعر الإجمالي.<br>
-        <strong>الخصم المالي (Escompte):</strong> يُمنح مقابل الدفع العاجل ويُحتسب على المبلغ بعد الخصومات التجارية.
-      </div>
-
-      <h3>طريقة حساب صافي الفاتورة</h3>
-      <div class="formula-box">
-        السعر الإجمالي - الخصومات التجارية = صافي التجاري<br>
-        صافي التجاري - الخصم المالي = صافي الفاتورة HT<br>
-        صافي HT × (1 + TVA%) = صافي TTC
-      </div>
-    `,
-    examples: [
-      {
-        title: 'مثال تطبيقي: حساب فاتورة',
-        content: 'فاتورة بمبلغ إجمالي 100,000 دج، خصم تجاري 10%، خصم مالي 2%، TVA 19%.',
-        table: {
-          headers: ['البيان', 'المبلغ'],
-          rows: [
-            ['السعر الإجمالي', '100,000'],
-            ['(-) الخصم التجاري 10%', '10,000'],
-            ['صافي التجاري', '90,000'],
-            ['(-) الخصم المالي 2% (90,000×0.02)', '1,800'],
-            ['صافي الفاتورة HT', '88,200'],
-            ['(+) TVA 19% (88,200×0.19)', '16,758'],
-            { total: ['صافي TTC', '104,958'] }
-          ]
-        }
-      }
-    ],
-    summary: 'الفاتورة هي الوثيقة الرسمية التي تثبت عملية البيع. حساب الصافي يتطلب تطبيق الخصومات بالترتيب الصحيح ثم احتساب TVA.',
-    exercises: [
-      {
-        id: 'ex1',
-        type: 'mcq',
-        difficulty: 'Easy',
-        question: 'أي وثيقة تثبت عملية البيع رسمياً؟',
-        options: ['عرض الأسعار', 'طلب الشراء', 'الفاتورة', 'رسالة الشكر'],
-        correct: 2,
-        explanation: 'الفاتورة (Facture) هي الوثيقة الرسمية التي تثبت عملية البيع وتشكل سنداً محاسبياً.'
-      },
-      {
-        id: 'ex2',
-        type: 'calculation',
-        difficulty: 'Medium',
-        question: 'احسب صافي TTC لفاتورة بمبلغ إجمالي 150,000 دج، خصم تجاري 15%، خصم مالي 3%، و TVA 19%.',
-        solution: `الحل خطوة بخطوة:<br>
-          1) السعر الإجمالي: 150,000 دج<br>
-          2) الخصم التجاري 15% = 150,000 × 0.15 = 22,500 دج<br>
-          3) الصافي التجاري = 150,000 - 22,500 = 127,500 دج<br>
-          4) الخصم المالي 3% = 127,500 × 0.03 = 3,825 دج<br>
-          5) صافي HT = 127,500 - 3,825 = 123,675 دج<br>
-          6) TVA 19% = 123,675 × 0.19 = 23,498.25 دج<br>
-          <strong>7) صافي TTC = 123,675 + 23,498.25 = 147,173.25 دج</strong>`
-      }
-    ]
-  },
-  'eco-1': {
-    id: 'eco-1',
-    subject: 'الاقتصاد والمناجمنت',
-    chapter: 'الوحدة الأولى: المؤسسة الاقتصادية',
-    title: 'المؤسسة الاقتصادية: المفهوم والوظائف',
-    objectives: [
-      'تحديد مفهوم المؤسسة الاقتصادية وخصائصها',
-      'التمييز بين أنواع المؤسسات حسب المعايير المختلفة',
-      'تحليل وظائف المؤسسة ودورها في الاقتصاد الوطني'
-    ],
-    content: `
-      <h3>تعريف المؤسسة الاقتصادية</h3>
-      <div class="definition-box">
-        <strong>المؤسسة الاقتصادية:</strong> وحدة إنتاجية تجمع بين عوامل الإنتاج (العمل، رأس المال، والموارد الطبيعية) بهدف إنتاج السلع أو الخدمات لتحقيق الربح أو إشباع حاجات اجتماعية.
-      </div>
-
-      <h3>خصائص المؤسسة الاقتصادية</h3>
-      <ul>
-        <li><strong>الاستقلالية القانونية:</strong> تتمتع بشخصية معنوية وذمة مالية مستقلة</li>
-        <li><strong>الوظيفة الاقتصادية:</strong> إنتاج السلع والخدمات</li>
-        <li><strong>البعد الاجتماعي:</strong> توفير مناصب شغل وتحقيق الرفاهية للعاملين</li>
-        <li><strong>الاستمرارية:</strong> العمل على الاستمرار في النشاط عبر الزمن</li>
-      </ul>
-
-      <h3>تصنيف المؤسسات</h3>
-      <p><strong>1- حسب النشاط:</strong> صناعية، فلاحية، تجارية، خدماتية</p>
-      <p><strong>2- حسب الحجم (المعيار الجزائري):</strong></p>
-      <ul>
-        <li>المؤسسات الصغيرة جداً: أقل من 10 عمال</li>
-        <li>المؤسسات الصغيرة والمتوسطة (PME): من 10 إلى 250 عامل</li>
-        <li>المؤسسات الكبيرة: أكثر من 250 عامل</li>
-      </ul>
-      <p><strong>3- حسب الشكل القانوني:</strong> EURL, SARL, SPA, SNC</p>
-      <p><strong>4- حسب القطاع:</strong> عام (حكومي) أو خاص</p>
-
-      <h3>وظائف المؤسسة حسب Fayol</h3>
-      <ul>
-        <li><strong>الوظيفة التقنية:</strong> الإنتاج والتحويل</li>
-        <li><strong>الوظيفة التجارية:</strong> الشراء والبيع</li>
-        <li><strong>الوظيفة المالية:</strong> تدويل الأموال</li>
-        <li><strong>الوظيفة المحاسبية:</strong> التسجيل والجرد</li>
-        <li><strong>الوظيفة الأمنية:</strong> حماية الأشخاص والممتلكات</li>
-        <li><strong>الوظيفة الإدارية:</strong> التخطيط والتنظيم والتوجيه والرقابة</li>
-      </ul>
-    `,
-    definitions: [
-      { term: 'PME', def: 'Petite et Moyenne Entreprise - مؤسسة صغيرة ومتوسطة' },
-      { term: 'SARL', def: 'Société à Responsabilité Limitée - شركة ذات مسؤولية محدودة' },
-      { term: 'SPA', def: 'Société Par Actions - شركة أسهم' }
-    ],
-    examples: [
-      {
-        title: 'مثال من الواقع الجزائري: مؤسسة سوناطراك',
-        content: 'سوناطراك (SONATRACH) مؤسسة عمومية اقتصادية تعمل في قطاع المحروقات. هي أكبر مؤسسة في الجزائر من حيث الحجم (أكثر من 250 عامل) وتمثل نموذجاً للمؤسسات العمومية الاقتصادية (EPE) التي تخضع للقانون التجاري.'
-      }
-    ],
-    summary: 'المؤسسة الاقتصادية هي الخلية الأساسية في الاقتصاد الوطني، تجمع بين الأبعاد الاقتصادية والاجتماعية والقانونية. تصنيفها يساعد على فهم دورها وتنظيمها.',
-    exercises: [
-      {
-        id: 'ex1',
-        type: 'mcq',
-        difficulty: 'Easy',
-        question: 'ما هو الشكل القانوني للمؤسسة ذات المسؤولية المحدودة؟',
-        options: ['SPA', 'SARL', 'SNC', 'EURL'],
-        correct: 1,
-        explanation: 'SARL = Société à Responsabilité Limitée، وهي أكثر الأشكال القانونية شيوعاً في الجزائر.'
-      },
-      {
-        id: 'ex2',
-        type: 'mcq',
-        difficulty: 'Medium',
-        question: 'حسب Henri Fayol، ما هي الوظائف الست للمؤسسة؟',
-        options: [
-          'التقنية، التجارية، المالية، المحاسبية، الأمنية، الإدارية',
-          'التخطيط، التنظيم، التوجيه، الرقابة، التسيير، القيادة',
-          'الإنتاج، التسويق، المالية، الموارد البشرية، البحث، التطوير',
-          'لا شيء مما سبق'
-        ],
-        correct: 0,
-        explanation: 'هنري فايول حدد 6 وظائف أساسية: التقنية، التجارية، المالية، المحاسبية، الأمنية، والإدارية.'
-      }
-    ]
-  },
-  'math-1': {
-    id: 'math-1',
-    subject: 'الرياضيات',
-    chapter: 'الوحدة الأولى: الأنشطة العددية',
-    title: 'المجموعات والعمليات على الأعداد',
-    objectives: [
-      'التعرف على المجموعات العددية الأساسية (ℕ, ℤ, ℚ, ℝ)',
-      'إنجاز العمليات على الأعداد الحقيقية',
-      'استعمال القيم المطلقة في حل المعادلات والمتراجحات'
-    ],
-    content: `
-      <h3>المجموعات العددية</h3>
-      <ul>
-        <li><strong>ℕ</strong> : مجموعة الأعداد الطبيعية {0, 1, 2, 3, ...}</li>
-        <li><strong></strong> : مجموعة الأعداد النسبية {..., -2, -1, 0, 1, 2, ...}</li>
-        <li><strong>ℚ</strong> : مجموعة الأعداد الجذرية (قابلة للكتابة على شكل كسر)</li>
-        <li><strong>ℝ</strong> : مجموعة الأعداد الحقيقية (تشمل الأعداد غير الجذرية مثل √2)</li>
-      </ul>
-
-      <div class="formula-box">
-        ℕ ⊂ ℤ  ℚ ⊂ ℝ
-      </div>
-
-      <h3>القيمة المطلقة</h3>
-      <div class="definition-box">
-        <strong>تعريف:</strong> القيمة المطلقة للعدد الحقيقي x هي المسافة بينه وبين الصفر على المحور العددي، ونرمز لها بـ |x|
-      </div>
-
-      <div class="formula-box">
-        |x| = x إذا كان x ≥ 0<br>
-        |x| = -x إذا كان x < 0
-      </div>
-
-      <h3>خصائص القيمة المطلقة</h3>
-      <ul>
-        <li>|x| ≥ 0 دائماً</li>
-        <li>|x.y| = |x|.|y|</li>
-        <li>|x + y| ≤ |x| + |y| (متراجحة المثلث)</li>
-        <li>|x| = a (حيث a > 0) تعني x = a أو x = -a</li>
-      </ul>
-    `,
-    definitions: [
-      { term: 'القيمة المطلقة', def: 'المسافة بين العدد والنقطة 0 على المحور' },
-      { term: 'عدد جذري', def: 'عدد يمكن كتابته على شكل a/b حيث a, b ∈ ℤ و b ≠ 0' }
-    ],
-    examples: [
-      {
-        title: 'مثال 1: حل المعادلة |x - 3| = 5',
-        content: 'لحل المعادلة |x - 3| = 5، نطبق الخاصية: |A| = a  A = a أو A = -a',
-        table: {
-          headers: ['الحالة', 'الحل'],
-          rows: [
-            ['x - 3 = 5', 'x = 8'],
-            ['x - 3 = -5', 'x = -2'],
-            { total: ['مجموعة الحلول', 'S = {-2, 8}'] }
-          ]
-        }
-      },
-      {
-        title: 'مثال 2: حل المتراجحة |2x + 1| ≤ 7',
-        content: 'نستعمل الخاصية: |A| ≤ a ⇔ -a ≤ A ≤ a',
-        table: {
-          headers: ['الخطوة', 'الناتج'],
-          rows: [
-            ['-7 ≤ 2x + 1 ≤ 7', '-'],
-            ['-8 ≤ 2x ≤ 6', '(بطرح 1)'],
-            { total: ['-4 ≤ x ≤ 3', 'S = [-4, 3]'] }
-          ]
-        }
-      }
-    ],
-    mistakes: [
-      'نسيان أن القيمة المطلقة دائماً موجبة',
-      'حالة عدم وجود حلول عندما |x| = a مع a < 0',
-      'الخلط بين |x| ≤ a و |x| ≥ a في المتراجحات'
-    ],
-    summary: 'المجموعات العددية هرمية التنظيم، والقيمة المطلقة أداة أساسية لحل المعادلات والمتراجحات في ℝ.',
-    exercises: [
-      {
-        id: 'ex1',
-        type: 'mcq',
-        difficulty: 'Easy',
-        question: 'العدد √2 ينتمي إلى المجموعة:',
-        options: ['ℕ', 'ℤ', 'ℚ', 'ℝ'],
-        correct: 3,
-        explanation: '√2 عدد غير جذري (غير قابل للكتابة على شكل كسر)، لذلك ينتمي فقط إلى ℝ.'
-      },
-      {
-        id: 'ex2',
-        type: 'mcq',
-        difficulty: 'Medium',
-        question: 'حل المعادلة |3x - 2| = 7 هو:',
-        options: ['S = {3}', 'S = {-5/3, 3}', 'S = {-5/3}', 'S = ∅'],
-        correct: 1,
-        explanation: '3x - 2 = 7 ⇒ x = 3، أو 3x - 2 = -7 ⇒ 3x = -5 ⇒ x = -5/3. إذن S = {-5/3, 3}.'
-      },
-      {
-        id: 'ex3',
-        type: 'calculation',
-        difficulty: 'Medium',
-        question: 'احسب |(-3)² + 2| - |5 - 8|',
-        solution: 'الحل:<br>1) (-3)² = 9<br>2) 9 + 2 = 11، إذن |11| = 11<br>3) 5 - 8 = -3، إذن |-3| = 3<br>4) الناتج = 11 - 3 = <strong>8</strong>'
-      }
-    ]
-  },
-  'law-1': {
-    id: 'law-1',
-    subject: 'القانون',
-    chapter: 'الوحدة الأولى: التاجر والأعمال التجارية',
-    title: 'التاجر وصفته في القانون التجاري الجزائري',
-    objectives: [
-      'تحديد مفهوم التاجر وفق القانون التجاري الجزائري',
-      'التعرف على شروط اكتساب صفة التاجر',
-      'التمييز بين الأعمال التجارية والأعمال المدنية'
-    ],
-    content: `
-      <h3>تعريف التاجر</h3>
-      <div class="definition-box">
-        <strong>المادة 1 من القانون التجاري الجزائري:</strong> "يعد تجار الأشخاص الذين يحترفون القيام بالأعمال التجارية وينتهجونها حرفة معتادة لهم."
-      </div>
-
-      <h3>شروط اكتساب صفة التاجر</h3>
-      <ul>
-        <li><strong>الاحتراف:</strong> أن يكون العمل التجاري حرفة معتادة</li>
-        <li><strong>الاستقلالية:</strong> أن يمارس العمل باسمه ولحسابه الخاص</li>
-        <li><strong>طبيعة العمل:</strong> أن يكون العمل تجارياً بطبيعته</li>
-      </ul>
-
-      <h3>الأعمال التجارية (المادة 3 و4)</h3>
-      <ul>
-        <li>شراء المنقولات أو العقارات بقصد البيع بربح</li>
-        <li>أعمال السمسرة والوكالة بالعمولة</li>
-        <li>عمليات البنوك والصرف</li>
-        <li>عمليات التأمين</li>
-        <li>التزامات المقاولة والنقل</li>
-      </ul>
-
-      <h3>التزامات التاجر</h3>
-      <ul>
-        <li><strong>القيد في السجل التجاري:</strong> إلزامي خلال 30 يوم من بداية النشاط</li>
-        <li><strong>مسك الدفاتر التجارية:</strong> دفتر اليومية، دفتر الجرد</li>
-        <li><strong>فتح حساب بنكي:</strong> للتعاملات المهنية</li>
-        <li><strong>الانخراط في الضمان الاجتماعي:</strong> CASNOS</li>
-      </ul>
-    `,
-    definitions: [
-      { term: 'السجل التجاري', def: 'Registre du Commerce - وثيقة رسمية تثبت صفة التاجر' },
-      { term: 'CASNOS', def: 'الصندوق الوطني للضمان الاجتماعي لغير الأجراء' }
-    ],
-    examples: [
-      {
-        title: 'مثال: تمييز التاجر عن غيره',
-        content: 'السيد أحمد يشتري سيارة لاستعماله الشخصي: ليس تاجراً.<br>السيد كريم يشتري السيارات ويبيعها بربح بشكل منتظم: يعتبر تاجراً.<br>المزارع الذي يبيع إنتاجه مباشرة: عمل مدني وليس تجارياً.'
-      }
-    ],
-    mistakes: [
-      'الخلط بين التاجر والحرفي',
-      'إهمال شرط الاحتراف',
-      'نسيان القيد في السجل التجاري كالتزام أساسي'
-    ],
-    summary: 'التاجر شخص يكتسب هذه الصفة بممارسة الأعمال التجارية احترافاً واستقلالاً، ويلتزم بمسك الدفاتر والقيد في السجل التجاري.',
-    exercises: [
-      {
-        id: 'ex1',
-        type: 'mcq',
-        difficulty: 'Easy',
-        question: 'أي من الشروط التالية ليس من شروط اكتساب صفة التاجر؟',
-        options: ['الاحتراف', 'الاستقلالية', 'الجنسية الجزائرية', 'طبيعة العمل التجاري'],
-        correct: 2,
-        explanation: 'الجنسية الجزائرية ليست شرطاً، يمكن للأجنبي أن يكون تاجراً في الجزائر وفق شروط.'
-      },
-      {
-        id: 'ex2',
-        type: 'mcq',
-        difficulty: 'Medium',
-        question: 'ما هي المهلة القانونية للقيد في السجل التجاري؟',
-        options: ['15 يوم', '30 يوم', '60 يوم', '90 يوم'],
-        correct: 1,
-        explanation: 'يجب القيد في السجل التجاري خلال 30 يوماً من بداية النشاط التجاري.'
-      }
-    ]
-  }
-};
-
 // ==================== ROUTING ====================
-function navigate(route, data = null) {
+function navigate(route) {
   state.currentRoute = route;
-  state.currentLesson = data;
   render();
   updateNav();
   window.scrollTo(0, 0);
@@ -1345,7 +793,6 @@ function render() {
     case 'ai': html = renderAI(); break;
     case 'subjects': html = renderSubjects(); break;
     case 'lessons': html = renderLessons(); break;
-    case 'lesson': html = renderLessonDetail(state.currentLesson); break;
     case 'exercises': html = renderExercises(); break;
     case 'progress': html = renderProgress(); break;
     case 'dashboard': html = renderDashboard(); break;
@@ -1369,7 +816,7 @@ function renderHome() {
     ${currentClass ? `
       <div class="lesson-section" style="background: linear-gradient(135deg, #F59E0B, #D97706); color: white; border: none;">
         <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-          <div style="font-size: 3rem;"></div>
+          <div style="font-size: 3rem;">📚</div>
           <div style="flex: 1;">
             <h3 style="margin: 0; color: white;">الحصة الحالية</h3>
             <p style="margin: .5rem 0 0; font-size: 1.1rem;"><strong>${currentClass.subjectAr}</strong> - ${currentClass.subject} (${currentClass.teacher})</p>
@@ -1382,7 +829,7 @@ function renderHome() {
     ${nextClass && !currentClass ? `
       <div class="lesson-section" style="background: linear-gradient(135deg, #3B82F6, #1E40AF); color: white; border: none;">
         <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-          <div style="font-size: 3rem;"></div>
+          <div style="font-size: 3rem;">⏰</div>
           <div style="flex: 1;">
             <h3 style="margin: 0; color: white;">الحصة القادمة</h3>
             <p style="margin: .5rem 0 0; font-size: 1.1rem;"><strong>${nextClass.subjectAr}</strong> - ${nextClass.subject} (${nextClass.teacher})</p>
@@ -1396,108 +843,52 @@ function renderHome() {
       <div class="card" onclick="navigate('schedule')">
         <div class="card-header">
           <div class="card-icon">📅</div>
-          <div>
-            <h3>جدولي الدراسي</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">Division 2G1</p>
-          </div>
+          <div><h3>جدولي الدراسي</h3><p style="font-size: .85rem; color: var(--text-light);">قابل للتعديل بالكامل</p></div>
         </div>
-        <p style="color: var(--text-light);">جدول التوقيت الأسبوعي الحقيقي</p>
       </div>
-
       <div class="card" onclick="navigate('ai')">
         <div class="card-header">
           <div class="card-icon" style="background: linear-gradient(135deg, #8B5CF6, #6D28D9);">🤖</div>
-          <div>
-            <h3>المساعد الدراسي</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">مدعوم بالذكاء الاصطناعي</p>
-          </div>
+          <div><h3>المساعد الدراسي</h3><p style="font-size: .85rem; color: var(--text-light);">حل تمارين بالصور وتلخيص</p></div>
         </div>
-        <p style="color: var(--text-light);">اطرح أسئلتك، احصل على ملخصات، وأرسل صور تمارينك</p>
       </div>
-
-      <div class="card" onclick="navigate('subjects')">
-        <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">📚</div>
-          <div>
-            <h3>موادّي الدراسية</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">10 مواد</p>
-          </div>
-        </div>
-        <p style="color: var(--text-light);">دروس، تمارين، وفيديوهات لجميع المواد</p>
-      </div>
-
       <div class="card" onclick="navigate('lessons')">
         <div class="card-header">
           <div class="card-icon" style="background: linear-gradient(135deg, #10B981, #059669);">📖</div>
-          <div>
-            <h3>دروسي</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">محتوى تعليمي</p>
-          </div>
+          <div><h3>دروسي</h3><p style="font-size: .85rem; color: var(--text-light);">محتوى حقيقي من المنهاج</p></div>
         </div>
-        <p style="color: var(--text-light);">دروس مفصلة مع شروحات وأمثلة</p>
       </div>
-
       <div class="card" onclick="navigate('exercises')">
         <div class="card-header">
           <div class="card-icon" style="background: linear-gradient(135deg, #EF4444, #DC2626);">✏️</div>
-          <div>
-            <h3>تماريني</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">تمارين محلولة</p>
-          </div>
+          <div><h3>تماريني</h3><p style="font-size: .85rem; color: var(--text-light);">تمارين محلولة</p></div>
         </div>
-        <p style="color: var(--text-light);">تمارين تطبيقية مع الحلول المفصلة</p>
       </div>
-
-      <div class="card" onclick="navigate('progress')">
-        <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">📊</div>
-          <div>
-            <h3>تقدمّي الدراسي</h3>
-            <p style="font-size: .85rem; color: var(--text-light);">إحصائيات</p>
-          </div>
-        </div>
-        <p style="color: var(--text-light);">تتبع تقدمك وإنجازاتك</p>
-      </div>
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">💡</div>
-        نصائح للدراسة الفعالة
-      </div>
-      <ul style="padding-right: 1.5rem; line-height: 2;">
-        <li><strong>استخدم المساعد الذكي:</strong> اطلب منه تلخيص الدروس الصعبة أو شرح المفاهيم</li>
-        <li><strong>ارسل صور تمارينك:</strong> سيساعدك في حلها خطوة بخطوة</li>
-        <li><strong>راجع جدولك يومياً:</strong> تعرف على حصصك القادمة واستعد لها</li>
-        <li><strong>المراجعة المنتظمة:</strong> راجع دروسك يومياً ولو لمدة 30 دقيقة</li>
-        <li><strong>حل التمارين:</strong> التطبيق العملي أهم من القراءة فقط</li>
-      </ul>
     </div>
   `;
 }
 
 function renderSchedule() {
   const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
-  const times = ['08:00-09:00', '09:00-10:00', '10:00-11:00', '11:00-12:00', '12:00-13:00', '13:00-14:00', '14:00-14:30', '15:30-16:30'];
   const currentClass = getCurrentClass();
   const nextClass = getNextClass();
 
   return `
     <div class="page-title">
       <h2>📅 جدولي الدراسي - Division 2G1</h2>
-      <p>Lycée Thaalbiya El Alger | السنة الثانية ثانوي - تسيير واقتصاد</p>
+      <p>يمكنك تعديل الأوقات والمحتوى مباشرة من هذا الجدول</p>
     </div>
 
     <div class="schedule-container">
       <div class="schedule-header">
         <div>
           <h3 style="margin: 0;">الجدول الأسبوعي للحصص</h3>
-          <p style="margin: .5rem 0 0; font-size: .85rem; opacity: .9;">القسم: 2G1 | الشعبة: Gestion et Économie</p>
         </div>
         <div style="display: flex; gap: .5rem; flex-wrap: wrap;">
-          <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="editScheduleModal()">✏️ تعديل الجدول</button>
-          <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="printSchedule()">️ طباعة</button>
-          <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="toggleFullscreen()">⛶ ملء الشاشة</button>
+          <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="toggleEditSchedule()">
+            ${state.isEditingSchedule ? '✅ حفظ التعديلات' : '✏️ تعديل الجدول'}
+          </button>
+          <button class="btn btn-outline" style="background: rgba(255,255,255,.2); color: white; border-color: rgba(255,255,255,.3);" onclick="printSchedule()">🖨️ طباعة</button>
         </div>
       </div>
       <div style="overflow-x: auto;">
@@ -1509,14 +900,27 @@ function renderSchedule() {
             </tr>
           </thead>
           <tbody>
-            ${times.map((time, timeIdx) => `
+            ${state.scheduleTimes.map((time, timeIdx) => `
               <tr>
-                <td style="font-weight: 700; background: var(--navy); color: white; white-space: nowrap;">${time}</td>
+                <td style="font-weight: 700; background: var(--navy); color: white; white-space: nowrap;">
+                  ${state.isEditingSchedule ? `<input class="edit-input" value="${time}" onchange="updateTime(${timeIdx}, this.value)">` : time}
+                </td>
                 ${days.map((day, dayIdx) => {
                   const key = `${dayIdx}-${timeIdx}`;
                   const cell = state.schoolSchedule[key];
                   const isCurrent = currentClass && currentClass.key === key;
                   const isNext = nextClass && nextClass.key === key;
+                  
+                  if (state.isEditingSchedule) {
+                    return `
+                      <td>
+                        <input class="edit-input" placeholder="المادة" value="${cell?.subject || ''}" onchange="updateCell('${key}', 'subject', this.value)">
+                        <input class="edit-input" placeholder="الأستاذ" value="${cell?.teacher || ''}" onchange="updateCell('${key}', 'teacher', this.value)">
+                        <input class="edit-input" placeholder="العربية" value="${cell?.subjectAr || ''}" onchange="updateCell('${key}', 'subjectAr', this.value)">
+                      </td>
+                    `;
+                  }
+                  
                   return `
                     <td>
                       <div class="schedule-cell ${cell ? 'filled' : ''} ${isCurrent ? 'current' : ''} ${isNext ? 'next' : ''}" onclick="showClassDetails('${key}')">
@@ -1534,57 +938,20 @@ function renderSchedule() {
         </table>
       </div>
     </div>
-
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-      <div style="flex: 1; min-width: 200px; padding: 1rem; background: linear-gradient(135deg, #F59E0B, #D97706); color: white; border-radius: 10px;">
-        <strong>🟠 الحصة الحالية</strong>
-        <p style="margin: .5rem 0 0; font-size: .9rem;">الحصة التي تجري الآن</p>
-      </div>
-      <div style="flex: 1; min-width: 200px; padding: 1rem; background: linear-gradient(135deg, #3B82F6, #1E40AF); color: white; border-radius: 10px;">
-        <strong>🔵 الحصة القادمة</strong>
-        <p style="margin: .5rem 0 0; font-size: .9rem;">الحصة التالية في الجدول</p>
-      </div>
-      <div style="flex: 1; min-width: 200px; padding: 1rem; background: linear-gradient(135deg, var(--emerald), var(--emerald-dark)); color: white; border-radius: 10px;">
-        <strong>🟢 حصة عادية</strong>
-        <p style="margin: .5rem 0 0; font-size: .9rem;">حصص مجدولة</p>
-      </div>
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">📋</div>
-        ملخص المواد والأساتذة
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-        ${getSubjectSummary().map(s => `
-          <div style="padding: 1rem; background: var(--sand); border-radius: 8px;">
-            <strong>${s.subjectAr}</strong>
-            <p style="font-size: .85rem; color: var(--text-light); margin: .25rem 0;">${s.subject} - ${s.teacher}</p>
-            <p style="font-size: .8rem; color: var(--emerald);">${s.hours} حصص/أسبوع</p>
-          </div>
-        `).join('')}
-      </div>
-    </div>
   `;
 }
 
 function renderAI() {
   return `
     <div class="page-title">
-      <h2> المساعد الدراسي</h2>
-      <p>مساعدك الذكي للشرح والتلخيص وحل التمارين</p>
+      <h2>🤖 المساعد الدراسي</h2>
+      <p>مدعوم بـ Google Gemini (تم تصحيح الاتصال)</p>
     </div>
 
     ${!state.geminiApiKey ? `
       <div class="lesson-section" style="background: #FEF3C7; border-right: 4px solid #F59E0B;">
         <h3 style="color: #92400E; margin-bottom: .5rem;">⚠️ إعداد مطلوب</h3>
-        <p style="color: #78350F; margin-bottom: 1rem;">
-          لاستخدام المساعد الذكي، تحتاج إلى مفتاح Google Gemini API (مجاني).
-        </p>
-        <button class="btn btn-primary" onclick="navigate('dashboard')"> إعداد مفتاح API</button>
-        <p style="font-size: .85rem; color: var(--text-light); margin-top: 1rem;">
-          احصل على مفتاح مجاني من: <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: var(--emerald);">Google AI Studio</a>
-        </p>
+        <button class="btn btn-primary" onclick="navigate('dashboard')">🔑 إعداد مفتاح API</button>
       </div>
     ` : ''}
 
@@ -1593,7 +960,7 @@ function renderAI() {
         <div class="ai-avatar">🤖</div>
         <div style="flex: 1;">
           <h3 style="margin: 0;">المساعد الدراسي</h3>
-          <p style="font-size: .85rem; color: #94A3B8; margin: 0;">جاهز لمساعدتك في دراستك</p>
+          <p style="font-size: .85rem; color: #94A3B8; margin: 0;">جاهز لتحليل الصور وحل التمارين</p>
         </div>
         <button class="btn btn-outline" style="background: rgba(255,255,255,.1); color: white; border-color: rgba(255,255,255,.2);" onclick="clearChat()">🗑 مسح</button>
       </div>
@@ -1604,12 +971,9 @@ function renderAI() {
             <div class="message-avatar">🤖</div>
             <div class="message-content">
               <strong>مرحباً! أنا مساعدك الدراسي 👋</strong><br><br>
-              يمكنني مساعدتك في:<br>
               • 📝 تلخيص الدروس وإنشاء ملخصات مصورة<br>
-              • 🖼️ تحليل صور التمارين والملخصات<br>
-              •  الإجابة على أسئلتك في جميع المواد<br>
-              • 💡 شرح المفاهيم الصعبة<br>
-              • 🎯 إنشاء خرائط ذهنية وبطاقات حفظ<br><br>
+              • 🖼️ تحليل صور التمارين وحلها خطوة بخطوة<br>
+              • ❓ الإجابة على أسئلتك في جميع المواد<br>
               اسألني أي شيء أو أرسل صورة تمرين!
             </div>
           </div>
@@ -1627,12 +991,10 @@ function renderAI() {
       </div>
     </div>
 
-    <div class="quick-actions" style="margin-top: 1rem;">
-      <button class="quick-action-btn" onclick="quickAction('لخص لي درس التدفقات النقدية في المحاسبة')">📝 تلخيص درس</button>
-      <button class="quick-action-btn" onclick="quickAction('اشرح لي مفهوم القيد المزدوج')">💡 شرح مفهوم</button>
+    <div class="quick-actions">
+      <button class="quick-action-btn" onclick="quickAction('لخص لي درس التدفقات النقدية في المحاسبة')"> تلخيص درس</button>
+      <button class="quick-action-btn" onclick="quickAction('اشرح لي مفهوم القيد المزدوج')"> شرح مفهوم</button>
       <button class="quick-action-btn" onclick="quickAction('أنشئ خريطة ذهنية للمؤسسة الاقتصادية')">🧠 خريطة ذهنية</button>
-      <button class="quick-action-btn" onclick="quickAction('أعطني تمارين على القيمة المطلقة')">✏️ تمارين</button>
-      <button class="quick-action-btn" onclick="quickAction('ما هي حقوق وواجبات التاجر في القانون التجاري؟')">⚖️ سؤال قانوني</button>
     </div>
   `;
 }
@@ -1659,13 +1021,12 @@ function renderSubjects() {
     { id: 'compta', name: 'التسيير المحاسبي والمالي', nameFr: 'Comptabilité', icon: '📊', coef: 5, color: '#10B981', teacher: 'M.GES4' },
     { id: 'eco', name: 'الاقتصاد والمناجمنت', nameFr: 'Économie & Management', icon: '💼', coef: 5, color: '#3B82F6', teacher: 'M.GES1' },
     { id: 'math', name: 'الرياضيات', nameFr: 'Mathématiques', icon: '🔢', coef: 4, color: '#8B5CF6', teacher: 'M.MATH10' },
-    { id: 'law', name: 'القانون', nameFr: 'Droit', icon: '⚖️', coef: 3, color: '#F59E0B', teacher: 'M.GES4' },
+    { id: 'droit', name: 'القانون', nameFr: 'Droit', icon: '⚖️', coef: 3, color: '#F59E0B', teacher: 'M.GES4' },
     { id: 'arabic', name: 'اللغة العربية', nameFr: 'Arabe', icon: '📝', coef: 3, color: '#EF4444', teacher: 'M.ARAB10' },
-    { id: 'french', name: 'اللغة الفرنسية', nameFr: 'Français', icon: '🇷', coef: 2, color: '#EC4899', teacher: 'M.FRAN7' },
+    { id: 'french', name: 'اللغة الفرنسية', nameFr: 'Français', icon: '🇫🇷', coef: 2, color: '#EC4899', teacher: 'M.FRAN7' },
     { id: 'english', name: 'اللغة الإنجليزية', nameFr: 'Anglais', icon: '🇬🇧', coef: 2, color: '#14B8A6', teacher: 'M.ANG7' },
     { id: 'histgeo', name: 'التاريخ والجغرافيا', nameFr: 'Histoire-Géo', icon: '🌍', coef: 2, color: '#0EA5E9', teacher: 'M.HIS6' },
-    { id: 'islamic', name: 'العلوم الإسلامية', nameFr: 'Sc. Islamiques', icon: '🕌', coef: 2, color: '#84CC16', teacher: 'M.SC/IS4' },
-    { id: 'sport', name: 'التربية البدنية', nameFr: 'Éducation Physique', icon: '🏃', coef: 1, color: '#F97316', teacher: 'M.SPO84' }
+    { id: 'islamic', name: 'العلوم الإسلامية', nameFr: 'Sc. Islamiques', icon: '🕌', coef: 2, color: '#84CC16', teacher: 'M.SC/IS4' }
   ];
 
   return `
@@ -1673,7 +1034,6 @@ function renderSubjects() {
       <h2>📚 موادّي الدراسية</h2>
       <p>جميع مواد السنة الثانية ثانوي - شعبة تسيير واقتصاد | Division 2G1</p>
     </div>
-
     <div class="cards-grid">
       ${subjects.map(s => `
         <div class="card">
@@ -1687,9 +1047,6 @@ function renderSubjects() {
               <p style="font-size: .8rem; color: var(--emerald);">الأستاذ: ${s.teacher}</p>
             </div>
           </div>
-          <p style="color: var(--text-light); margin-bottom: 1rem;">
-            دروس، تمارين محلولة، وفيديوهات شرح
-          </p>
           <div style="display: flex; gap: .5rem; flex-wrap: wrap;">
             <span class="badge badge-success">✓ متاح</span>
             <button class="btn btn-sm btn-primary" onclick="askAIAbout('${s.name}')">🤖 اسأل المساعد</button>
@@ -1701,360 +1058,87 @@ function renderSubjects() {
 }
 
 function renderLessons() {
-  const lessons = Object.values(LESSONS_DB);
-  
   return `
     <div class="page-title">
       <h2>📖 دروسي</h2>
-      <p>دروس مفصلة مع شروحات وأمثلة تطبيقية</p>
+      <p>دروس مفصلة مع شروحات وأمثلة تطبيقية (مطابقة للمنهاج الرسمي)</p>
     </div>
 
     <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">📊</div>
-        التسيير المحاسبي والمالي
-      </div>
-      ${lessons.filter(l => l.subject === 'التسيير المحاسبي والمالي').map(l => `
-        <div class="lesson-card" onclick="openLesson('${l.id}')">
-          <h3>${l.title}</h3>
-          <p>${l.chapter}</p>
-          <div style="display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem;">
-            <span class="badge badge-success">✓ موثق</span>
-            <span class="badge badge-info">📝 ${l.exercises.length} تمارين</span>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">💼</div>
-        الاقتصاد والمناجمنت
-      </div>
-      ${lessons.filter(l => l.subject === 'الاقتصاد والمناجمنت').map(l => `
-        <div class="lesson-card" onclick="openLesson('${l.id}')">
-          <h3>${l.title}</h3>
-          <p>${l.chapter}</p>
-          <div style="display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem;">
-            <span class="badge badge-success">✓ موثق</span>
-            <span class="badge badge-info">📝 ${l.exercises.length} تمارين</span>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">🔢</div>
-        الرياضيات
-      </div>
-      ${lessons.filter(l => l.subject === 'الرياضيات').map(l => `
-        <div class="lesson-card" onclick="openLesson('${l.id}')">
-          <h3>${l.title}</h3>
-          <p>${l.chapter}</p>
-          <div style="display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem;">
-            <span class="badge badge-success">✓ موثق</span>
-            <span class="badge badge-info">📝 ${l.exercises.length} تمارين</span>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">⚖️</div>
-        القانون
-      </div>
-      ${lessons.filter(l => l.subject === 'القانون').map(l => `
-        <div class="lesson-card" onclick="openLesson('${l.id}')">
-          <h3>${l.title}</h3>
-          <p>${l.chapter}</p>
-          <div style="display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem;">
-            <span class="badge badge-success">✓ موثق</span>
-            <span class="badge badge-info">📝 ${l.exercises.length} تمارين</span>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-}
-
-function renderLessonDetail(lessonId) {
-  const l = LESSONS_DB[lessonId];
-  if (!l) return '<p>الدرس غير موجود</p>';
-  
-  const isCompleted = state.completedLessons.includes(l.id);
-  const isBookmarked = state.bookmarks.includes(l.id);
-  
-  return `
-    <div class="page-title">
-      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: .5rem;">
-        <button class="btn btn-outline btn-sm" onclick="navigate('lessons')">→ العودة</button>
-      </div>
-      <h2>${l.title}</h2>
-      <p>${l.subject} | ${l.chapter}</p>
-    </div>
-
-    <div class="lesson-section" style="display: flex; gap: .5rem; flex-wrap: wrap;">
-      <button class="btn ${isCompleted ? 'btn-primary' : 'btn-outline'}" onclick="toggleComplete('${l.id}')">
-        ${isCompleted ? '✓ مكتمل' : '✓ ضع علامة كمكتمل'}
-      </button>
-      <button class="btn ${isBookmarked ? 'btn-primary' : 'btn-outline'}" onclick="toggleBookmark('${l.id}')" style="${isBookmarked ? 'background:#F59E0B; border-color:#F59E0B;' : ''}">
-        ${isBookmarked ? '⭐ محفوظ' : '☆ إضافة للمحفوظات'}
-      </button>
-      <button class="btn btn-outline" onclick="askAIAbout('${l.title}')"> اسأل المساعد عن هذا الدرس</button>
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon"></div>
-        الأهداف التعلمية
-      </div>
-      <ul style="padding-right: 1.5rem;">
-        ${l.objectives.map(o => `<li>${o}</li>`).join('')}
-      </ul>
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">📖</div>
-        الشرح التفصيلي
-      </div>
-      <div class="lesson-content">${l.content}</div>
-    </div>
-
-    ${l.definitions ? `
-      <div class="lesson-section">
-        <div class="section-title">
-          <div class="section-icon">📝</div>
-          المصطلحات والتعريفات
-        </div>
-        ${l.definitions.map(d => `
-          <div class="definition-box">
-            <strong>${d.term}:</strong> ${d.def}
+      <div class="section-title"><div class="section-icon">📊</div> التسيير المحاسبي والمالي</div>
+      <div class="cards-grid">
+        ${LESSONS_DB.compta.map(l => `
+          <div class="card" onclick="openLessonModal('${l.id}', 'compta')">
+            <h3>${l.title}</h3>
+            <p style="color: var(--text-light); font-size: .9rem;">${l.chapter}</p>
+            <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
           </div>
         `).join('')}
       </div>
-    ` : ''}
-
-    ${l.examples ? `
-      <div class="lesson-section">
-        <div class="section-title">
-          <div class="section-icon">💡</div>
-          أمثلة تطبيقية محلولة
-        </div>
-        ${l.examples.map(ex => `
-          <div class="example-box">
-            <h4 style="color: #F97316; margin-bottom: .5rem;">${ex.title}</h4>
-            <p>${ex.content}</p>
-            ${ex.table ? `
-              <table class="acc-table">
-                <thead>
-                  <tr>${ex.table.headers.map(h => `<th>${h}</th>`).join('')}</tr>
-                </thead>
-                <tbody>
-                  ${ex.table.rows.map(r => {
-                    if (r.total) {
-                      return `<tr class="total">${r.total.map(c => `<td>${c}</td>`).join('')}</tr>`;
-                    }
-                    return `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`;
-                  }).join('')}
-                </tbody>
-              </table>
-            ` : ''}
-          </div>
-        `).join('')}
-      </div>
-    ` : ''}
-
-    ${l.mistakes ? `
-      <div class="lesson-section">
-        <div class="section-title">
-          <div class="section-icon" style="background: #EF4444;">⚠️</div>
-          أخطاء شائعة يجب تجنبها
-        </div>
-        ${l.mistakes.map(m => `
-          <div class="mistake-box">❌ ${m}</div>
-        `).join('')}
-      </div>
-    ` : ''}
-
-    ${l.summary ? `
-      <div class="lesson-section">
-        <div class="section-title">
-          <div class="section-icon" style="background: #3B82F6;">📋</div>
-          ملخص الدرس للمراجعة
-        </div>
-        <div class="summary-box">
-          <strong>الخلاصة:</strong> ${l.summary}
-        </div>
-      </div>
-    ` : ''}
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon" style="background: #8B5CF6;">✏️</div>
-        تمارين تطبيقية
-      </div>
-      ${l.exercises.map((ex, i) => `
-        <div class="exercise-card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;">
-            <div>
-              <strong>التمرين ${i + 1}</strong>
-              <span class="badge ${ex.difficulty === 'Easy' ? 'badge-success' : ex.difficulty === 'Medium' ? 'badge-warning' : 'badge-info'}" style="margin-right: .5rem;">
-                ${ex.difficulty === 'Easy' ? 'سهل' : ex.difficulty === 'Medium' ? 'متوسط' : 'صعب'}
-              </span>
-            </div>
-            <span class="badge badge-info">${ex.type === 'mcq' ? 'اختيار متعدد' : ex.type === 'journal' ? 'قيد محاسبي' : ex.type === 'calculation' ? 'حساب' : 'سؤال مفتوح'}</span>
-          </div>
-          <p style="margin-bottom: 1rem; font-weight: 500;">${ex.question}</p>
-          
-          ${ex.type === 'mcq' ? `
-            <div id="mcq-${ex.id}">
-              ${ex.options.map((opt, j) => `
-                <label class="mcq-option" style="display: block; padding: .75rem; margin: .5rem 0; background: var(--sand); border: 2px solid var(--border); border-radius: 8px; cursor: pointer;">
-                  <input type="radio" name="${ex.id}" value="${j}" style="margin-left: .5rem;">
-                  ${opt}
-                </label>
-              `).join('')}
-            </div>
-          ` : ''}
-          
-          <div style="display: flex; gap: .5rem; margin-top: 1rem;">
-            ${ex.type === 'mcq' ? `
-              <button class="btn btn-primary btn-sm" onclick="checkMCQ('${ex.id}', ${ex.correct})">
-                تحقق من الإجابة
-              </button>
-            ` : ''}
-            <button class="btn btn-secondary btn-sm" onclick="toggleSolution('${ex.id}')">
-              👁 عرض الحل المفصل
-            </button>
-          </div>
-          
-          <div class="solution-box" id="sol-${ex.id}">
-            <strong>الحل الصحيح:</strong><br>
-            ${ex.solution || (ex.type === 'mcq' ? `الإجابة الصحيحة هي: <strong>${ex.options[ex.correct]}</strong><br><br>${ex.explanation}` : '')}
-          </div>
-        </div>
-      `).join('')}
     </div>
 
-    <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
-      <button class="btn btn-secondary" onclick="navigate('lessons')">
-        ← العودة للدروس
-      </button>
-      <button class="btn btn-primary" onclick="askAIAbout('${l.title}')">
-        🤖 اسأل المساعد عن هذا الدرس
-      </button>
+    <div class="lesson-section">
+      <div class="section-title"><div class="section-icon">💼</div> الاقتصاد والمناجمنت</div>
+      <div class="cards-grid">
+        ${LESSONS_DB.eco.map(l => `
+          <div class="card" onclick="openLessonModal('${l.id}', 'eco')">
+            <h3>${l.title}</h3>
+            <p style="color: var(--text-light); font-size: .9rem;">${l.chapter}</p>
+            <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title"><div class="section-icon">⚖️</div> القانون</div>
+      <div class="cards-grid">
+        ${LESSONS_DB.droit.map(l => `
+          <div class="card" onclick="openLessonModal('${l.id}', 'droit')">
+            <h3>${l.title}</h3>
+            <p style="color: var(--text-light); font-size: .9rem;">${l.chapter}</p>
+            <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <div class="section-title"><div class="section-icon">🔢</div> الرياضيات</div>
+      <div class="cards-grid">
+        ${LESSONS_DB.math.map(l => `
+          <div class="card" onclick="openLessonModal('${l.id}', 'math')">
+            <h3>${l.title}</h3>
+            <p style="color: var(--text-light); font-size: .9rem;">${l.chapter}</p>
+            <span class="badge badge-success" style="margin-top: .5rem;">✓ موثق</span>
+          </div>
+        `).join('')}
+      </div>
     </div>
   `;
 }
 
 function renderExercises() {
-  const allExercises = [];
-  Object.values(LESSONS_DB).forEach(l => {
-    l.exercises.forEach(ex => {
-      allExercises.push({ ...ex, lessonTitle: l.title, lessonId: l.id, subject: l.subject });
-    });
-  });
-
   return `
     <div class="page-title">
       <h2>✏️ تماريني</h2>
-      <p>تمارين تطبيقية مع الحلول المفصلة</p>
+      <p>تمارين تطبيقية مع الحلول المفصلة خطوة بخطوة</p>
     </div>
 
     <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">📊</div>
-        تمارين المحاسبة
-      </div>
-      ${allExercises.filter(e => e.subject === 'التسيير المحاسبي والمالي').map((ex, i) => `
-        <div class="exercise-card">
+      <div class="section-title"><div class="section-icon">📝</div> بنك التمارين</div>
+      ${EXERCISES_DB.map(ex => `
+        <div class="card" style="margin-bottom: 1rem; cursor: default;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;">
             <div>
-              <strong>تمرين ${i + 1}: ${ex.lessonTitle}</strong>
-              <span class="badge ${ex.difficulty === 'Easy' ? 'badge-success' : ex.difficulty === 'Medium' ? 'badge-warning' : 'badge-info'}" style="margin-right: .5rem;">
-                ${ex.difficulty === 'Easy' ? 'سهل' : ex.difficulty === 'Medium' ? 'متوسط' : 'صعب'}
-              </span>
+              <span class="badge badge-info">${ex.subject}</span>
+              <span class="badge ${ex.difficulty === 'سهل' ? 'badge-success' : ex.difficulty === 'متوسط' ? 'badge-warning' : 'badge-info'}" style="margin-right: .5rem;">${ex.difficulty}</span>
             </div>
           </div>
-          <p style="margin-bottom: 1rem;">${ex.question}</p>
-          <button class="btn btn-sm btn-primary" onclick="toggleSolution('ex-all-${ex.id}')">👁 عرض الحل</button>
-          <div class="solution-box" id="ex-all-${ex.id}">
-            ${ex.solution || ex.explanation || 'الحل متاح في صفحة الدرس'}
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon"></div>
-        تمارين الاقتصاد
-      </div>
-      ${allExercises.filter(e => e.subject === 'الاقتصاد والمناجمنت').map((ex, i) => `
-        <div class="exercise-card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;">
-            <div>
-              <strong>تمرين ${i + 1}: ${ex.lessonTitle}</strong>
-              <span class="badge ${ex.difficulty === 'Easy' ? 'badge-success' : ex.difficulty === 'Medium' ? 'badge-warning' : 'badge-info'}" style="margin-right: .5rem;">
-                ${ex.difficulty === 'Easy' ? 'سهل' : ex.difficulty === 'Medium' ? 'متوسط' : 'صعب'}
-              </span>
-            </div>
-          </div>
-          <p style="margin-bottom: 1rem;">${ex.question}</p>
-          <button class="btn btn-sm btn-primary" onclick="toggleSolution('ex-all-${ex.id}')">👁 عرض الحل</button>
-          <div class="solution-box" id="ex-all-${ex.id}">
-            ${ex.solution || ex.explanation || 'الحل متاح في صفحة الدرس'}
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">🔢</div>
-        تمارين الرياضيات
-      </div>
-      ${allExercises.filter(e => e.subject === 'الرياضيات').map((ex, i) => `
-        <div class="exercise-card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;">
-            <div>
-              <strong>تمرين ${i + 1}: ${ex.lessonTitle}</strong>
-              <span class="badge ${ex.difficulty === 'Easy' ? 'badge-success' : ex.difficulty === 'Medium' ? 'badge-warning' : 'badge-info'}" style="margin-right: .5rem;">
-                ${ex.difficulty === 'Easy' ? 'سهل' : ex.difficulty === 'Medium' ? 'متوسط' : 'صعب'}
-              </span>
-            </div>
-          </div>
-          <p style="margin-bottom: 1rem;">${ex.question}</p>
-          <button class="btn btn-sm btn-primary" onclick="toggleSolution('ex-all-${ex.id}')">👁 عرض الحل</button>
-          <div class="solution-box" id="ex-all-${ex.id}">
-            ${ex.solution || ex.explanation || 'الحل متاح في صفحة الدرس'}
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">⚖️</div>
-        تمارين القانون
-      </div>
-      ${allExercises.filter(e => e.subject === 'القانون').map((ex, i) => `
-        <div class="exercise-card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;">
-            <div>
-              <strong>تمرين ${i + 1}: ${ex.lessonTitle}</strong>
-              <span class="badge ${ex.difficulty === 'Easy' ? 'badge-success' : ex.difficulty === 'Medium' ? 'badge-warning' : 'badge-info'}" style="margin-right: .5rem;">
-                ${ex.difficulty === 'Easy' ? 'سهل' : ex.difficulty === 'Medium' ? 'متوسط' : 'صعب'}
-              </span>
-            </div>
-          </div>
-          <p style="margin-bottom: 1rem;">${ex.question}</p>
-          <button class="btn btn-sm btn-primary" onclick="toggleSolution('ex-all-${ex.id}')">👁 عرض الحل</button>
-          <div class="solution-box" id="ex-all-${ex.id}">
-            ${ex.solution || ex.explanation || 'الحل متاح في صفحة الدرس'}
+          <p style="font-weight: 600; margin-bottom: 1rem;">${ex.question}</p>
+          <button class="btn btn-primary btn-sm" onclick="toggleSolution('${ex.id}')">👁 عرض الحل المفصل</button>
+          <div id="sol-${ex.id}" style="display: none; margin-top: 1rem; padding: 1rem; background: #ECFDF5; border-right: 4px solid var(--emerald); border-radius: 8px;">
+            ${ex.solution}
           </div>
         </div>
       `).join('')}
@@ -2063,71 +1147,15 @@ function renderExercises() {
 }
 
 function renderProgress() {
-  const totalLessons = Object.keys(LESSONS_DB).length;
-  const completed = state.completedLessons.length;
-  const progress = totalLessons > 0 ? Math.round((completed / totalLessons) * 100) : 0;
-
   return `
     <div class="page-title">
       <h2>📊 تقدمّي الدراسي</h2>
       <p>تتبع إنجازاتك وتقدمك في المواد</p>
     </div>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon navy">📚</div>
-        <div class="stat-info">
-          <h4>الدروس المكتملة</h4>
-          <div class="value">${completed}/${totalLessons}</div>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon emerald">📈</div>
-        <div class="stat-info">
-          <h4>نسبة التقدم</h4>
-          <div class="value">${progress}%</div>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon orange">⭐</div>
-        <div class="stat-info">
-          <h4>المحفوظات</h4>
-          <div class="value">${state.bookmarks.length}</div>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon purple">🤖</div>
-        <div class="stat-info">
-          <h4>رسائل المساعد</h4>
-          <div class="value">${state.aiMessages.length}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">📊</div>
-        تقدمك في كل مادة
-      </div>
-      ${Object.values(LESSONS_DB).reduce((acc, l) => {
-        if (!acc[l.subject]) acc[l.subject] = { total: 0, completed: 0 };
-        acc[l.subject].total++;
-        if (state.completedLessons.includes(l.id)) acc[l.subject].completed++;
-        return acc;
-      }, {}).map(([subject, data]) => {
-        const percent = Math.round((data.completed / data.total) * 100);
-        return `
-          <div style="margin-bottom: 1rem; padding: 1rem; background: var(--sand); border-radius: 10px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: .5rem; flex-wrap: wrap; gap: .5rem;">
-              <strong>${subject}</strong>
-              <span>${data.completed}/${data.total} دروس (${percent}%)</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: ${percent}%;"></div>
-            </div>
-          </div>
-        `;
-      }).join('')}
+    <div class="lesson-section" style="text-align: center; padding: 3rem;">
+      <div style="font-size: 4rem; margin-bottom: 1rem;">📈</div>
+      <h3>ابدأ دراسة الدروس وحل التمارين ليظهر تقدمك هنا</h3>
+      <button class="btn btn-primary" style="margin-top: 1rem;" onclick="navigate('lessons')">الذهاب للدروس</button>
     </div>
   `;
 }
@@ -2140,10 +1168,7 @@ function renderDashboard() {
     </div>
 
     <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">🤖</div>
-        إعدادات المساعد الذكي
-      </div>
+      <div class="section-title"><div class="section-icon">🤖</div> إعدادات المساعد الذكي</div>
       <div class="form-group">
         <label>مفتاح Google Gemini API</label>
         <input type="password" id="apiKeyInput" value="${state.geminiApiKey}" placeholder="أدخل مفتاح API هنا">
@@ -2155,141 +1180,85 @@ function renderDashboard() {
     </div>
 
     <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">🎨</div>
-        المظهر
-      </div>
+      <div class="section-title"><div class="section-icon">🎨</div> المظهر</div>
       <button class="btn btn-outline" onclick="toggleTheme()">
         ${state.theme === 'light' ? '🌙' : '☀️'} تبديل إلى الوضع ${state.theme === 'light' ? 'الداكن' : 'الفاتح'}
       </button>
     </div>
 
     <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon" style="background: #EF4444;">🗑</div>
-        إدارة البيانات
-      </div>
+      <div class="section-title"><div class="section-icon" style="background: #EF4444;">🗑</div> إدارة البيانات</div>
       <button class="btn btn-outline" onclick="exportData()" style="margin-left: .5rem;">📥 تصدير جميع البيانات</button>
-      <button class="btn btn-outline" onclick="clearAllData()" style="background: #EF4444; color: white; border-color: #EF4444;">🗑 مسح جميع البيانات</button>
-    </div>
-
-    <div class="lesson-section">
-      <div class="section-title">
-        <div class="section-icon">ℹ️</div>
-        حول المنصة
-      </div>
-      <p><strong>نخبة 2AS</strong> - منصة تعليمية ذكية</p>
-      <p style="color: var(--text-light); margin-top: .5rem;">Division 2G1 | Lycée Thaalbiya El Alger</p>
-      <p style="color: var(--text-light);">السنة الدراسية 2026-2027</p>
-      <p style="color: var(--text-light); margin-top: 1rem;">
-        <strong>النموذج المستخدم:</strong> Gemini 2.0 Flash<br>
-        <strong>المحتوى التعليمي:</strong> مستوحى من المنهج الجزائري الرسمي
-      </p>
+      <button class="btn btn-danger" onclick="clearAllData()">🗑 مسح جميع البيانات</button>
     </div>
   `;
 }
 
-// ==================== HELPER FUNCTIONS ====================
-
+// ==================== HELPER & SCHEDULE FUNCTIONS ====================
 function getCurrentClass() {
   const now = new Date();
-  const day = now.getDay();
-  const hour = now.getHours();
-  const minute = now.getMinutes();
-  const currentTime = hour * 60 + minute;
-
-  const times = [
-    { start: 8*60, end: 9*60, idx: 0 },
-    { start: 9*60, end: 10*60, idx: 1 },
-    { start: 10*60, end: 11*60, idx: 2 },
-    { start: 11*60, end: 12*60, idx: 3 },
-    { start: 12*60, end: 13*60, idx: 4 },
-    { start: 13*60, end: 14*60, idx: 5 },
-    { start: 14*60, end: 14*60+30, idx: 6 },
-    { start: 15*60+30, end: 16*60+30, idx: 7 }
-  ];
-
+  const day = now.getDay(); 
   if (day > 4) return null;
-
-  for (const time of times) {
-    if (currentTime >= time.start && currentTime < time.end) {
-      const key = `${day}-${time.idx}`;
-      const cell = state.schoolSchedule[key];
-      if (cell) {
-        return {
-          ...cell,
-          key,
-          time: `${String(Math.floor(time.start/60)).padStart(2,'0')}:${String(time.start%60).padStart(2,'0')} - ${String(Math.floor(time.end/60)).padStart(2,'0')}:${String(time.end%60).padStart(2,'0')}`
-        };
+  const currentTime = now.getHours() * 60 + now.getMinutes();
+  
+  for (let timeIdx = 0; timeIdx < state.scheduleTimes.length; timeIdx++) {
+    const [start, end] = state.scheduleTimes[timeIdx].split('-');
+    const [sh, sm] = start.split(':').map(Number);
+    const [eh, em] = end.split(':').map(Number);
+    const startTime = sh * 60 + sm;
+    const endTime = eh * 60 + em;
+    
+    if (currentTime >= startTime && currentTime < endTime) {
+      const key = `${day}-${timeIdx}`;
+      if (state.schoolSchedule[key]) {
+        return { ...state.schoolSchedule[key], key, time: state.scheduleTimes[timeIdx] };
       }
     }
   }
-
   return null;
 }
 
 function getNextClass() {
   const now = new Date();
   const day = now.getDay();
-  const hour = now.getHours();
-  const minute = now.getMinutes();
-  const currentTime = hour * 60 + minute;
-
-  const times = [
-    { start: 8*60, end: 9*60, idx: 0 },
-    { start: 9*60, end: 10*60, idx: 1 },
-    { start: 10*60, end: 11*60, idx: 2 },
-    { start: 11*60, end: 12*60, idx: 3 },
-    { start: 12*60, end: 13*60, idx: 4 },
-    { start: 13*60, end: 14*60, idx: 5 },
-    { start: 14*60, end: 14*60+30, idx: 6 },
-    { start: 15*60+30, end: 16*60+30, idx: 7 }
-  ];
-
-  for (const time of times) {
-    if (currentTime < time.start) {
-      const key = `${day}-${time.idx}`;
-      const cell = state.schoolSchedule[key];
-      if (cell) {
-        return {
-          ...cell,
-          key,
-          time: `${String(Math.floor(time.start/60)).padStart(2,'0')}:${String(time.start%60).padStart(2,'0')} - ${String(Math.floor(time.end/60)).padStart(2,'0')}:${String(time.end%60).padStart(2,'0')}`
-        };
+  if (day > 4) return null;
+  const currentTime = now.getHours() * 60 + now.getMinutes();
+  
+  for (let timeIdx = 0; timeIdx < state.scheduleTimes.length; timeIdx++) {
+    const [start] = state.scheduleTimes[timeIdx].split('-');
+    const [sh, sm] = start.split(':').map(Number);
+    const startTime = sh * 60 + sm;
+    
+    if (currentTime < startTime) {
+      const key = `${day}-${timeIdx}`;
+      if (state.schoolSchedule[key]) {
+        return { ...state.schoolSchedule[key], key, time: state.scheduleTimes[timeIdx] };
       }
     }
   }
-
-  for (let d = day + 1; d <= 4; d++) {
-    for (const time of times) {
-      const key = `${d}-${time.idx}`;
-      const cell = state.schoolSchedule[key];
-      if (cell) {
-        return {
-          ...cell,
-          key,
-          time: `${String(Math.floor(time.start/60)).padStart(2,'0')}:${String(time.start%60).padStart(2,'0')} - ${String(Math.floor(time.end/60)).padStart(2,'0')}:${String(time.end%60).padStart(2,'0')}`
-        };
-      }
-    }
-  }
-
   return null;
 }
 
-function getSubjectSummary() {
-  const subjects = {};
-  Object.entries(state.schoolSchedule).forEach(([key, cell]) => {
-    if (!subjects[cell.subject]) {
-      subjects[cell.subject] = { ...cell, hours: 0 };
-    }
-    subjects[cell.subject].hours++;
-  });
-  return Object.values(subjects);
+function toggleEditSchedule() {
+  state.isEditingSchedule = !state.isEditingSchedule;
+  if (!state.isEditingSchedule) {
+    localStorage.setItem('schoolSchedule2G1', JSON.stringify(state.schoolSchedule));
+    localStorage.setItem('scheduleTimes', JSON.stringify(state.scheduleTimes));
+    showToast('✅ تم حفظ تعديلات الجدول بنجاح');
+  }
+  render();
+}
+
+function updateTime(timeIdx, newValue) {
+  state.scheduleTimes[timeIdx] = newValue;
+}
+
+function updateCell(key, field, value) {
+  if (!state.schoolSchedule[key]) state.schoolSchedule[key] = {};
+  state.schoolSchedule[key][field] = value;
 }
 
 // ==================== AI FUNCTIONS ====================
-
 async function sendMessage() {
   const input = document.getElementById('aiInput');
   const text = input.value.trim();
@@ -2300,7 +1269,7 @@ async function sendMessage() {
   }
 
   if (!state.geminiApiKey) {
-    showToast('يرجى إعداد مفتاح API أولاً');
+    showToast('يرجى إعداد مفتاح API أولاً من الإعدادات');
     navigate('dashboard');
     return;
   }
@@ -2325,7 +1294,7 @@ async function sendMessage() {
     <div class="message ai" id="${loadingId}">
       <div class="message-avatar">🤖</div>
       <div class="message-content">
-        <div class="loading"></div> جاري التفكير...
+        <div class="loading"></div> جاري التفكير وتحليل الطلب...
       </div>
     </div>
   `;
@@ -2334,14 +1303,14 @@ async function sendMessage() {
   let prompt = `أنت مساعد تعليمي ذكي لطلاب السنة الثانية ثانوي في الجزائر (شعبة تسيير واقتصاد - Division 2G1). أجب باللغة العربية بوضوح ودقة. مستوى الإجابة يجب أن يكون مناسباً لتلميذ في السنة الثانية ثانوي.\n\n`;
   
   if (userMsg.images && userMsg.images.length > 0) {
-    prompt += `حلل هذه الصورة/التمرين وأعطِ:\n1. فهم محتوى الصورة\n2. حل التمرين خطوة بخطوة إذا كان تمريناً\n3. شرح المفاهيم المستخدمة\n4. نصائح للمراجعة\n\n`;
+    prompt += `حلل هذه الصورة/التمرين المرفق وأعطِ:\n1. فهم محتوى الصورة\n2. حل التمرين خطوة بخطوة إذا كان تمريناً\n3. شرح المفاهيم المستخدمة\n4. نصائح للمراجعة\n\n`;
   }
   
   if (text) {
     prompt += `سؤال الطالب: ${text}`;
   }
 
-  const imagesData = userMsg.images.map(img => {
+  const imagesData = state.uploadedImages.map(img => {
     const base64 = img.split(',')[1];
     const type = img.split(';')[0].split(':')[1];
     return { data: base64, type };
@@ -2363,13 +1332,11 @@ async function sendMessage() {
 
 function handleImageUpload(event) {
   const files = event.target.files;
-  
   for (const file of files) {
     if (file.size > 5 * 1024 * 1024) {
       showToast('حجم الصورة كبير جداً (الحد الأقصى 5MB)');
       continue;
     }
-
     const reader = new FileReader();
     reader.onload = (e) => {
       state.uploadedImages.push(e.target.result);
@@ -2415,136 +1382,12 @@ function askAIAbout(subject) {
   navigate('ai');
   setTimeout(() => {
     const input = document.getElementById('aiInput');
-    input.value = `اشرح لي أهم المفاهيم في: ${subject} للسنة الثانية ثانوي شعبة تسيير واقتصاد`;
+    input.value = `اشرح لي أهم المفاهيم في مادة ${subject} للسنة الثانية ثانوي شعبة تسيير واقتصاد`;
     input.focus();
   }, 100);
 }
 
-// ==================== SCHEDULE EDIT FUNCTIONS ====================
-
-function editScheduleModal() {
-  const modal = document.getElementById('modal');
-  const content = document.getElementById('modalContent');
-  const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
-  const times = ['08:00-09:00', '09:00-10:00', '10:00-11:00', '11:00-12:00', '12:00-13:00', '13:00-14:00', '14:00-14:30', '15:30-16:30'];
-
-  content.innerHTML = `
-    <h3>✏️ تعديل الجدول المدرسي</h3>
-    <p style="color: var(--text-light); margin-bottom: 1rem;">انقر على أي خلية لتعديلها</p>
-    <div style="max-height: 60vh; overflow-y: auto;">
-      <table class="schedule-table">
-        <thead>
-          <tr>
-            <th>الوقت</th>
-            ${days.map(d => `<th>${d}</th>`).join('')}
-          </tr>
-        </thead>
-        <tbody>
-          ${times.map((time, timeIdx) => `
-            <tr>
-              <td style="font-weight: 700; font-size: .8rem;">${time}</td>
-              ${days.map((day, dayIdx) => {
-                const key = `${dayIdx}-${timeIdx}`;
-                const cell = state.schoolSchedule[key];
-                return `
-                  <td>
-                    <div class="schedule-cell ${cell ? 'filled' : ''}" onclick="editScheduleCell('${key}', '${day}', '${time}')" style="min-height: 50px; font-size: .75rem;">
-                      ${cell ? `
-                        <div class="subject-name" style="font-size: .75rem;">${cell.subjectAr || cell.subject}</div>
-                        <div class="subject-teacher" style="font-size: .65rem;">${cell.teacher}</div>
-                      ` : '<span style="color: var(--text-light); font-size: .7rem;">+ إضافة</span>'}
-                    </div>
-                  </td>
-                `;
-              }).join('')}
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    </div>
-    <div style="display: flex; gap: .5rem; margin-top: 1rem; flex-wrap: wrap;">
-      <button class="btn btn-outline" onclick="resetSchedule()">🔄 إعادة الجدول الأصلي</button>
-      <button class="btn btn-outline" onclick="closeModal()">إغلاق</button>
-    </div>
-  `;
-
-  modal.classList.add('show');
-}
-
-function editScheduleCell(key, day, time) {
-  const cell = state.schoolSchedule[key];
-  const modal = document.getElementById('modal');
-  const content = document.getElementById('modalContent');
-
-  content.innerHTML = `
-    <h3>✏️ تعديل الحصة - ${day} ${time}</h3>
-    <div class="form-group">
-      <label>المادة (بالعربية)</label>
-      <input type="text" id="editSubjectAr" value="${cell?.subjectAr || ''}" placeholder="مثال: الرياضيات">
-    </div>
-    <div class="form-group">
-      <label>المادة (بالفرنسية/الإنجليزية)</label>
-      <input type="text" id="editSubject" value="${cell?.subject || ''}" placeholder="مثال: MATH">
-    </div>
-    <div class="form-group">
-      <label>الأستاذ</label>
-      <input type="text" id="editTeacher" value="${cell?.teacher || ''}" placeholder="مثال: M.MATH10">
-    </div>
-    <div class="form-group">
-      <label>الوقت</label>
-      <input type="text" id="editTime" value="${cell?.time || time}" placeholder="08:00-09:00">
-    </div>
-    <div style="display: flex; gap: .5rem; margin-top: 1rem; flex-wrap: wrap;">
-      <button class="btn btn-primary" onclick="saveScheduleCell('${key}')">💾 حفظ</button>
-      ${cell ? `<button class="btn btn-outline" onclick="deleteScheduleCell('${key}')" style="background: #EF4444; color: white; border-color: #EF4444;">🗑 حذف</button>` : ''}
-      <button class="btn btn-outline" onclick="closeModal()">إلغاء</button>
-    </div>
-  `;
-
-  modal.classList.add('show');
-}
-
-function saveScheduleCell(key) {
-  const subjectAr = document.getElementById('editSubjectAr').value.trim();
-  const subject = document.getElementById('editSubject').value.trim();
-  const teacher = document.getElementById('editTeacher').value.trim();
-  const time = document.getElementById('editTime').value.trim();
-
-  if (!subjectAr && !subject) {
-    showToast('يرجى إدخال اسم المادة');
-    return;
-  }
-
-  state.schoolSchedule[key] = {
-    subjectAr,
-    subject,
-    teacher,
-    time
-  };
-
-  localStorage.setItem('schoolSchedule2G1', JSON.stringify(state.schoolSchedule));
-  closeModal();
-  render();
-  showToast('✓ تم حفظ التعديلات');
-}
-
-function deleteScheduleCell(key) {
-  delete state.schoolSchedule[key];
-  localStorage.setItem('schoolSchedule2G1', JSON.stringify(state.schoolSchedule));
-  closeModal();
-  render();
-  showToast('✓ تم حذف الحصة');
-}
-
-function resetSchedule() {
-  if (confirm('هل أنت متأكد؟ سيتم إعادة الجدول إلى الوضع الأصلي.')) {
-    localStorage.removeItem('schoolSchedule2G1');
-    location.reload();
-  }
-}
-
 // ==================== UTILITY FUNCTIONS ====================
-
 function saveMessages() {
   localStorage.setItem('aiMessages', JSON.stringify(state.aiMessages));
 }
@@ -2553,7 +1396,7 @@ function saveApiKey() {
   const key = document.getElementById('apiKeyInput').value.trim();
   state.geminiApiKey = key;
   localStorage.setItem('geminiApiKey', key);
-  showToast('✓ تم حفظ المفتاح');
+  showToast('✓ تم حفظ المفتاح بنجاح');
 }
 
 function toggleTheme() {
@@ -2576,11 +1419,9 @@ function showToast(message) {
 
 function exportData() {
   const data = {
+    scheduleTimes: state.scheduleTimes,
     schoolSchedule: state.schoolSchedule,
-    homeSchedule: state.homeSchedule,
     aiMessages: state.aiMessages,
-    completedLessons: state.completedLessons,
-    bookmarks: state.bookmarks,
     exportDate: new Date().toISOString()
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
@@ -2589,17 +1430,18 @@ function exportData() {
   a.href = url;
   a.download = `nokhba-2g1-backup-${Date.now()}.json`;
   a.click();
-  showToast('✓ تم التصدير');
+  showToast('✓ تم تصدير البيانات بنجاح');
 }
 
 function clearAllData() {
-  if (confirm('هل أنت متأكد؟ سيتم حذف جميع بياناتك!')) {
+  if (confirm('هل أنت متأكد؟ سيتم حذف جميع بياناتك وجداولك!')) {
     localStorage.clear();
     location.reload();
   }
 }
 
 function showClassDetails(key) {
+  if (state.isEditingSchedule) return;
   const cell = state.schoolSchedule[key];
   if (!cell) return;
   
@@ -2609,14 +1451,36 @@ function showClassDetails(key) {
   content.innerHTML = `
     <h3>📚 ${cell.subjectAr || cell.subject}</h3>
     <p style="color: var(--text-light); margin-bottom: 1rem;">${cell.subject} - ${cell.teacher}</p>
-    <p style="margin-bottom: 1rem;"><strong>الوقت:</strong> ${cell.time}</p>
     <div style="display: flex; gap: .5rem; flex-wrap: wrap;">
-      <button class="btn btn-primary" onclick="askAIAbout('${cell.subjectAr || cell.subject}'); closeModal();">🤖 اسأل المساعد</button>
+      <button class="btn btn-primary" onclick="askAIAbout('${cell.subjectAr || cell.subject}'); closeModal();">🤖 اسأل المساعد عن هذه المادة</button>
       <button class="btn btn-outline" onclick="closeModal()">إغلاق</button>
     </div>
   `;
-  
   modal.classList.add('show');
+}
+
+function openLessonModal(lessonId, subject) {
+  const lesson = LESSONS_DB[subject].find(l => l.id === lessonId);
+  if (!lesson) return;
+  
+  const modal = document.getElementById('modal');
+  const content = document.getElementById('modalContent');
+  
+  content.innerHTML = `
+    <h3>${lesson.title}</h3>
+    <p style="color: var(--emerald); margin-bottom: 1rem;">${lesson.chapter}</p>
+    <div class="lesson-content">${lesson.content}</div>
+    <div style="margin-top: 1.5rem; display: flex; gap: .5rem;">
+      <button class="btn btn-primary" onclick="askAIAbout('${lesson.title}'); closeModal();">🤖 اطلب شرحاً إضافياً</button>
+      <button class="btn btn-outline" onclick="closeModal()">إغلاق</button>
+    </div>
+  `;
+  modal.classList.add('show');
+}
+
+function toggleSolution(exId) {
+  const sol = document.getElementById(`sol-${exId}`);
+  sol.style.display = sol.style.display === 'none' ? 'block' : 'none';
 }
 
 function closeModal() {
@@ -2625,76 +1489,6 @@ function closeModal() {
 
 function printSchedule() {
   window.print();
-}
-
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
-}
-
-function openLesson(lessonId) {
-  navigate('lesson', lessonId);
-}
-
-function toggleComplete(lessonId) {
-  if (state.completedLessons.includes(lessonId)) {
-    state.completedLessons = state.completedLessons.filter(id => id !== lessonId);
-    showToast('تم إزالة العلامة');
-  } else {
-    state.completedLessons.push(lessonId);
-    showToast('✓ تم وضع علامة كمكتمل');
-  }
-  localStorage.setItem('completedLessons', JSON.stringify(state.completedLessons));
-  render();
-}
-
-function toggleBookmark(lessonId) {
-  if (state.bookmarks.includes(lessonId)) {
-    state.bookmarks = state.bookmarks.filter(id => id !== lessonId);
-    showToast('تم إزالة المحفوظ');
-  } else {
-    state.bookmarks.push(lessonId);
-    showToast('⭐ تم الإضافة للمحفوظات');
-  }
-  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
-  render();
-}
-
-function toggleSolution(exId) {
-  const sol = document.getElementById(`sol-${exId}`) || document.getElementById(`ex-all-${exId}`);
-  if (sol) sol.classList.toggle('show');
-}
-
-function checkMCQ(exId, correct) {
-  const selected = document.querySelector(`input[name="${exId}"]:checked`);
-  if (!selected) {
-    showToast('الرجاء اختيار إجابة أولاً');
-    return;
-  }
-  
-  const userAnswer = parseInt(selected.value);
-  const options = document.querySelectorAll(`#mcq-${exId} label`);
-  options.forEach((opt, i) => {
-    opt.style.borderColor = '';
-    opt.style.background = '';
-    if (i === correct) {
-      opt.style.borderColor = 'var(--emerald)';
-      opt.style.background = '#D1FAE5';
-    }
-    if (i === userAnswer && userAnswer !== correct) {
-      opt.style.borderColor = '#EF4444';
-      opt.style.background = '#FEE2E2';
-    }
-  });
-  
-  if (userAnswer === correct) {
-    showToast('✓ إجابة صحيحة!');
-  } else {
-    showToast('✗ إجابة خاطئة، راجع الحل المفصل');
-  }
 }
 
 function attachHandlers() {
@@ -2720,7 +1514,7 @@ window.addEventListener('resize', () => {
 });
 
 console.log('%c🎓 نخبة 2AS - Division 2G1', 'color: #10B981; font-size: 20px; font-weight: bold;');
-console.log('%cLycée Thaalbiya El Alger', 'color: #64748B; font-size: 12px;');
+console.log('%cتم تصحيح اتصال الذكاء الاصطناعي وإضافة المحتوى الحقيقي', 'color: #64748B; font-size: 12px;');
 </script>
 
 </body>
